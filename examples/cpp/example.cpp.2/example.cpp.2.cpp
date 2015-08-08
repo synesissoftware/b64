@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the example.cpp.2 project.
  *
  * Created:     27th April 2006
- * Updated:     21st April 2009
+ * Updated:     8th August 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2009, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -44,7 +44,6 @@
 
 /* b64 Header Files */
 #include <b64/b64.hpp>
-#include <b64/implicit_link.h>  /* Don't include this if you want to use explicit linking */
 
 /* STLSoft C++ Header Files */
 #include <stlsoft/stlsoft.h>                    /* If you can't see this file, d/l latest STLSoft 1.9+ from http://www.stlsoft.org/ */

@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "b64.core", "projects\core\vc10\b64.core.vcxproj", "{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.c.1", "examples\c\example.c.1\vc10\example.c.1.vcxproj", "{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D} = {556A45E1-24FA-4E66-A90A-0ADEBAFE408D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.c.2", "examples\c\example.c.2\vc10\example.c.2.vcxproj", "{88BF3376-7259-4495-843C-9FC525AE38D8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D} = {556A45E1-24FA-4E66-A90A-0ADEBAFE408D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.cpp.1", "examples\cpp\example.cpp.1\vc10\example.cpp.1.vcxproj", "{71F89FF5-A09F-4C04-BFBA-229AB988BC90}"
+	ProjectSection(ProjectDependencies) = postProject
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D} = {556A45E1-24FA-4E66-A90A-0ADEBAFE408D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.cpp.2", "examples\cpp\example.cpp.2\vc10\example.cpp.2.vcxproj", "{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D} = {556A45E1-24FA-4E66-A90A-0ADEBAFE408D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.c.1", "test\unit\test.unit.c.1\vc10\test.unit.c.1.vcxproj", "{8DDBE605-F03A-4EF0-BF71-738F735E301C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D} = {556A45E1-24FA-4E66-A90A-0ADEBAFE408D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.cpp.1", "test\unit\test.unit.cpp.1\vc10\test.unit.cpp.1.vcxproj", "{43F8D939-DFCC-4941-9AAF-99558F2D86D4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D} = {556A45E1-24FA-4E66-A90A-0ADEBAFE408D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Multithreaded|Win32 = Debug Multithreaded|Win32
+		Debug Multithreaded|x64 = Debug Multithreaded|x64
+		Release Multithreaded|Win32 = Release Multithreaded|Win32
+		Release Multithreaded|x64 = Release Multithreaded|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{556A45E1-24FA-4E66-A90A-0ADEBAFE408D}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{3D0F5238-DD13-44C7-9F2A-7AE8EE94235C}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{88BF3376-7259-4495-843C-9FC525AE38D8}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{71F89FF5-A09F-4C04-BFBA-229AB988BC90}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{FAB52C86-2C3D-4FCD-B5B6-56061C21E8DB}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{8DDBE605-F03A-4EF0-BF71-738F735E301C}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{43F8D939-DFCC-4941-9AAF-99558F2D86D4}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

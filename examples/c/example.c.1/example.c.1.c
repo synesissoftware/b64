@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the example.c.1 project.
  *
  * Created:     27th April 2006
- * Updated:     21st April 2009
+ * Updated:     8th August 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2009, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -44,7 +44,6 @@
 
 /* b64 Header Files */
 #include <b64/b64.h>
-#include <b64/implicit_link.h>  /* Don't include this if you want to use explicit linking */
 
 /* Standard C Header Files */
 #include <assert.h>
