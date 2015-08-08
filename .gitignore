@@ -36,6 +36,7 @@ src/xtests/
 *.opt
 *.out
 *.pch
+*.scc
 *.sbr
 *.sdf
 *.so
