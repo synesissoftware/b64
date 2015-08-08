@@ -3,6 +3,7 @@
 
 _internal/
 
+bin/
 lib/
 
 include/shwild/
