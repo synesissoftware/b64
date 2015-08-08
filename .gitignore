@@ -1,9 +1,9 @@
 
 # directories (by name)
 
-lib
+_internal/
 
-# directories (by pattern)
+lib/
 
 include/shwild/
 include/xcontract/
@@ -14,6 +14,8 @@ src/shwild/
 src/xcontract/
 src/xcover/
 src/xtests/
+
+# directories (by pattern)
 
 # files (by name)
 
