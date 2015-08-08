@@ -8,13 +8,23 @@
 # files (by pattern)
 
 *~
+*.a
+*.app
+*.dll
+*.dylib
+*.exe
+*.gch
+*.lib
+*.ncb
 *.o
 *.obj
-*.ncb
 *.opensdf
 *.opt
+*.out
+*.pch
 *.sbr
 *.sdf
+*.so
 *.vcproj.user
 *.vcxproj.user
 
