@@ -4,11 +4,11 @@
  * Purpose:     Header file for the b64 C++-API.
  *
  * Created:     18th October 2004
- * Updated:     4th February 2012
+ * Updated:     8th August 2015
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright 2004-2012, Matthew Wilson and Synesis Software
+ * Copyright 2004-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -26,7 +26,7 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
  * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
  * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
@@ -64,8 +64,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
-# define B64_VER_B64_HPP_B64_REVISION   12
-# define B64_VER_B64_HPP_B64_EDIT       38
+# define B64_VER_B64_HPP_B64_REVISION   13
+# define B64_VER_B64_HPP_B64_EDIT       39
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
