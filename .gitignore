@@ -1,7 +1,19 @@
 
 # directories (by name)
 
+lib
+
 # directories (by pattern)
+
+include/shwild/
+include/xcontract/
+include/xcover/
+include/xtests/
+
+src/shwild/
+src/xcontract/
+src/xcover/
+src/xtests/
 
 # files (by name)
 
