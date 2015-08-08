@@ -1,0 +1,20 @@
+
+# directories (by name)
+
+# directories (by pattern)
+
+# files (by name)
+
+# files (by pattern)
+
+*~
+*.o
+*.obj
+*.ncb
+*.opensdf
+*.opt
+*.sbr
+*.sdf
+*.vcproj.user
+*.vcxproj.user
+
