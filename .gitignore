@@ -40,6 +40,7 @@ src/xtests/
 *.sbr
 *.sdf
 *.so
+*.suo
 *.vcproj.user
 *.vcxproj.user
 
