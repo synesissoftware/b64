@@ -15,6 +15,16 @@ src/xcontract/
 src/xcover/
 src/xtests/
 
+Debug/
+DebugMt/
+DebugDll/
+Release/
+ReleaseMt/
+ReleaseDll/
+
+x64/
+Win32/
+
 # directories (by pattern)
 
 # files (by name)
