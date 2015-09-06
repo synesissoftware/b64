@@ -56,8 +56,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 5
-# define B64_VER_B64_H_B64_EDIT     37
+# define B64_VER_B64_H_B64_REVISION 6
+# define B64_VER_B64_H_B64_EDIT     38
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -97,12 +97,13 @@
 # define B64_VER_1_4_1_ALPHA_1  0x01040101
 # define B64_VER_1_4_2          0x010402ff
 # define B64_VER_1_4_3          0x010403ff
+# define B64_VER_1_4_4          0x010404ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       4
-#define B64_VER_REVISION    3
-#define B64_VER             0x010403ff
+#define B64_VER_REVISION    4
+#define B64_VER             0x010404ff
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
