@@ -4,11 +4,11 @@
  * Purpose:     Header file for the b64 C++-API.
  *
  * Created:     18th October 2004
- * Updated:     8th August 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright 2004-2015, Matthew Wilson and Synesis Software
+ * Copyright 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -58,18 +58,18 @@
 #define B64_INCL_B64_HPP_B64
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
 # define B64_VER_B64_HPP_B64_REVISION   13
-# define B64_VER_B64_HPP_B64_EDIT       39
+# define B64_VER_B64_HPP_B64_EDIT       40
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef B64_INCL_B64_H_B64
@@ -162,7 +162,7 @@
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifndef B64_NO_NAMESPACE
@@ -171,7 +171,7 @@ namespace B64_NAMESPACE
 #endif /* !B64_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -268,7 +268,7 @@ private:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** The string type for the b64 namespace
@@ -332,7 +332,7 @@ typedef std::vector< ::stlsoft::byte_t> blob_t;
 #endif /* !B64_USE_CUSTOM_VECTOR */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /** \brief Encodes the given block of memory into base-64.
@@ -776,7 +776,7 @@ inline blob_t decode(string_t const &str, int flags, b64_char_t const** badChar,
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 /** \brief [C++ only] The <code>b64::cpp</code> namespace, within which the C++

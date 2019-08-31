@@ -4,14 +4,14 @@
  * Purpose:     Header file for the b64 library
  *
  * Created:     18th October 2004
- * Updated:     8th August 2015
+ * Updated:     10th January 2017
  *
  * Thanks:      To Adam McLaurin, for ideas regarding the b64_decode2() and
  *              b64_encode2().
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright (c) 2004-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,13 +50,13 @@
 #define B64_INCL_B64_H_B64
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 6
+# define B64_VER_B64_H_B64_REVISION 5
 # define B64_VER_B64_H_B64_EDIT     38
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
@@ -106,13 +106,13 @@
 #define B64_VER             0x010404ff
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <stddef.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Features
+ * features
  */
 
 /* If the Synesis preprocessor symbol SYNESIS_VARIANT_TEST is defined, then we
@@ -126,7 +126,7 @@
 #endif /* SYNESIS_VARIANT_TEST */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(B64_NO_NAMESPACE) && \
@@ -172,7 +172,7 @@ namespace B64_NAMESPACE
 #endif /* !B64_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** The ambient character type of the library
@@ -218,7 +218,7 @@ typedef enum B64_FLAGS  B64_FLAGS;
 #endif /* !__cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 #ifdef __cplusplus
@@ -440,7 +440,7 @@ b64_getErrorStringLength(
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifndef B64_NO_NAMESPACE

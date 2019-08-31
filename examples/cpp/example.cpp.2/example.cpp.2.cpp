@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the example.cpp.2 project.
  *
  * Created:     27th April 2006
- * Updated:     8th August 2015
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -58,7 +58,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #ifndef NUM_ELEMENTS

@@ -28,7 +28,14 @@ Win32/
 
 # directories (by pattern)
 
+build/*/
+
 # files (by name)
+
+.update_deps
+
+list_changes.cmd
+update_deps.cmd
 
 # files (by pattern)
 
@@ -52,6 +59,13 @@ Win32/
 *.sdf
 *.so
 *.suo
+
 *.vcproj.user
 *.vcxproj.user
+
+
+build/*.tmplgen
+build/*.tmpl
+build/*.tools.xml
+
 

@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.c.1 project.
  *
  * Created:     21st April 2009
- * Updated:     30th December 2009
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -25,7 +25,7 @@
 #include <b64/b64.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests Header Files */
@@ -38,7 +38,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_00(void);
@@ -64,7 +64,7 @@ static void test_2_08(void);
 static void test_2_09(void);
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 int main(int argc, char **argv)
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 static void test_1_00()

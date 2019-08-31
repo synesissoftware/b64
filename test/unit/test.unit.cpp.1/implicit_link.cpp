@@ -4,7 +4,7 @@
  * Purpose:     Implicit link file for the test.unit.cpp.1 project.
  *
  * Created:     21st April 2009
- * Updated:     21st April 2009
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -19,7 +19,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests Header Files */

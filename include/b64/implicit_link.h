@@ -4,11 +4,11 @@
  * Purpose: Implicit linking for the b64 API.
  *
  * Created: 5th March 2006
- * Updated: 8th August 2015
+ * Updated: 10th January 2017
  *
  * Home:    http://synesis.com.au/software/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,18 +50,18 @@
 #define B64_INCL_B64_H_IMPLICIT_LINK
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version
+ * version
  */
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_IMPLICIT_LINK_MAJOR      1
-# define B64_VER_B64_H_IMPLICIT_LINK_MINOR      3
-# define B64_VER_B64_H_IMPLICIT_LINK_REVISION   3
-# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       11
+# define B64_VER_B64_H_IMPLICIT_LINK_MINOR      4
+# define B64_VER_B64_H_IMPLICIT_LINK_REVISION   1
+# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       13
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef B64_INCL_B64_H_B64
@@ -69,14 +69,14 @@
 #endif /* !B64_INCL_B64_H_B64 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros and definitions
+ * macros and definitions
  */
 
 #  define B64_IMPL_LINK_STRINGIZE_2_(x)   #x
 #  define B64_IMPL_LINK_STRINGIZE_1_(x)   B64_IMPL_LINK_STRINGIZE_2_(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Architecture discrimination
+ * architecture discrimination
  */
 
 #if defined(__amd64__) || \
@@ -98,7 +98,7 @@
 #endif /* _M_?? */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implicit linking
+ * implicit linking
  */
 
 #if defined(_WIN32) || \
@@ -210,6 +210,12 @@
 #    define B64_IMPL_LINK_COMPILER_NAME         "vc9"
 #   elif _MSC_VER == 1600
 #    define B64_IMPL_LINK_COMPILER_NAME         "vc10"
+#   elif _MSC_VER == 1700
+#    define B64_IMPL_LINK_COMPILER_NAME         "vc11"
+#   elif _MSC_VER == 1800
+#    define B64_IMPL_LINK_COMPILER_NAME         "vc12"
+#   elif _MSC_VER == 1900
+#    define B64_IMPL_LINK_COMPILER_NAME         "vc14"
 #   else /* ? _MSC_VER */
 #    error Unrecognised value of _MSC_VER
 #   endif /* _MSC_VER */

@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for the b64 library
  *
  * Created:     18th October 2004
- * Updated:     8th August 2015
+ * Updated:     10th January 2017
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright (c) 2004-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,18 +42,18 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_C_B64_MAJOR    1
 # define B64_VER_C_B64_MINOR    3
 # define B64_VER_C_B64_REVISION 5
-# define B64_VER_C_B64_EDIT     22
+# define B64_VER_C_B64_EDIT     23
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <b64/b64.h>
@@ -71,7 +71,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Contract Enforcements
+ * contract enforcements
  */
 
 #ifdef B64_USING_XCONTRACT_
@@ -83,7 +83,7 @@
 #endif /* B64_USING_XCONTRACT_ */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants and definitions
  */
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
@@ -92,7 +92,7 @@
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #ifndef NUM_ELEMENTS
@@ -100,7 +100,7 @@
 #endif /* !NUM_ELEMENTS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Warnings
+ * warnings
  */
 
 #if defined(_MSC_VER) && \
@@ -109,7 +109,7 @@
 #endif /* _MSC_VER < 1000 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Data
+ * data
  */
 
 static const b64_char_t     b64_chars[] =   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -159,7 +159,7 @@ static const signed char    b64_indexes[] =
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 #define b64_strchr_     strchr
