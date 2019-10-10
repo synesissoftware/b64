@@ -97,6 +97,7 @@
       <AdditionalIncludeDirectories>../../../../include;$(STLSOFT_1_10)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <ForcedIncludeFiles>b64/implicit_link.h</ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
