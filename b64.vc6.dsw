@@ -75,21 +75,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.scratch.c.1"=.\test\scratch\test.scratch.c.1\vc6\test.scratch.c.1.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name b64.core
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "test.unit.c.1"=.\test\unit\test.unit.c.1\vc6\test.unit.c.1.dsp - Package Owner=<4>
 
 Package=<5>
