@@ -129,6 +129,7 @@
     <PostBuildEvent>
       <Command>if not exist "$(ProjectDir)..\..\..\lib" mkdir "$(ProjectDir)..\..\..\lib"
 copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
+      <Message>Copying library over to lib directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|Win32'">
@@ -172,6 +173,7 @@ copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(ProjectDir)..\..\..\lib" mkdir "$(ProjectDir)..\..\..\lib"
 copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
+      <Message>Copying library over to lib directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|Win32'">
@@ -181,6 +183,7 @@ copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(ProjectDir)..\..\..\lib" mkdir "$(ProjectDir)..\..\..\lib"
 copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
+      <Message>Copying library over to lib directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithreaded|Win32'">
@@ -190,6 +193,7 @@ copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(ProjectDir)..\..\..\lib" mkdir "$(ProjectDir)..\..\..\lib"
 copy /B /V /Y "$(TargetPath)" "$(ProjectDir)..\..\..\lib"</Command>
+      <Message>Copying library over to lib directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

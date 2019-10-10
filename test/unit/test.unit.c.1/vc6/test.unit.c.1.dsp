@@ -53,6 +53,13 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /libpath:"../../../../lib" /libpath:"$(XTESTS_C_ROOT)/lib"
+# Begin Special Build Tool
+TargetDir=.\Release
+TargetName=test.unit.c.1
+SOURCE="$(InputPath)"
+PostBuild_Desc=Running unit-tests ...
+PostBuild_Cmds="$(TargetDir)\$(TargetName).exe"
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "test.unit.c.1 - Win32 Debug"
 
@@ -65,6 +72,7 @@ LINK32=link.exe
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /GZ /c
 # ADD CPP /nologo /W3 /WX /Gm /GR /GX /Zi /Od /I "../../../../include" /I "$(XTESTS_C_ROOT)/include" /I "$(STLSOFT)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_CONSOLE" /FR /YX /FD /GZ /c
@@ -78,6 +86,13 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"../../../../lib" /libpath:"$(XTESTS_C_ROOT)/lib"
+# Begin Special Build Tool
+TargetDir=.\Debug
+TargetName=test.unit.c.1
+SOURCE="$(InputPath)"
+PostBuild_Desc=Running unit-tests ...
+PostBuild_Cmds="$(TargetDir)\$(TargetName).exe"
+# End Special Build Tool
 
 !ENDIF 
 
