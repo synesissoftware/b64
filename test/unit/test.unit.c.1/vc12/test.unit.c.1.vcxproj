@@ -98,7 +98,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT_1_10)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>b64/implicit_link.h;xtests/implicit_link.h</ForcedIncludeFiles>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -115,7 +115,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT_1_10)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>b64/implicit_link.h;xtests/implicit_link.h</ForcedIncludeFiles>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -135,7 +135,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT_1_10)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>b64/implicit_link.h;xtests/implicit_link.h</ForcedIncludeFiles>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -157,7 +157,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT_1_10)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../include;$(XTESTS_C_ROOT)/include;$(STLSOFT)/include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>b64/implicit_link.h;xtests/implicit_link.h</ForcedIncludeFiles>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>

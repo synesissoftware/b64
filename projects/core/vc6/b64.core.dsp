@@ -7,23 +7,23 @@
 CFG=b64.core - Win32 Release
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "b64.core.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "b64.core.mak" CFG="b64.core - Win32 Release"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "b64.core - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "b64.core - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "b64.core - Win32 Debug Multithreaded" (based on "Win32 (x86) Static Library")
 !MESSAGE "b64.core - Win32 Release Multithreaded" (based on "Win32 (x86) Static Library")
 !MESSAGE "b64.core - Win32 Debug Multithreaded DLL" (based on "Win32 (x86) Static Library")
 !MESSAGE "b64.core - Win32 Release Multithreaded DLL" (based on "Win32 (x86) Static Library")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -170,7 +170,7 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"..\..\..\lib/b64.lib"
 # ADD LIB32 /nologo /out:"..\..\..\lib/b64.1.core.vc6.mt.dll.lib"
 
-!ENDIF 
+!ENDIF
 
 # Begin Target
 
@@ -191,10 +191,14 @@ SOURCE=..\..\..\src\b64.c
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Group "b64 Header Files"
+
+# PROP Default_Filter ""
 # Begin Source File
 
 SOURCE="$(B64_ROOT)\include\b64\b64.h"
 # End Source File
+# End Group
 # End Group
 # Begin Group "Distribution Files"
 
