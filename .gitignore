@@ -5,6 +5,7 @@ _internal/
 
 bin/
 lib/
+ipch/
 
 include/shwild/
 include/xcontract/
@@ -17,9 +18,13 @@ src/xcover/
 src/xtests/
 
 Debug/
+Debug Multithreaded/
+Debug Multithreaded DLL/
 DebugMt/
 DebugDll/
 Release/
+Release Multithreaded/
+Release Multithreaded DLL/
 ReleaseMt/
 ReleaseDll/
 
