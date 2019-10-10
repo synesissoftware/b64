@@ -4,7 +4,7 @@
  * Purpose:     Header file for the b64 library
  *
  * Created:     18th October 2004
- * Updated:     10th October 2019
+ * Updated:     11th October 2019
  *
  * Thanks:      To Adam McLaurin, for ideas regarding the b64_decode2() and
  *              b64_encode2().
@@ -57,7 +57,7 @@
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
 # define B64_VER_B64_H_B64_REVISION 6
-# define B64_VER_B64_H_B64_EDIT     39
+# define B64_VER_B64_H_B64_EDIT     40
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -228,22 +228,24 @@ extern "C" {
 
 /** Encodes a block of binary data into Base-64
  *
- * \param src Pointer to the block to be encoded. May not be NULL, except when
- *   \c dest is NULL, in which case it is ignored.
+ * \param src Pointer to the block to be encoded. May not be NULL, except
+ *   when \c dest is NULL, in which case it is ignored.
  * \param srcSize Length of block to be encoded
- * \param dest Pointer to the buffer into which the result is to be written. May
- *   be NULL, in which case the function returns the required length
- * \param destLen Length of the buffer into which the result is to be written. Must
- *   be at least as large as that indicated by the return value from
+ * \param dest Pointer to the buffer into which the result is to be written.
+ *   May be NULL, in which case the function returns the required length
+ * \param destLen Length of the buffer into which the result is to be
+ *   written. Must be at least as large as that indicated by the return
+ *   value from
  *   \link b64::b64_encode b64_encode(NULL, srcSize, NULL, 0)\endlink.
  *
- * \return 0 if the size of the buffer was insufficient, or the length of the
- * converted buffer was longer than \c destLen
+ * \return 0 if the size of the buffer was insufficient, or the length of
+ *   the converted buffer was longer than \c destLen
  *
  * \note The function returns the required length if \c dest is NULL
  *
- * \note The function returns the required length if \c dest is NULL. The returned size
- *   might be larger than the actual required size, but will never be smaller.
+ * \note The function returns the required length if \c dest is NULL. The
+ *   returned size might be larger than the actual required size, but will
+ *   never be smaller.
  *
  * \note Threading: The function is fully re-entrant.
  *
@@ -259,27 +261,31 @@ b64_encode(
 
 /** Encodes a block of binary data into Base-64
  *
- * \param src Pointer to the block to be encoded. May not be NULL, except when
- *   \c dest is NULL, in which case it is ignored.
+ * \param src Pointer to the block to be encoded. May not be NULL, except
+ *   when \c dest is NULL, in which case it is ignored.
  * \param srcSize Length of block to be encoded
- * \param dest Pointer to the buffer into which the result is to be written. May
- *   be NULL, in which case the function returns the required length
- * \param destLen Length of the buffer into which the result is to be written. Must
- *   be at least as large as that indicated by the return value from
+ * \param dest Pointer to the buffer into which the result is to be written.
+ *   May be NULL, in which case the function returns the required length
+ * \param destLen Length of the buffer into which the result is to be
+ *   written. Must be at least as large as that indicated by the return
+ *   value from
  *   \link b64::b64_encode2 b64_encode2(NULL, srcSize, NULL, 0, flags, lineLen, rc)\endlink.
- * \param flags A combination of the B64_FLAGS enumeration, that moderate the
- *   behaviour of the function
- * \param lineLen If the flags parameter contains B64_F_LINE_LEN_USE_PARAM, then
- *   this parameter represents the length of the lines into which the encoded form is split,
- *   with a hard line break ('\\r\\n'). If this value is 0, then the line is not
- *   split. If it is <0, then the RFC-1113 recommended line length of 64 is used
- * \param rc The return code representing the status of the operation. May be NULL.
+ * \param flags A combination of the B64_FLAGS enumeration, that moderate
+ *   the behaviour of the function
+ * \param lineLen If the flags parameter contains B64_F_LINE_LEN_USE_PARAM,
+ *   then this parameter represents the length of the lines into which the
+ *   encoded form is split, with a hard line break ('\\r\\n'). If this value
+ *   is 0, then the line is not split. If it is <0, then the RFC-1113
+ *   recommended line length of 64 is used
+ * \param rc The return code representing the status of the operation. May
+ *   be NULL.
  *
- * \return 0 if the size of the buffer was insufficient, or the length of the
- *   converted buffer was longer than \c destLen
+ * \return 0 if the size of the buffer was insufficient, or the length of
+ *   the converted buffer was longer than \c destLen
  *
- * \note The function returns the required length if \c dest is NULL. The returned size
- *   might be larger than the actual required size, but will never be smaller.
+ * \note The function returns the required length if \c dest is NULL. The
+ *   returned size might be larger than the actual required size, but will
+ *   never be smaller.
  *
  * \note Threading: The function is fully re-entrant.
  *
@@ -292,32 +298,35 @@ b64_encode2(
 ,   b64_char_t* dest
 ,   size_t      destLen
 ,   unsigned    flags
-,   int         lineLen /* = 0 */
-,   B64_RC*     rc     /* = NULL */
+,   int         lineLen    /* = 0 */
+,   B64_RC*     rc         /* = NULL */
 );
 
 /** Decodes a sequence of Base-64 into a block of binary data
  *
- * \param src Pointer to the Base-64 block to be decoded. May not be NULL, except when
- *   \c dest is NULL, in which case it is ignored. If \c dest is NULL, and \c src is
- *   <b>not</b> NULL, then the returned value is calculated exactly, otherwise a value
- *   is returned that is guaranteed to be large enough to hold the decoded block.
+ * \param src Pointer to the Base-64 block to be decoded. May not be NULL,
+ *   except when \c dest is NULL, in which case it is ignored. If \c dest is
+ *   NULL, and \c src is <b>not</b> NULL, then the returned value is
+ *   calculated exactly, otherwise a value is returned that is guaranteed to
+ *   be large enough to hold the decoded block.
  *
- * \param srcLen Length of block to be encoded. Must be an integral of 4, the Base-64
- *   encoding quantum, otherwise the Base-64 block is assumed to be invalid
- * \param dest Pointer to the buffer into which the result is to be written. May
- *   be NULL, in which case the function returns the required length
- * \param destSize Length of the buffer into which the result is to be written. Must
- *   be at least as large as that indicated by the return value from
- *   \c b64_decode(src, srcSize, NULL, 0), even in the case where the encoded form
- *   contains a number of characters that will be ignored, resulting in a lower total
- *   length of converted form.
+ * \param srcLen Length of block to be encoded. Must be an integral of 4,
+ *   the Base-64 encoding quantum, otherwise the Base-64 block is assumed to
+ *   be invalid
+ * \param dest Pointer to the buffer into which the result is to be written.
+ *   May be NULL, in which case the function returns the required length
+ * \param destSize Length of the buffer into which the result is to be
+ *   written. Must be at least as large as that indicated by the return
+ *   value from \c b64_decode(src, srcSize, NULL, 0), even in the case where
+ *   the encoded form contains a number of characters that will be ignored,
+ *   resulting in a lower total length of converted form.
  *
- * \return 0 if the size of the buffer was insufficient, or the length of the
- *   converted buffer was longer than \c destSize
+ * \return 0 if the size of the buffer was insufficient, or the length of
+ *   the converted buffer was longer than \c destSize
  *
- * \note The function returns the required length if \c dest is NULL. The returned size
- *   might be larger than the actual required size, but will never be smaller.
+ * \note The function returns the required length if \c dest is NULL. The
+ *   returned size might be larger than the actual required size, but will
+ *   never be smaller.
  *
  * \note \anchor anchor__4_characters The behaviour of both
  * \link b64::b64_encode2 b64_encode2()\endlink
@@ -339,33 +348,38 @@ b64_decode(
 
 /** Decodes a sequence of Base-64 into a block of binary data
  *
- * \param src Pointer to the Base-64 block to be decoded. May not be NULL, except when
- * \c dest is NULL, in which case it is ignored. If \c dest is NULL, and \c src is
- * <b>not</b> NULL, then the returned value is calculated exactly, otherwise a value
- * is returned that is guaranteed to be large enough to hold the decoded block.
+ * \param src Pointer to the Base-64 block to be decoded. May not be NULL,
+ *   except when \c dest is NULL, in which case it is ignored. If \c dest is
+ *   NULL, and \c src is <b>not</b> NULL, then the returned value is
+ *   calculated exactly, otherwise a value is returned that is guaranteed to
+ *   be large enough to hold the decoded block.
  *
- * \param srcLen Length of block to be encoded. Must be an integral of 4, the Base-64
- *   encoding quantum, otherwise the Base-64 block is assumed to be invalid
- * \param dest Pointer to the buffer into which the result is to be written. May
- *   be NULL, in which case the function returns the required length
- * \param destSize Length of the buffer into which the result is to be written. Must
- *   be at least as large as that indicated by the return value from
- *   \c b64_decode(src, srcSize, NULL, 0), even in the case where the encoded form
- *   contains a number of characters that will be ignored, resulting in a lower total
- *   length of converted form.
- * \param flags A combination of the B64_FLAGS enumeration, that moderate the
- *   behaviour of the function.
- * \param rc The return code representing the status of the operation. May be NULL.
- * \param badChar If the flags parameter does not contain B64_F_STOP_ON_NOTHING, this
- *   parameter specifies the address of a pointer that will be set to point to any
- *   character in the sequence that stops the parsing, as dictated by the flags
- *   parameter. May be NULL.
+ * \param srcLen Length of block to be encoded. Must be an integral of 4,
+ *   the Base-64 encoding quantum, otherwise the Base-64 block is assumed to
+ *   be invalid
+ * \param dest Pointer to the buffer into which the result is to be written.
+ *   May be NULL, in which case the function returns the required length
+ * \param destSize Length of the buffer into which the result is to be
+ *   written. Must be at least as large as that indicated by the return
+ *   value from \c b64_decode(src, srcSize, NULL, 0), even in the case where
+ *   the encoded form contains a number of characters that will be ignored,
+ *   resulting in a lower total length of converted form.
+ * \param flags A combination of the B64_FLAGS enumeration, that moderate
+ *   the behaviour of the function.
+ * \param rc The return code representing the status of the operation. May
+ *   be NULL.
+ * \param badChar If the flags parameter does not contain
+ *   B64_F_STOP_ON_NOTHING, this parameter specifies the address of a
+ *   pointer that will be set to point to any character in the sequence that
+ *   stops the parsing, as dictated by the flags parameter. May be NULL.
  *
- * \return 0 if the size of the buffer was insufficient, or the length of the
- * converted buffer was longer than \c destSize, or a bad character stopped parsing.
+ * \return 0 if the size of the buffer was insufficient, or the length of
+ *   the converted buffer was longer than \c destSize, or a bad character
+ *   stopped parsing.
  *
- * \note The function returns the required length if \c dest is NULL. The returned size
- *   might be larger than the actual required size, but will never be smaller.
+ * \note The function returns the required length if \c dest is NULL. The
+ *   returned size might be larger than the actual required size, but will
+ *   never be smaller.
  *
  * \note The behaviour of both
  * \link b64::b64_encode2 b64_encode2()\endlink
@@ -384,8 +398,8 @@ b64_decode2(
 ,   void*               dest
 ,   size_t              destSize
 ,   unsigned            flags
-,   b64_char_t const**  badChar /* = NULL */
-,   B64_RC*             rc      /* = NULL */
+,   b64_char_t const**  badChar    /* = NULL */
+,   B64_RC*             rc         /* = NULL */
 );
 
 /** Returns the textual description of the error
