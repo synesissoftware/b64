@@ -4,14 +4,14 @@
  * Purpose:     Header file for the b64 library
  *
  * Created:     18th October 2004
- * Updated:     10th January 2017
+ * Updated:     10th October 2019
  *
  * Thanks:      To Adam McLaurin, for ideas regarding the b64_decode2() and
  *              b64_encode2().
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright (c) 2004-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 5
-# define B64_VER_B64_H_B64_EDIT     38
+# define B64_VER_B64_H_B64_REVISION 6
+# define B64_VER_B64_H_B64_EDIT     39
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -98,12 +98,13 @@
 # define B64_VER_1_4_2          0x010402ff
 # define B64_VER_1_4_3          0x010403ff
 # define B64_VER_1_4_4          0x010404ff
+# define B64_VER_1_4_5          0x010405ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       4
-#define B64_VER_REVISION    4
-#define B64_VER             0x010404ff
+#define B64_VER_REVISION    5
+#define B64_VER             0x010405ff
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -513,3 +514,4 @@ namespace stlsoft
 #endif /* B64_INCL_B64_H_B64 */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

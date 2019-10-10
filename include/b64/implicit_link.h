@@ -4,11 +4,11 @@
  * Purpose: Implicit linking for the b64 API.
  *
  * Created: 5th March 2006
- * Updated: 10th January 2017
+ * Updated: 10th October 2019
  *
  * Home:    http://synesis.com.au/software/
  *
- * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +57,7 @@
 # define B64_VER_B64_H_IMPLICIT_LINK_MAJOR      1
 # define B64_VER_B64_H_IMPLICIT_LINK_MINOR      4
 # define B64_VER_B64_H_IMPLICIT_LINK_REVISION   1
-# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       13
+# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       14
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -336,3 +336,4 @@
 #endif /* B64_INCL_B64_H_IMPLICIT_LINK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
