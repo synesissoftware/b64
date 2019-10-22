@@ -7,7 +7,7 @@ project(b64
     LANGUAGES C CXX)
 
 # Directory for CMake specific extensions and source files.
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 # Set build type to Debug if this is a Git repository.
 # Otherwise set to Release.
