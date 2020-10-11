@@ -33,7 +33,7 @@ Win32/
 
 # directories (by pattern)
 
-build/*/
+#build/*/
 
 # files (by name)
 

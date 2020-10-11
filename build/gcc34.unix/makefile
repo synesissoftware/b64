@@ -1,49 +1,49 @@
-################################################################################
+############################################################################
 # File:     makefile
 #
-# Purpose:  Makefile for the b64 project, for the GCC 3.4 (UNIX)
-#           compiler, on UNIX
+# Purpose:  Makefile for the b64 project,
+#           for the GCC 3.4 (UNIX) compiler,
+#           on the UNIX platform
 #
 # Created:  15th February 2005
-# Updated:  30th July 2015
+# Updated:  11th October 2020
 #
-################################################################################
+############################################################################
 
 
 ############################################################################
-# Environment check
-#
+# symbols
 
-ifndef STLSOFT
-$(error STLSOFT must be defined)
-endif # !STLSOFT
+########################################
+# project & compiler version
 
-################################################################################
-# Symbols
-
-# Identification
-
-COMP_TAG            =   gcc34
-PROJ_TAG            =   b64
-PROJ_VER_MAJOR      =   1
-PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
+COMP_TAG			=	gcc34
+ARCH_TAG			=	
+OS_TAG				=	
+PROJ_TAG			=	b64
+PROJ_VER_MAJOR		=	1
+PROJ_MOD_TAG		=	core
+PROJ_TAG_VER		=	$(PROJ_TAG).$(PROJ_VER_MAJOR)
 COMP_ARCH_OS_TAG	=	$(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
-XCONTRACT_VER_MAJOR =   0
-XCONTRACT_TAG_VER   =   xcontract.$(XCONTRACT_VER_MAJOR)
+########################################
+# dependencies
 
-XTESTS_VER_MAJOR    =   0
-XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
+XTESTS_VER_MAJOR	=	0
+XTESTS_TAG_VER		=	xtests.$(XTESTS_VER_MAJOR)
 
-PROJ_MAKEFILE_NAME  =   makefile
+PROJ_MAKEFILE_NAME	=	makefile
 
 ########################################
-# Testing verbosity
+# testing verbosity
 
-TEST_VERBOSITY		=	2
+TEST_VERBOSITY      =   2
+
+############################################################################
+# directories
 
 ########################################
-# Directories
+# project directories
 
 PROJ_BASE_DIR       =   ../..
 PROJ_BIN_DIR        =   $(PROJ_BASE_DIR)/bin
@@ -55,13 +55,14 @@ PROJ_MAPPINGS_DIR   =   $(PROJ_BASE_DIR)/mappings
 PROJ_TEST_UNIT_DIR  =   $(PROJ_BASE_DIR)/test/unit
 PROJ_EXAMPLES_DIR   =   $(PROJ_BASE_DIR)/examples
 
-XCONTRACT_INCLUDE_DIR	=	$(PROJ_BASE_DIR)/include
-XCONTRACT_SRC_DIR		=	$(PROJ_SRC_DIR)/xcontract
+########################################
+# 3rd-party directories
 
+XTESTS_PROJ_INCLUDE		=	
 XTESTS_INCLUDE_DIR	=	$(PROJ_BASE_DIR)/include
 XTESTS_SRC_DIR		=	$(PROJ_SRC_DIR)/xtests
 
-########################################
+############################################################################
 # tools
 
 CC                  =   gcc
@@ -72,8 +73,11 @@ RM                  =   rm -f
 CP                  =   cp
 RC                  =   
 
+############################################################
+# compiler
 
-# Includes
+########################################
+# includes
 
 INCLUDES_LEADER     =   
 
@@ -129,7 +133,8 @@ CMN_DEF_NO_IMPLICIT_LINK =\
 
 COMMON_DEFS         =   -Dunix\
 	$(CMN_DEF_NO_IMPLICIT_LINK)\
-	-DXCONTRACT_NO_USE_WIN_EVENTLOG
+	-DXCONTRACT_NO_USE_WIN_EVENTLOG\
+	\
 
 CC_DEFS             =   $(COMMON_DEFS)
 
@@ -190,31 +195,42 @@ LD_F_NOLOGO =
 LD_ARGS_ST_D =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
 LD_ARGS_ST_R =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
 
-################################################################################
-# Targets
+############################################################################
+# targets
 
 ########################################
-# TARGETS_LIBS
+# libraries
 
-TARGET_LIB_ST_D = $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).$(COMP_TAG).debug.a
-TARGET_LIB_UN_ST_D = $(PROJ_LIB_DIR)/lib$(PROJ_TAG).$(COMP_TAG).debug.a
-LIB_CORE_ST_D = $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).core.$(COMP_TAG).debug.a
-LIB_CORE_UN_ST_D = $(PROJ_LIB_DIR)/lib$(PROJ_TAG).core.$(COMP_TAG).debug.a
-TARGET_LIB_ST_R = $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).$(COMP_TAG).a
-TARGET_LIB_UN_ST_R = $(PROJ_LIB_DIR)/lib$(PROJ_TAG).$(COMP_TAG).a
-LIB_CORE_ST_R = $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).core.$(COMP_TAG).a
-LIB_CORE_UN_ST_R = $(PROJ_LIB_DIR)/lib$(PROJ_TAG).core.$(COMP_TAG).a
+# core
+LIB_CORE_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).debug.a
+TARGET_LIB_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).debug.a
+LIB_CORE_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).a
+TARGET_LIB_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).a
 
-# xcontract - unit/component testing only
-LIB_XCONTRACT_ST_D		=	$(PROJ_LIB_DIR)/lib$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).debug.a
-LIB_XCONTRACT_ST_R		=	$(PROJ_LIB_DIR)/lib$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).a
-
-# xtests - unit/component testing only
-LIB_XTESTS_ST_D			=	$(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).debug.a
-LIB_XTESTS_ST_R			=	$(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).a
+# xtests
+LIB_XTESTS_ST_D		=	$(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).debug.a
+LIB_XTESTS_ST_R		=	$(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).a
 
 ########################################
-# TARGETS_TESTS
+# examples
+
+
+
+########################################
+# tests
+
+
+##############################
+# component tests
+
+
+##############################
+# scratch tests
+
+
+
+##############################
+# unit tests
 
 TARG_TEST_UNIT_C_1_ST_D = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.c.1.$(COMP_TAG).debug
 TARG_TEST_UNIT_CPP_1_ST_D = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.cpp.1.$(COMP_TAG).debug
@@ -229,7 +245,7 @@ TARGETS_TESTS =\
  \
 
 ########################################
-# TARGETS_EXAMPLES
+# TARGETS_EXAMPLE
 
 TARG_EX_C_1_ST_D = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.1.$(COMP_TAG).debug
 TARG_EX_C_2_ST_D = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.2.$(COMP_TAG).debug
@@ -240,7 +256,7 @@ TARG_EX_C_2_ST_R = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.c.2.$(COMP_TAG)
 TARG_EX_CPP_1_ST_R = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.cpp.1.$(COMP_TAG)
 TARG_EX_CPP_2_ST_R = $(PROJ_BIN_DIR)/$(PROJ_TAG_VER).example.cpp.2.$(COMP_TAG)
 
-TARGETS_EXAMPLES =\
+TARGETS_EXAMPLE =\
  $(TARG_EX_C_1_ST_D)\
  $(TARG_EX_C_2_ST_D)\
  $(TARG_EX_C_1_ST_R)\
@@ -252,22 +268,13 @@ TARGETS_EXAMPLES =\
  \
 
 ########################################
-# Targets
+# targets
 
 TARGETS_LIB_CORE = \
  $(TARGET_LIB_ST_D)\
- $(TARGET_LIB_UN_ST_D)\
  $(LIB_CORE_ST_D)\
- $(LIB_CORE_UN_ST_D)\
  $(TARGET_LIB_ST_R)\
- $(TARGET_LIB_UN_ST_R)\
  $(LIB_CORE_ST_R)\
- $(LIB_CORE_UN_ST_R)\
- \
-
-TARGETS_LIB_XCONTRACT = \
- $(LIB_XCONTRACT_ST_D)\
- $(LIB_XCONTRACT_ST_R)\
  \
 
 TARGETS_LIB_XTESTS = \
@@ -296,21 +303,6 @@ OBJS_CORE =\
  $(OBJS_CORE_ST_D)\
  $(OBJS_CORE_ST_R)\
  \
-
-# xcontract
-
-OBJ_xct_core_ST_D           = $(PROJ_OBJ_DIR)/xcontract.b64.core.api.debug.o
-
-OBJ_XCONTRACT_ST_D = \
- $(OBJ_xct_core_ST_D)\
- \
-
-OBJ_xct_core_ST_R           = $(PROJ_OBJ_DIR)/xcontract.b64.core.api.o
-
-OBJ_XCONTRACT_ST_R = \
- $(OBJ_xct_core_ST_R)\
- \
-
 
 # xtests
 
@@ -416,69 +408,149 @@ SRC_EXAMPLE_C_2 = $(PROJ_EXAMPLES_DIR)/c/example.c.2/example.c.2.c
 SRC_EXAMPLE_CPP_1 = $(PROJ_EXAMPLES_DIR)/cpp/example.cpp.1/example.cpp.1.cpp
 SRC_EXAMPLE_CPP_2 = $(PROJ_EXAMPLES_DIR)/cpp/example.cpp.2/example.cpp.2.cpp
 
-################################################################################
-# External Targets (invokable by make)
+############################################################################
+# external targets (invokable by make)
 
-all:                build.all
+# primary
 
-check.lib.dir:
+_default:					build
+
+usage:
+	@echo "make [build | clean | compile | test | usage] - default is 'build'"
+
+# infrastructure
+
+check.lib.dir:				$(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 
-check.bin.dir:
+check.bin.dir:				$(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_BIN_DIR)
 
-build.libs.core:		check.lib.dir $(TARGETS_LIB_CORE)
+# compile targets
 
-build.libs.xcontract:	check.lib.dir $(TARGETS_LIB_XCONTRACT)
+compile.libs.core:			$(PROJ_MAKEFILE_NAME)	$(OBJS_CORE)
 
-build.libs.xtests:		check.lib.dir $(TARGETS_LIB_XTESTS)
+compile.libs:										compile.libs.core
 
-build.libs:				build.libs.core build.libs.xcontract build.libs.xtests
+compile.libs.shwild:		$(PROJ_MAKEFILE_NAME)	$(OBJS_SHWILD)
 
-build.examples:			check.bin.dir $(TARGETS_EXAMPLES)
+compile.libs.3pty:									compile.libs.shwild
 
-build.test:				check.bin.dir $(TARGETS_TESTS)
+compile.libs.all:                                   compile.libs compile.libs.3pty
 
-build.all:				build.libs build.examples build.test
+compile.examples:			$(PROJ_MAKEFILE_NAME)	$(OBJS_EXAMPLE)
 
-build:					build.all
+compile.samples:			$(PROJ_MAKEFILE_NAME)	$(OBJS_SAMPLE)
 
-compile:				$(OBJS)
+compile.test.component:		$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_COMPONENT)
+
+compile.test.scratch:		$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_SCRATCH)
+
+compile.test.unit:			$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_UNIT)
+
+compile.test:	\
+ compile.test.unit\
+ compile.test.component\
+ compile.test.scratch\
+ \
+
+compile:	\
+ compile.libs\
+ compile.libs.3pty\
+ compile.test\
+ compile.examples\
+ compile.samples\
+ \
+
+compile.all:										compile
 
 
-test_:              makefile
+
+
+# build targets
+
+build.libs.core:			check.lib.dir			$(TARGETS_LIB_CORE)
+
+build.libs:											build.libs.core
+
+build.libs.xtests:			check.lib.dir			$(TARGETS_LIB_XTESTS)
+
+build.libs.3pty: \
+ build.libs.xtests\
+ \
+
+build.libs.all:										build.libs build.libs.3pty
+
+build.examples:				check.bin.dir			$(TARGETS_EXAMPLE)
+
+build.samples:				check.bin.dir			$(TARGETS_SAMPLE)
+
+build.test.component:		check.bin.dir			$(TARGETS_TEST_COMPONENT)
+
+build.test.scratch:			check.bin.dir			$(TARGETS_TEST_SCRATCH)
+
+build.test.unit:			check.bin.dir			$(TARGETS_TEST_UNIT)
+
+build.test:	\
+ build.test.unit\
+ build.test.component\
+ build.test.scratch\
+ \
+
+build: \
+ build.libs\
+ build.test\
+ build.examples\
+ build.samples\
+ \
+
+build.all:											build
+
+
+
+# test targets
+
+test.component_:
+	@echo Running Test:Component programs ...
+
+test.scratch_:
+	@echo Running Test:Scratch programs ...
+
+test.unit_:
+	@echo Running Test:Unit programs ...
 	$(TARG_TEST_UNIT_C_1_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_C_1_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_CPP_1_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_CPP_1_ST_R) --verbosity=$(TEST_VERBOSITY)
 
-test:		build.test test_
+test.component:			$(PROJ_MAKEFILE_NAME)	build.test.component test.component_
 
-test.all:	test
+test.scratch:			$(PROJ_MAKEFILE_NAME)	build.test.scratch test.scratch_
 
-test-all:	test.all	# backwards compatibility
+test.unit:				$(PROJ_MAKEFILE_NAME)	build.test.unit test.unit_
+
+test:											test.unit test.component
+
+test.all:										test test.scratch
+test-all:				test.all
 
 
-usage:
-	@echo "make [usage | clean | compile | all | test | target] - default is 'all'"
+# clean targets
 
 clean.libs.core:
+	@echo Cleaning Core libraries ...
 	@-$(RM) $(TARGET_LIB_ST_D)
-	@-$(RM) $(TARGET_LIB_UN_ST_D)
 	@-$(RM) $(LIB_CORE_ST_D)
-	@-$(RM) $(LIB_CORE_UN_ST_D)
 	@-$(RM) $(TARGET_LIB_ST_R)
-	@-$(RM) $(TARGET_LIB_UN_ST_R)
 	@-$(RM) $(LIB_CORE_ST_R)
-	@-$(RM) $(LIB_CORE_UN_ST_R)
 	@-$(RM) $(OBJ_CORE_b64__ST_D)
 	@-$(RM) $(OBJ_CORE_b64__ST_R)
 
-clean.libs.xcontract:	makefile
-
 clean.libs.xtests:		makefile
 
-clean.libs:				clean.libs.core clean.libs.xcontract clean.libs.xtests
+clean.libs:	clean.libs.core\
+ clean.libs.xtests\
+ \
 
 clean.test:
 	@-$(RM) $(TARG_TEST_UNIT_C_1_ST_D)
@@ -510,20 +582,17 @@ clean.examples:
 
 clean: clean.libs clean.test clean.examples
 
-################################################################################
-# Internal Targets (invokable by make)
+############################################################################
+# build targets
+
+##################################################
+# libraries
 
 ########################################
 # Main library - 'b64.X.core.a'
 
 
 $(TARGET_LIB_ST_D):	$(LIB_CORE_ST_D)
-	@$(CP) $(LIB_CORE_ST_D) $@
-
-$(TARGET_LIB_UN_ST_D):	$(LIB_CORE_ST_D)
-	@$(CP) $(LIB_CORE_ST_D) $@
-
-$(LIB_CORE_UN_ST_D): $(LIB_CORE_ST_D)
 	@$(CP) $(LIB_CORE_ST_D) $@
 
 $(LIB_CORE_ST_D): $(OBJS_CORE_ST_D) makefile
@@ -536,38 +605,14 @@ $(OBJ_CORE_b64__ST_D): $(PROJ_SRC_DIR)/b64.c $(HEADERS_LIB) makefile
 $(TARGET_LIB_ST_R):	$(LIB_CORE_ST_R)
 	@$(CP) $(LIB_CORE_ST_R) $@
 
-$(TARGET_LIB_UN_ST_R):	$(LIB_CORE_ST_R)
-	@$(CP) $(LIB_CORE_ST_R) $@
-
-$(LIB_CORE_UN_ST_R): $(LIB_CORE_ST_R)
-	@$(CP) $(LIB_CORE_ST_R) $@
-
 $(LIB_CORE_ST_R): $(OBJS_CORE_ST_R) makefile
 	$(AR) $(AR_ARGS) rcs $@ $(OBJS_CORE_ST_R)
 
 $(OBJ_CORE_b64__ST_R): $(PROJ_SRC_DIR)/b64.c $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_ST_R) -o $@ $(PROJ_SRC_DIR)/b64.c
 
-
 ########################################
-# xContract library - 'xcontract.X.b64.core.a'
-
-$(LIB_XCONTRACT_ST_D): $(OBJ_XCONTRACT_ST_D) $(PROJ_MAKEFILE_NAME)
-	@-mkdir -p $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) rcs $@ $(OBJ_XCONTRACT_ST_D)
-
-$(OBJ_xct_core_ST_D): $(XCONTRACT_SRC_DIR)/xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_D) $(CC_XCONTRACT_INCLUDES_ST_D) -o $@ $(XCONTRACT_SRC_DIR)/xcontract.core.c
-
-$(LIB_XCONTRACT_ST_R): $(OBJ_XCONTRACT_ST_R) $(PROJ_MAKEFILE_NAME)
-	@-mkdir -p $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) rcs $@ $(OBJ_XCONTRACT_ST_R)
-
-$(OBJ_xct_core_ST_R): $(XCONTRACT_SRC_DIR)/xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_ST_R) $(CC_XCONTRACT_INCLUDES_ST_R) -o $@ $(XCONTRACT_SRC_DIR)/xcontract.core.c
-
-########################################
-# xTests library - 'xtests.X.b64.core.a'
+# xTests library - 'xtests.V.XXXX.core.a'
 
 $(LIB_XTESTS_ST_D): $(OBJ_XTESTS_ST_D) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
@@ -583,58 +628,7 @@ $(LIB_XTESTS_ST_R): $(OBJ_XTESTS_ST_R) $(PROJ_MAKEFILE_NAME)
 $(OBJ_xts_core_ST_R): $(XTESTS_SRC_DIR)/xtests.core.cpp $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_ST_R) $(CPPC_XTESTS_INCLUDES_ST_R) -o $@ $(XTESTS_SRC_DIR)/xtests.core.cpp
 
-########################################
-# test
-
-# C test client
-
-$(TARG_TEST_UNIT_C_1_ST_D):	\
-	$(OBJ_TEST_UNIT_C_1_ST_D)\
-	$(TARGET_LIB_ST_D)\
-	$(LIB_XCONTRACT_ST_D)\
-	$(LIB_XTESTS_ST_D)\
-	makefile
-	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_TEST_UNIT_C_1_ST_D) $(TARGET_LIB_ST_D) $(LIB_XTESTS_ST_D) $(LIB_XCONTRACT_ST_D) $(3PTY_LIBS__ST_D)
-
-$(OBJ_TEST_UNIT_C_1_ST_D):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_ST_D) -o $@ $(SRC_TEST_C_1)
-
-$(TARG_TEST_UNIT_C_1_ST_R):	\
-	$(OBJ_TEST_UNIT_C_1_ST_R)\
-	$(TARGET_LIB_ST_R)\
-	$(LIB_XCONTRACT_ST_R)\
-	$(LIB_XTESTS_ST_R)\
-	makefile
-	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_TEST_UNIT_C_1_ST_R) $(TARGET_LIB_ST_R) $(LIB_XTESTS_ST_R) $(LIB_XCONTRACT_ST_R) $(3PTY_LIBS__ST_R)
-
-$(OBJ_TEST_UNIT_C_1_ST_R):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_ST_R) -o $@ $(SRC_TEST_C_1)
-
-# C++ test client
-
-$(TARG_TEST_UNIT_CPP_1_ST_D):	\
-	$(OBJ_TEST_UNIT_CPP_1_ST_D)\
-	$(TARGET_LIB_ST_D)\
-	$(LIB_XCONTRACT_ST_D)\
-	$(LIB_XTESTS_ST_D)\
-	makefile
-	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_TEST_UNIT_CPP_1_ST_D) $(TARGET_LIB_ST_D) $(LIB_XTESTS_ST_D) $(LIB_XCONTRACT_ST_D) $(3PTY_LIBS__ST_D)
-
-$(OBJ_TEST_UNIT_CPP_1_ST_D):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(SRC_TEST_CPP_1)
-
-$(TARG_TEST_UNIT_CPP_1_ST_R):	\
-	$(OBJ_TEST_UNIT_CPP_1_ST_R)\
-	$(TARGET_LIB_ST_R)\
-	$(LIB_XCONTRACT_ST_R)\
-	$(LIB_XTESTS_ST_R)\
-	makefile
-	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_TEST_UNIT_CPP_1_ST_R) $(TARGET_LIB_ST_R) $(LIB_XTESTS_ST_R) $(LIB_XCONTRACT_ST_R) $(3PTY_LIBS__ST_R)
-
-$(OBJ_TEST_UNIT_CPP_1_ST_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(SRC_TEST_CPP_1)
-
-########################################
+##################################################
 # examples
 
 # C example client
@@ -642,9 +636,8 @@ $(OBJ_TEST_UNIT_CPP_1_ST_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_
 $(TARG_EX_C_1_ST_D):	\
 	$(OBJ_EX_C_1_ST_D)\
 	$(TARGET_LIB_ST_D)\
-	$(LIB_XCONTRACT_ST_D)\
 	makefile
-	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_C_1_ST_D) $(TARGET_LIB_ST_D) $(LIB_XCONTRACT_ST_D) $(3PTY_LIBS__ST_D)
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_C_1_ST_D) $(TARGET_LIB_ST_D) $(3PTY_LIBS__ST_D)
 
 $(OBJ_EX_C_1_ST_D):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_ST_D) -o $@ $(SRC_EXAMPLE_C_1)
@@ -652,9 +645,8 @@ $(OBJ_EX_C_1_ST_D):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_ST_D):	\
 	$(OBJ_EX_C_2_ST_D)\
 	$(TARGET_LIB_ST_D)\
-	$(LIB_XCONTRACT_ST_D)\
 	makefile
-	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_C_2_ST_D) $(TARGET_LIB_ST_D) $(LIB_XCONTRACT_ST_D) $(3PTY_LIBS__ST_D)
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_C_2_ST_D) $(TARGET_LIB_ST_D) $(3PTY_LIBS__ST_D)
 
 $(OBJ_EX_C_2_ST_D):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_ST_D) -o $@ $(SRC_EXAMPLE_C_2)
@@ -662,9 +654,8 @@ $(OBJ_EX_C_2_ST_D):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_C_1_ST_R):	\
 	$(OBJ_EX_C_1_ST_R)\
 	$(TARGET_LIB_ST_R)\
-	$(LIB_XCONTRACT_ST_R)\
 	makefile
-	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_C_1_ST_R) $(TARGET_LIB_ST_R) $(LIB_XCONTRACT_ST_R) $(3PTY_LIBS__ST_R)
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_C_1_ST_R) $(TARGET_LIB_ST_R) $(3PTY_LIBS__ST_R)
 
 $(OBJ_EX_C_1_ST_R):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_ST_R) -o $@ $(SRC_EXAMPLE_C_1)
@@ -672,9 +663,8 @@ $(OBJ_EX_C_1_ST_R):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_ST_R):	\
 	$(OBJ_EX_C_2_ST_R)\
 	$(TARGET_LIB_ST_R)\
-	$(LIB_XCONTRACT_ST_R)\
 	makefile
-	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_C_2_ST_R) $(TARGET_LIB_ST_R) $(LIB_XCONTRACT_ST_R) $(3PTY_LIBS__ST_R)
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_C_2_ST_R) $(TARGET_LIB_ST_R) $(3PTY_LIBS__ST_R)
 
 $(OBJ_EX_C_2_ST_R):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_ST_R) -o $@ $(SRC_EXAMPLE_C_2)
@@ -684,9 +674,8 @@ $(OBJ_EX_C_2_ST_R):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_CPP_1_ST_D):	\
 	$(OBJ_EX_CPP_1_ST_D)\
 	$(TARGET_LIB_ST_D)\
-	$(LIB_XCONTRACT_ST_D)\
 	makefile
-	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_CPP_1_ST_D) $(TARGET_LIB_ST_D) $(LIB_XCONTRACT_ST_D) $(3PTY_LIBS__ST_D)
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_CPP_1_ST_D) $(TARGET_LIB_ST_D) $(3PTY_LIBS__ST_D)
 
 $(OBJ_EX_CPP_1_ST_D):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(SRC_EXAMPLE_CPP_1)
@@ -694,9 +683,8 @@ $(OBJ_EX_CPP_1_ST_D):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_2_ST_D):	\
 	$(OBJ_EX_CPP_2_ST_D)\
 	$(TARGET_LIB_ST_D)\
-	$(LIB_XCONTRACT_ST_D)\
 	makefile
-	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_CPP_2_ST_D) $(TARGET_LIB_ST_D) $(LIB_XCONTRACT_ST_D) $(3PTY_LIBS__ST_D)
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_EX_CPP_2_ST_D) $(TARGET_LIB_ST_D) $(3PTY_LIBS__ST_D)
 
 $(OBJ_EX_CPP_2_ST_D):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(SRC_EXAMPLE_CPP_2)
@@ -704,9 +692,8 @@ $(OBJ_EX_CPP_2_ST_D):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_1_ST_R):	\
 	$(OBJ_EX_CPP_1_ST_R)\
 	$(TARGET_LIB_ST_R)\
-	$(LIB_XCONTRACT_ST_R)\
 	makefile
-	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_CPP_1_ST_R) $(TARGET_LIB_ST_R) $(LIB_XCONTRACT_ST_R) $(3PTY_LIBS__ST_R)
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_CPP_1_ST_R) $(TARGET_LIB_ST_R) $(3PTY_LIBS__ST_R)
 
 $(OBJ_EX_CPP_1_ST_R):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(SRC_EXAMPLE_CPP_1)
@@ -714,11 +701,69 @@ $(OBJ_EX_CPP_1_ST_R):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_2_ST_R):	\
 	$(OBJ_EX_CPP_2_ST_R)\
 	$(TARGET_LIB_ST_R)\
-	$(LIB_XCONTRACT_ST_R)\
 	makefile
-	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_CPP_2_ST_R) $(TARGET_LIB_ST_R) $(LIB_XCONTRACT_ST_R) $(3PTY_LIBS__ST_R)
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_EX_CPP_2_ST_R) $(TARGET_LIB_ST_R) $(3PTY_LIBS__ST_R)
 
 $(OBJ_EX_CPP_2_ST_R):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(SRC_EXAMPLE_CPP_2)
 
-################################################################################
+
+
+
+##################################################
+# tests
+
+##############################
+# component tests
+
+##############################
+# scratch tests
+
+##############################
+# unit tests
+
+# C test client
+
+$(TARG_TEST_UNIT_C_1_ST_D):	\
+	$(OBJ_TEST_UNIT_C_1_ST_D)\
+	$(TARGET_LIB_ST_D)\
+	$(LIB_XTESTS_ST_D)\
+	makefile
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_TEST_UNIT_C_1_ST_D) $(TARGET_LIB_ST_D) $(LIB_XTESTS_ST_D) $(3PTY_LIBS__ST_D)
+
+$(OBJ_TEST_UNIT_C_1_ST_D):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_ST_D) -o $@ $(SRC_TEST_C_1)
+
+$(TARG_TEST_UNIT_C_1_ST_R):	\
+	$(OBJ_TEST_UNIT_C_1_ST_R)\
+	$(TARGET_LIB_ST_R)\
+	$(LIB_XTESTS_ST_R)\
+	makefile
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_TEST_UNIT_C_1_ST_R) $(TARGET_LIB_ST_R) $(LIB_XTESTS_ST_R) $(3PTY_LIBS__ST_R)
+
+$(OBJ_TEST_UNIT_C_1_ST_R):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_ST_R) -o $@ $(SRC_TEST_C_1)
+
+# C++ test client
+
+$(TARG_TEST_UNIT_CPP_1_ST_D):	\
+	$(OBJ_TEST_UNIT_CPP_1_ST_D)\
+	$(TARGET_LIB_ST_D)\
+	$(LIB_XTESTS_ST_D)\
+	makefile
+	$(LD) $(LD_ARGS_ST_D) -o $@ $(OBJ_TEST_UNIT_CPP_1_ST_D) $(TARGET_LIB_ST_D) $(LIB_XTESTS_ST_D) $(3PTY_LIBS__ST_D)
+
+$(OBJ_TEST_UNIT_CPP_1_ST_D):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_ST_D) -o $@ $(SRC_TEST_CPP_1)
+
+$(TARG_TEST_UNIT_CPP_1_ST_R):	\
+	$(OBJ_TEST_UNIT_CPP_1_ST_R)\
+	$(TARGET_LIB_ST_R)\
+	$(LIB_XTESTS_ST_R)\
+	makefile
+	$(LD) $(LD_ARGS_ST_R) -o $@ $(OBJ_TEST_UNIT_CPP_1_ST_R) $(TARGET_LIB_ST_R) $(LIB_XTESTS_ST_R) $(3PTY_LIBS__ST_R)
+
+$(OBJ_TEST_UNIT_CPP_1_ST_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_ST_R) -o $@ $(SRC_TEST_CPP_1)
+
+############################################################################

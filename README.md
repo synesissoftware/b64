@@ -26,7 +26,7 @@ The **b64** core library is a pure standalone component:
 Base-64 conversion of binary regions, using **b64**, is available as part of the distribution of [Pantheios](http://github.com/synesissoftware/pantheios/), a high-performance C++ diagnostic logging API library.
 
 
- (Note: the C++ wrapper depends on the [STLSoft libraries](http://github.com/synesissoftware/STLSoft-1.9/);)
+ (Note: the C++ wrapper depends on the [STLSoft libraries](http://github.com/synesissoftware/STLSoft-1.10/);)
 
 ## Installation
 
@@ -166,7 +166,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 #### STLSoft (C++ API-only)
 
-The C++ API depends on the STLSoft libraries, version 1.9.111 (or later). Version 1.10.1 beta15 (or later) is recommended.
+The C API has no non-standard dependencies. The C++ API depends on the STLSoft libraries, version 1.9.111 (or later). Version 1.10.1 beta21 (or later) is recommended.
 
 * [STLSoft 1.9](http://github.com/synesissoftware/STLSoft-1.9/)
 * [STLSoft 1.10](http://github.com/synesissoftware/STLSoft-1.10/) (Recommended)

@@ -1,0 +1,13 @@
+b64 - FAQ
+=========
+
+Updated:    11th October 2019
+
+
+
+If you post a question on the project's issues page -
+https://github.com/synesissoftware/STLSoft-1.10/issues - 
+it will be added to the FAQ.
+
+=============================== end of file ================================
+

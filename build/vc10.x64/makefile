@@ -1,49 +1,58 @@
-################################################################################
+############################################################################
 # File:     makefile
 #
-# Purpose:  Makefile for the b64 project, for the Visual C++ 10 (x64 64-bit)
-#           compiler, on Win64
+# Purpose:  Makefile for the b64 project,
+#           for the Visual C++ 10 (x64 64-bit) compiler,
+#           on the Win64 platform
 #
 # Created:  15th February 2005
-# Updated:  30th July 2015
+# Updated:  11th October 2020
 #
-################################################################################
+############################################################################
 
 
-################################################################################
-# Environment check
-#
+############################################################################
+# environment check
 
 !ifndef STLSOFT
 !error STLSOFT must be defined
-!endif # STLSOFT
+!endif # !STLSOFT
 
-################################################################################
-# Symbols
+############################################################################
+# symbols
 
-# Identification
+########################################
+# project & compiler version
 
-COMP_TAG            =   vc10.x64
-PROJ_TAG            =   b64
-PROJ_VER_MAJOR      =   1
-PROJ_TAG_VER        =   $(PROJ_TAG).$(PROJ_VER_MAJOR)
+COMP_TAG			=	vc10
+ARCH_TAG			=	.x64
+OS_TAG				=	
+PROJ_TAG			=	b64
+PROJ_VER_MAJOR		=	1
+PROJ_MOD_TAG		=	core
+PROJ_TAG_VER		=	$(PROJ_TAG).$(PROJ_VER_MAJOR)
 COMP_ARCH_OS_TAG	=	$(COMP_TAG)$(OS_TAG)$(ARCH_TAG)
 
-XCONTRACT_VER_MAJOR =   0
-XCONTRACT_TAG_VER   =   xcontract.$(XCONTRACT_VER_MAJOR)
+########################################
+# dependencies
 
-XTESTS_VER_MAJOR    =   0
-XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
+XTESTS_VER_MAJOR	=	0
+XTESTS_TAG_VER		=	xtests.$(XTESTS_VER_MAJOR)
 
-PROJ_MAKEFILE_NAME  =   makefile
+PROJ_MAKEFILE_NAME	=	makefile
 
 ########################################
-# Testing verbosity
+# testing verbosity
 
-TEST_VERBOSITY		=	2
+!ifndef TEST_VERBOSITY
+TEST_VERBOSITY      =   2
+!endif # !TEST_VERBOSITY
+
+############################################################################
+# directories
 
 ########################################
-# Directories
+# project directories
 
 PROJ_BASE_DIR       =   ..\..
 PROJ_BIN_DIR        =   $(PROJ_BASE_DIR)\bin
@@ -55,13 +64,14 @@ PROJ_MAPPINGS_DIR   =   $(PROJ_BASE_DIR)\mappings
 PROJ_TEST_UNIT_DIR  =   $(PROJ_BASE_DIR)\test\unit
 PROJ_EXAMPLES_DIR   =   $(PROJ_BASE_DIR)\examples
 
-XCONTRACT_INCLUDE_DIR	=	$(PROJ_BASE_DIR)\include
-XCONTRACT_SRC_DIR		=	$(PROJ_SRC_DIR)\xcontract
+########################################
+# 3rd-party directories
 
+XTESTS_PROJ_INCLUDE		=	
 XTESTS_INCLUDE_DIR	=	$(PROJ_BASE_DIR)\include
 XTESTS_SRC_DIR		=	$(PROJ_SRC_DIR)\xtests
 
-########################################
+############################################################################
 # tools
 
 CC                  =   cl
@@ -72,8 +82,11 @@ RM                  =   del /f
 CP                  =   copy
 RC                  =   rc
 
+############################################################
+# compiler
 
-# Includes
+########################################
+# includes
 
 INCLUDES_LEADER     =   
 
@@ -141,7 +154,8 @@ CMN_DEF_NO_IMPLICIT_LINK =\
 
 COMMON_DEFS         =   -DWIN64\
 	$(CMN_DEF_NO_IMPLICIT_LINK)\
-	-DXCONTRACT_NO_USE_WIN_EVENTLOG
+	-DXCONTRACT_NO_USE_WIN_EVENTLOG\
+	\
 
 CC_DEFS             =   $(COMMON_DEFS)
 
@@ -207,64 +221,63 @@ AR_ARGS = -nologo
 
 LD_F_NOLOGO = -nologo
 
-LD_ARGS_MT_D = -machine:x64 $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
+LD_ARGS_MT_D =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
 LD_ARGS_DLL_D = -debug -pdb:$(TARGET_PDB_DLL_D) $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
-LD_ARGS_DLL_R = -machine:x64 $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
-LD_ARGS_DLL_T = -machine:x64 $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
-LD_ARGS_MT_R = -machine:x64 $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
-LD_ARGS_MT_T = -machine:x64 $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
+LD_ARGS_DLL_R =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
+LD_ARGS_DLL_T =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
+LD_ARGS_MT_R =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
+LD_ARGS_MT_T =  $(LD_F_NOLOGO) $(LIB_PATHS) $(COMMON_LIB)
 
-################################################################################
-# Targets
-
-########################################
-# TARGETS_LIBS
-
-TARGET_LIB_MT_D = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).mt.debug.lib
-TARGET_LIB_UN_MT_D = $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_TAG).mt.debug.lib
-LIB_CORE_MT_D = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG).mt.debug.lib
-LIB_CORE_UN_MT_D = $(PROJ_LIB_DIR)\$(PROJ_TAG).core.$(COMP_TAG).mt.debug.lib
-TARGET_PDB_MT_D = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).mt.debug.pdb
-TARGET_LIB_DLL_D = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).dll.debug.lib
-TARGET_LIB_UN_DLL_D = $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_TAG).dll.debug.lib
-LIB_CORE_DLL_D = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG).dll.debug.lib
-LIB_CORE_UN_DLL_D = $(PROJ_LIB_DIR)\$(PROJ_TAG).core.$(COMP_TAG).dll.debug.lib
-TARGET_PDB_DLL_D = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).dll.debug.pdb
-TARGET_LIB_DLL_R = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).dll.lib
-TARGET_LIB_UN_DLL_R = $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_TAG).dll.lib
-LIB_CORE_DLL_R = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG).dll.lib
-LIB_CORE_UN_DLL_R = $(PROJ_LIB_DIR)\$(PROJ_TAG).core.$(COMP_TAG).dll.lib
-TARGET_LIB_DLL_T = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).dll.test.lib
-TARGET_LIB_UN_DLL_T = $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_TAG).dll.test.lib
-LIB_CORE_DLL_T = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG).dll.test.lib
-LIB_CORE_UN_DLL_T = $(PROJ_LIB_DIR)\$(PROJ_TAG).core.$(COMP_TAG).dll.test.lib
-TARGET_LIB_MT_R = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).mt.lib
-TARGET_LIB_UN_MT_R = $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_TAG).mt.lib
-LIB_CORE_MT_R = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG).mt.lib
-LIB_CORE_UN_MT_R = $(PROJ_LIB_DIR)\$(PROJ_TAG).core.$(COMP_TAG).mt.lib
-TARGET_LIB_MT_T = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_TAG).mt.test.lib
-TARGET_LIB_UN_MT_T = $(PROJ_LIB_DIR)\$(PROJ_TAG).$(COMP_TAG).mt.test.lib
-LIB_CORE_MT_T = $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG).mt.test.lib
-LIB_CORE_UN_MT_T = $(PROJ_LIB_DIR)\$(PROJ_TAG).core.$(COMP_TAG).mt.test.lib
-
-# xcontract - unit/component testing only
-LIB_XCONTRACT_MT_D		=	$(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_XCONTRACT_DLL_D		=	$(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.debug.lib
-LIB_XCONTRACT_DLL_R		=	$(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.lib
-LIB_XCONTRACT_DLL_T		=	$(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.test.lib
-LIB_XCONTRACT_MT_R		=	$(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_XCONTRACT_MT_T		=	$(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.test.lib
-
-# xtests - unit/component testing only
-LIB_XTESTS_MT_D			=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_XTESTS_DLL_D			=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.debug.lib
-LIB_XTESTS_DLL_R			=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.lib
-LIB_XTESTS_DLL_T			=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.test.lib
-LIB_XTESTS_MT_R			=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_XTESTS_MT_T			=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.test.lib
+############################################################################
+# targets
 
 ########################################
-# TARGETS_TESTS
+# libraries
+
+# core
+LIB_CORE_MT_D			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).mt.debug.lib
+TARGET_LIB_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).mt.debug.lib
+TARGET_PDB_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).mt.debug.pdb
+LIB_CORE_DLL_D			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).dll.debug.lib
+TARGET_LIB_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).dll.debug.lib
+TARGET_PDB_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).dll.debug.pdb
+LIB_CORE_DLL_R			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).dll.lib
+TARGET_LIB_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).dll.lib
+LIB_CORE_DLL_T			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).dll.test.lib
+TARGET_LIB_DLL_T		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).dll.test.lib
+LIB_CORE_MT_R			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).mt.lib
+TARGET_LIB_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).mt.lib
+LIB_CORE_MT_T			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG).mt.test.lib
+TARGET_LIB_MT_T		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).$(COMP_ARCH_OS_TAG).mt.test.lib
+
+# xtests
+LIB_XTESTS_MT_D		=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_XTESTS_DLL_D		=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.debug.lib
+LIB_XTESTS_DLL_R		=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.lib
+LIB_XTESTS_DLL_T		=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).dll.test.lib
+LIB_XTESTS_MT_R		=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_XTESTS_MT_T		=	$(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).b64.$(COMP_ARCH_OS_TAG).mt.test.lib
+
+########################################
+# examples
+
+
+
+########################################
+# tests
+
+
+##############################
+# component tests
+
+
+##############################
+# scratch tests
+
+
+
+##############################
+# unit tests
 
 TARG_TEST_UNIT_C_1_MT_D = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.c.1.$(COMP_TAG).mt.debug.exe
 TARG_TEST_UNIT_CPP_1_MT_D = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.cpp.1.$(COMP_TAG).mt.debug.exe
@@ -295,7 +308,7 @@ TARGETS_TESTS =\
  \
 
 ########################################
-# TARGETS_EXAMPLES
+# TARGETS_EXAMPLE
 
 TARG_EX_C_1_MT_D = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.c.1.$(COMP_TAG).mt.debug.exe
 TARG_EX_C_2_MT_D = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.c.2.$(COMP_TAG).mt.debug.exe
@@ -322,7 +335,7 @@ TARG_EX_C_2_MT_T = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.c.2.$(COMP_TAG).mt.te
 TARG_EX_CPP_1_MT_T = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.cpp.1.$(COMP_TAG).mt.test.exe
 TARG_EX_CPP_2_MT_T = $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).example.cpp.2.$(COMP_TAG).mt.test.exe
 
-TARGETS_EXAMPLES =\
+TARGETS_EXAMPLE =\
  $(TARG_EX_C_1_MT_D)\
  $(TARG_EX_C_2_MT_D)\
  $(TARG_EX_C_1_DLL_D)\
@@ -350,44 +363,23 @@ TARGETS_EXAMPLES =\
  \
 
 ########################################
-# Targets
+# targets
 
 TARGETS_LIB_CORE = \
  $(TARGET_LIB_MT_D)\
- $(TARGET_LIB_UN_MT_D)\
  $(LIB_CORE_MT_D)\
- $(LIB_CORE_UN_MT_D)\
  $(TARGET_PDB_MT_D)\
  $(TARGET_LIB_DLL_D)\
- $(TARGET_LIB_UN_DLL_D)\
  $(LIB_CORE_DLL_D)\
- $(LIB_CORE_UN_DLL_D)\
  $(TARGET_PDB_DLL_D)\
  $(TARGET_LIB_DLL_R)\
- $(TARGET_LIB_UN_DLL_R)\
  $(LIB_CORE_DLL_R)\
- $(LIB_CORE_UN_DLL_R)\
  $(TARGET_LIB_DLL_T)\
- $(TARGET_LIB_UN_DLL_T)\
  $(LIB_CORE_DLL_T)\
- $(LIB_CORE_UN_DLL_T)\
  $(TARGET_LIB_MT_R)\
- $(TARGET_LIB_UN_MT_R)\
  $(LIB_CORE_MT_R)\
- $(LIB_CORE_UN_MT_R)\
  $(TARGET_LIB_MT_T)\
- $(TARGET_LIB_UN_MT_T)\
  $(LIB_CORE_MT_T)\
- $(LIB_CORE_UN_MT_T)\
- \
-
-TARGETS_LIB_XCONTRACT = \
- $(LIB_XCONTRACT_MT_D)\
- $(LIB_XCONTRACT_DLL_D)\
- $(LIB_XCONTRACT_DLL_R)\
- $(LIB_XCONTRACT_DLL_T)\
- $(LIB_XCONTRACT_MT_R)\
- $(LIB_XCONTRACT_MT_T)\
  \
 
 TARGETS_LIB_XTESTS = \
@@ -452,55 +444,6 @@ OBJS_CORE =\
  $(OBJS_CORE_MT_R)\
  $(OBJS_CORE_MT_T)\
  \
-
-# xcontract
-
-OBJ_xct_core_MT_D           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.mt.debug.obj
-PDB_xct_core_MT_D           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.mt.debug.pdb
-
-OBJ_XCONTRACT_MT_D = \
- $(OBJ_xct_core_MT_D)\
- \
-
-PDB_CORE_MT_D = \
- $(PDB_xct_core_MT_D)\
- \
-
-OBJ_xct_core_DLL_D           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.dll.debug.obj
-PDB_xct_core_DLL_D           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.dll.debug.pdb
-
-OBJ_XCONTRACT_DLL_D = \
- $(OBJ_xct_core_DLL_D)\
- \
-
-PDB_CORE_DLL_D = \
- $(PDB_xct_core_DLL_D)\
- \
-
-OBJ_xct_core_DLL_R           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.dll.obj
-
-OBJ_XCONTRACT_DLL_R = \
- $(OBJ_xct_core_DLL_R)\
- \
-
-OBJ_xct_core_DLL_T           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.dll.test.obj
-
-OBJ_XCONTRACT_DLL_T = \
- $(OBJ_xct_core_DLL_T)\
- \
-
-OBJ_xct_core_MT_R           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.mt.obj
-
-OBJ_XCONTRACT_MT_R = \
- $(OBJ_xct_core_MT_R)\
- \
-
-OBJ_xct_core_MT_T           = $(PROJ_OBJ_DIR)\xcontract.b64.core.api.mt.test.obj
-
-OBJ_XCONTRACT_MT_T = \
- $(OBJ_xct_core_MT_T)\
- \
-
 
 # xtests
 
@@ -688,37 +631,116 @@ SRC_EXAMPLE_C_2 = $(PROJ_EXAMPLES_DIR)\c\example.c.2\example.c.2.c
 SRC_EXAMPLE_CPP_1 = $(PROJ_EXAMPLES_DIR)\cpp\example.cpp.1\example.cpp.1.cpp
 SRC_EXAMPLE_CPP_2 = $(PROJ_EXAMPLES_DIR)\cpp\example.cpp.2\example.cpp.2.cpp
 
-################################################################################
-# External Targets (invokable by make)
+############################################################################
+# external targets (invokable by make)
 
-all:                build.all
+# primary
 
-check.lib.dir:
+_default:					build
+
+usage:
+	@echo "make [build | clean | compile | test | usage] - default is 'build'"
+
+# infrastructure
+
+check.lib.dir:				$(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 
-check.bin.dir:
+check.bin.dir:				$(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_BIN_DIR)\NUL mkdir $(PROJ_BIN_DIR)
 
-build.libs.core:		check.lib.dir $(TARGETS_LIB_CORE)
+# compile targets
 
-build.libs.xcontract:	check.lib.dir $(TARGETS_LIB_XCONTRACT)
+compile.libs.core:			$(PROJ_MAKEFILE_NAME)	$(OBJS_CORE)
 
-build.libs.xtests:		check.lib.dir $(TARGETS_LIB_XTESTS)
+compile.libs:										compile.libs.core
 
-build.libs:				build.libs.core build.libs.xcontract build.libs.xtests
+compile.libs.shwild:		$(PROJ_MAKEFILE_NAME)	$(OBJS_SHWILD)
 
-build.examples:			check.bin.dir $(TARGETS_EXAMPLES)
+compile.libs.3pty:									compile.libs.shwild
 
-build.test:				check.bin.dir $(TARGETS_TESTS)
+compile.libs.all:                                   compile.libs compile.libs.3pty
 
-build.all:				build.libs build.examples build.test
+compile.examples:			$(PROJ_MAKEFILE_NAME)	$(OBJS_EXAMPLE)
 
-build:					build.all
+compile.samples:			$(PROJ_MAKEFILE_NAME)	$(OBJS_SAMPLE)
 
-compile:				$(OBJS)
+compile.test.component:		$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_COMPONENT)
+
+compile.test.scratch:		$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_SCRATCH)
+
+compile.test.unit:			$(PROJ_MAKEFILE_NAME)	$(OBJS_TEST_UNIT)
+
+compile.test:	\
+ compile.test.unit\
+ compile.test.component\
+ compile.test.scratch\
+ \
+
+compile:	\
+ compile.libs\
+ compile.libs.3pty\
+ compile.test\
+ compile.examples\
+ compile.samples\
+ \
+
+compile.all:										compile
 
 
-test_:              makefile
+
+
+# build targets
+
+build.libs.core:			check.lib.dir			$(TARGETS_LIB_CORE)
+
+build.libs:											build.libs.core
+
+build.libs.xtests:			check.lib.dir			$(TARGETS_LIB_XTESTS)
+
+build.libs.3pty: \
+ build.libs.xtests\
+ \
+
+build.libs.all:										build.libs build.libs.3pty
+
+build.examples:				check.bin.dir			$(TARGETS_EXAMPLE)
+
+build.samples:				check.bin.dir			$(TARGETS_SAMPLE)
+
+build.test.component:		check.bin.dir			$(TARGETS_TEST_COMPONENT)
+
+build.test.scratch:			check.bin.dir			$(TARGETS_TEST_SCRATCH)
+
+build.test.unit:			check.bin.dir			$(TARGETS_TEST_UNIT)
+
+build.test:	\
+ build.test.unit\
+ build.test.component\
+ build.test.scratch\
+ \
+
+build: \
+ build.libs\
+ build.test\
+ build.examples\
+ build.samples\
+ \
+
+build.all:											build
+
+
+
+# test targets
+
+test.component_:
+	@echo Running Test:Component programs ...
+
+test.scratch_:
+	@echo Running Test:Scratch programs ...
+
+test.unit_:
+	@echo Running Test:Unit programs ...
 	$(TARG_TEST_UNIT_C_1_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_C_1_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_C_1_DLL_R) --verbosity=$(TEST_VERBOSITY)
@@ -732,41 +754,34 @@ test_:              makefile
 	$(TARG_TEST_UNIT_CPP_1_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_CPP_1_MT_T) --verbosity=$(TEST_VERBOSITY)
 
-test:		build.test test_
+test.component:			$(PROJ_MAKEFILE_NAME)	build.test.component test.component_
 
-test.all:	test
+test.scratch:			$(PROJ_MAKEFILE_NAME)	build.test.scratch test.scratch_
 
-test-all:	test.all	# backwards compatibility
+test.unit:				$(PROJ_MAKEFILE_NAME)	build.test.unit test.unit_
+
+test:											test.unit test.component
+
+test.all:										test test.scratch
+test-all:				test.all
 
 
-usage:
-	@echo "make [usage | clean | compile | all | test | target] - default is 'all'"
+# clean targets
 
 clean.libs.core:
+	@echo Cleaning Core libraries ...
 	@-$(RM) $(TARGET_LIB_MT_D)
-	@-$(RM) $(TARGET_LIB_UN_MT_D)
 	@-$(RM) $(LIB_CORE_MT_D)
-	@-$(RM) $(LIB_CORE_UN_MT_D)
 	@-$(RM) $(TARGET_LIB_DLL_D)
-	@-$(RM) $(TARGET_LIB_UN_DLL_D)
 	@-$(RM) $(LIB_CORE_DLL_D)
-	@-$(RM) $(LIB_CORE_UN_DLL_D)
 	@-$(RM) $(TARGET_LIB_DLL_R)
-	@-$(RM) $(TARGET_LIB_UN_DLL_R)
 	@-$(RM) $(LIB_CORE_DLL_R)
-	@-$(RM) $(LIB_CORE_UN_DLL_R)
 	@-$(RM) $(TARGET_LIB_DLL_T)
-	@-$(RM) $(TARGET_LIB_UN_DLL_T)
 	@-$(RM) $(LIB_CORE_DLL_T)
-	@-$(RM) $(LIB_CORE_UN_DLL_T)
 	@-$(RM) $(TARGET_LIB_MT_R)
-	@-$(RM) $(TARGET_LIB_UN_MT_R)
 	@-$(RM) $(LIB_CORE_MT_R)
-	@-$(RM) $(LIB_CORE_UN_MT_R)
 	@-$(RM) $(TARGET_LIB_MT_T)
-	@-$(RM) $(TARGET_LIB_UN_MT_T)
 	@-$(RM) $(LIB_CORE_MT_T)
-	@-$(RM) $(LIB_CORE_UN_MT_T)
 	@-$(RM) $(OBJ_CORE_b64__MT_D)
 	@-$(RM) $(OBJ_CORE_b64__DLL_D)
 	@-$(RM) $(OBJ_CORE_b64__DLL_R)
@@ -774,11 +789,11 @@ clean.libs.core:
 	@-$(RM) $(OBJ_CORE_b64__MT_R)
 	@-$(RM) $(OBJ_CORE_b64__MT_T)
 
-clean.libs.xcontract:	makefile
-
 clean.libs.xtests:		makefile
 
-clean.libs:				clean.libs.core clean.libs.xcontract clean.libs.xtests
+clean.libs:	clean.libs.core\
+ clean.libs.xtests\
+ \
 
 clean.test:
 	@-$(RM) $(TARG_TEST_UNIT_C_1_MT_D)
@@ -858,8 +873,11 @@ clean.examples:
 
 clean: clean.libs clean.test clean.examples
 
-################################################################################
-# Internal Targets (invokable by make)
+############################################################################
+# build targets
+
+##################################################
+# libraries
 
 ########################################
 # Main library - 'b64.X.core.a'
@@ -867,12 +885,6 @@ clean: clean.libs clean.test clean.examples
 $(TARGET_PDB_MT_D):	$(TARGET_LIB_MT_D)
 
 $(TARGET_LIB_MT_D):	$(LIB_CORE_MT_D)
-	@$(CP) $(LIB_CORE_MT_D) $@
-
-$(TARGET_LIB_UN_MT_D):	$(LIB_CORE_MT_D)
-	@$(CP) $(LIB_CORE_MT_D) $@
-
-$(LIB_CORE_UN_MT_D): $(LIB_CORE_MT_D)
 	@$(CP) $(LIB_CORE_MT_D) $@
 
 $(LIB_CORE_MT_D): $(OBJS_CORE_MT_D) makefile
@@ -886,12 +898,6 @@ $(TARGET_PDB_DLL_D):	$(TARGET_LIB_DLL_D)
 $(TARGET_LIB_DLL_D):	$(LIB_CORE_DLL_D)
 	@$(CP) $(LIB_CORE_DLL_D) $@
 
-$(TARGET_LIB_UN_DLL_D):	$(LIB_CORE_DLL_D)
-	@$(CP) $(LIB_CORE_DLL_D) $@
-
-$(LIB_CORE_UN_DLL_D): $(LIB_CORE_DLL_D)
-	@$(CP) $(LIB_CORE_DLL_D) $@
-
 $(LIB_CORE_DLL_D): $(OBJS_CORE_DLL_D) makefile
 	$(AR) $(AR_ARGS) -out:$@ $(OBJS_CORE_DLL_D)
 
@@ -900,12 +906,6 @@ $(OBJ_CORE_b64__DLL_D): $(PROJ_SRC_DIR)\b64.c $(HEADERS_LIB) makefile
 
 
 $(TARGET_LIB_DLL_R):	$(LIB_CORE_DLL_R)
-	@$(CP) $(LIB_CORE_DLL_R) $@
-
-$(TARGET_LIB_UN_DLL_R):	$(LIB_CORE_DLL_R)
-	@$(CP) $(LIB_CORE_DLL_R) $@
-
-$(LIB_CORE_UN_DLL_R): $(LIB_CORE_DLL_R)
 	@$(CP) $(LIB_CORE_DLL_R) $@
 
 $(LIB_CORE_DLL_R): $(OBJS_CORE_DLL_R) makefile
@@ -918,12 +918,6 @@ $(OBJ_CORE_b64__DLL_R): $(PROJ_SRC_DIR)\b64.c $(HEADERS_LIB) makefile
 $(TARGET_LIB_DLL_T):	$(LIB_CORE_DLL_T)
 	@$(CP) $(LIB_CORE_DLL_T) $@
 
-$(TARGET_LIB_UN_DLL_T):	$(LIB_CORE_DLL_T)
-	@$(CP) $(LIB_CORE_DLL_T) $@
-
-$(LIB_CORE_UN_DLL_T): $(LIB_CORE_DLL_T)
-	@$(CP) $(LIB_CORE_DLL_T) $@
-
 $(LIB_CORE_DLL_T): $(OBJS_CORE_DLL_T) makefile
 	$(AR) $(AR_ARGS) -out:$@ $(OBJS_CORE_DLL_T)
 
@@ -932,12 +926,6 @@ $(OBJ_CORE_b64__DLL_T): $(PROJ_SRC_DIR)\b64.c $(HEADERS_LIB) makefile
 
 
 $(TARGET_LIB_MT_R):	$(LIB_CORE_MT_R)
-	@$(CP) $(LIB_CORE_MT_R) $@
-
-$(TARGET_LIB_UN_MT_R):	$(LIB_CORE_MT_R)
-	@$(CP) $(LIB_CORE_MT_R) $@
-
-$(LIB_CORE_UN_MT_R): $(LIB_CORE_MT_R)
 	@$(CP) $(LIB_CORE_MT_R) $@
 
 $(LIB_CORE_MT_R): $(OBJS_CORE_MT_R) makefile
@@ -950,66 +938,14 @@ $(OBJ_CORE_b64__MT_R): $(PROJ_SRC_DIR)\b64.c $(HEADERS_LIB) makefile
 $(TARGET_LIB_MT_T):	$(LIB_CORE_MT_T)
 	@$(CP) $(LIB_CORE_MT_T) $@
 
-$(TARGET_LIB_UN_MT_T):	$(LIB_CORE_MT_T)
-	@$(CP) $(LIB_CORE_MT_T) $@
-
-$(LIB_CORE_UN_MT_T): $(LIB_CORE_MT_T)
-	@$(CP) $(LIB_CORE_MT_T) $@
-
 $(LIB_CORE_MT_T): $(OBJS_CORE_MT_T) makefile
 	$(AR) $(AR_ARGS) -out:$@ $(OBJS_CORE_MT_T)
 
 $(OBJ_CORE_b64__MT_T): $(PROJ_SRC_DIR)\b64.c $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_T) -Fo$@ $(PROJ_SRC_DIR)\b64.c
 
-
 ########################################
-# xContract library - 'xcontract.X.b64.core.a'
-
-$(LIB_XCONTRACT_MT_D): $(OBJ_XCONTRACT_MT_D) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_MT_D)
-
-$(OBJ_xct_core_MT_D): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_D) $(CC_XCONTRACT_INCLUDES_MT_D) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
-
-$(LIB_XCONTRACT_DLL_D): $(OBJ_XCONTRACT_DLL_D) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_DLL_D)
-
-$(OBJ_xct_core_DLL_D): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_D) $(CC_XCONTRACT_INCLUDES_DLL_D) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
-
-$(LIB_XCONTRACT_DLL_R): $(OBJ_XCONTRACT_DLL_R) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_DLL_R)
-
-$(OBJ_xct_core_DLL_R): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_R) $(CC_XCONTRACT_INCLUDES_DLL_R) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
-
-$(LIB_XCONTRACT_DLL_T): $(OBJ_XCONTRACT_DLL_T) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_DLL_T)
-
-$(OBJ_xct_core_DLL_T): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_DLL_T) $(CC_XCONTRACT_INCLUDES_DLL_T) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
-
-$(LIB_XCONTRACT_MT_R): $(OBJ_XCONTRACT_MT_R) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_MT_R)
-
-$(OBJ_xct_core_MT_R): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_R) $(CC_XCONTRACT_INCLUDES_MT_R) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
-
-$(LIB_XCONTRACT_MT_T): $(OBJ_XCONTRACT_MT_T) $(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
-	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_MT_T)
-
-$(OBJ_xct_core_MT_T): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_ARGS_MT_T) $(CC_XCONTRACT_INCLUDES_MT_T) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
-
-########################################
-# xTests library - 'xtests.X.b64.core.a'
+# xTests library - 'xtests.V.XXXX.core.a'
 
 $(LIB_XTESTS_MT_D): $(OBJ_XTESTS_MT_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
@@ -1053,146 +989,7 @@ $(LIB_XTESTS_MT_T): $(OBJ_XTESTS_MT_T) $(PROJ_MAKEFILE_NAME)
 $(OBJ_xts_core_MT_T): $(XTESTS_SRC_DIR)\xtests.core.cpp $(XTESTS_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_ARGS_MT_T) $(CPPC_XTESTS_INCLUDES_MT_T) -Fo$@ $(XTESTS_SRC_DIR)\xtests.core.cpp
 
-########################################
-# test
-
-# C test client
-
-$(TARG_TEST_UNIT_C_1_MT_D):	\
-	$(OBJ_TEST_UNIT_C_1_MT_D)\
-	$(TARGET_LIB_MT_D)\
-	$(LIB_XCONTRACT_MT_D)\
-	$(LIB_XTESTS_MT_D)\
-	makefile
-	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_TEST_UNIT_C_1_MT_D) $(TARGET_LIB_MT_D) $(LIB_XTESTS_MT_D) $(LIB_XCONTRACT_MT_D) $(3PTY_LIBS__MT_D)
-
-$(OBJ_TEST_UNIT_C_1_MT_D):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_MT_D) -Fo$@ $(SRC_TEST_C_1)
-
-$(TARG_TEST_UNIT_C_1_DLL_D):	\
-	$(OBJ_TEST_UNIT_C_1_DLL_D)\
-	$(TARGET_LIB_DLL_D)\
-	$(LIB_XCONTRACT_DLL_D)\
-	$(LIB_XTESTS_DLL_D)\
-	makefile
-	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_TEST_UNIT_C_1_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XTESTS_DLL_D) $(LIB_XCONTRACT_DLL_D) $(3PTY_LIBS__DLL_D)
-
-$(OBJ_TEST_UNIT_C_1_DLL_D):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_DLL_D) -Fo$@ $(SRC_TEST_C_1)
-
-$(TARG_TEST_UNIT_C_1_DLL_R):	\
-	$(OBJ_TEST_UNIT_C_1_DLL_R)\
-	$(TARGET_LIB_DLL_R)\
-	$(LIB_XCONTRACT_DLL_R)\
-	$(LIB_XTESTS_DLL_R)\
-	makefile
-	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_TEST_UNIT_C_1_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XTESTS_DLL_R) $(LIB_XCONTRACT_DLL_R) $(3PTY_LIBS__DLL_R)
-
-$(OBJ_TEST_UNIT_C_1_DLL_R):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_DLL_R) -Fo$@ $(SRC_TEST_C_1)
-
-$(TARG_TEST_UNIT_C_1_DLL_T):	\
-	$(OBJ_TEST_UNIT_C_1_DLL_T)\
-	$(TARGET_LIB_DLL_T)\
-	$(LIB_XCONTRACT_DLL_T)\
-	$(LIB_XTESTS_DLL_T)\
-	makefile
-	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_TEST_UNIT_C_1_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XTESTS_DLL_T) $(LIB_XCONTRACT_DLL_T) $(3PTY_LIBS__DLL_T)
-
-$(OBJ_TEST_UNIT_C_1_DLL_T):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_DLL_T) -Fo$@ $(SRC_TEST_C_1)
-
-$(TARG_TEST_UNIT_C_1_MT_R):	\
-	$(OBJ_TEST_UNIT_C_1_MT_R)\
-	$(TARGET_LIB_MT_R)\
-	$(LIB_XCONTRACT_MT_R)\
-	$(LIB_XTESTS_MT_R)\
-	makefile
-	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_TEST_UNIT_C_1_MT_R) $(TARGET_LIB_MT_R) $(LIB_XTESTS_MT_R) $(LIB_XCONTRACT_MT_R) $(3PTY_LIBS__MT_R)
-
-$(OBJ_TEST_UNIT_C_1_MT_R):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_MT_R) -Fo$@ $(SRC_TEST_C_1)
-
-$(TARG_TEST_UNIT_C_1_MT_T):	\
-	$(OBJ_TEST_UNIT_C_1_MT_T)\
-	$(TARGET_LIB_MT_T)\
-	$(LIB_XCONTRACT_MT_T)\
-	$(LIB_XTESTS_MT_T)\
-	makefile
-	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_TEST_UNIT_C_1_MT_T) $(TARGET_LIB_MT_T) $(LIB_XTESTS_MT_T) $(LIB_XCONTRACT_MT_T) $(3PTY_LIBS__MT_T)
-
-$(OBJ_TEST_UNIT_C_1_MT_T):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
-	$(CC) $(CC_ARGS_MT_T) -Fo$@ $(SRC_TEST_C_1)
-
-# C++ test client
-
-$(TARG_TEST_UNIT_CPP_1_MT_D):	\
-	$(OBJ_TEST_UNIT_CPP_1_MT_D)\
-	$(TARGET_LIB_MT_D)\
-	$(LIB_XCONTRACT_MT_D)\
-	$(LIB_XTESTS_MT_D)\
-	makefile
-	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_TEST_UNIT_CPP_1_MT_D) $(TARGET_LIB_MT_D) $(LIB_XTESTS_MT_D) $(LIB_XCONTRACT_MT_D) $(3PTY_LIBS__MT_D)
-
-$(OBJ_TEST_UNIT_CPP_1_MT_D):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_MT_D) -Fo$@ $(SRC_TEST_CPP_1)
-
-$(TARG_TEST_UNIT_CPP_1_DLL_D):	\
-	$(OBJ_TEST_UNIT_CPP_1_DLL_D)\
-	$(TARGET_LIB_DLL_D)\
-	$(LIB_XCONTRACT_DLL_D)\
-	$(LIB_XTESTS_DLL_D)\
-	makefile
-	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_TEST_UNIT_CPP_1_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XTESTS_DLL_D) $(LIB_XCONTRACT_DLL_D) $(3PTY_LIBS__DLL_D)
-
-$(OBJ_TEST_UNIT_CPP_1_DLL_D):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_DLL_D) -Fo$@ $(SRC_TEST_CPP_1)
-
-$(TARG_TEST_UNIT_CPP_1_DLL_R):	\
-	$(OBJ_TEST_UNIT_CPP_1_DLL_R)\
-	$(TARGET_LIB_DLL_R)\
-	$(LIB_XCONTRACT_DLL_R)\
-	$(LIB_XTESTS_DLL_R)\
-	makefile
-	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_TEST_UNIT_CPP_1_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XTESTS_DLL_R) $(LIB_XCONTRACT_DLL_R) $(3PTY_LIBS__DLL_R)
-
-$(OBJ_TEST_UNIT_CPP_1_DLL_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_DLL_R) -Fo$@ $(SRC_TEST_CPP_1)
-
-$(TARG_TEST_UNIT_CPP_1_DLL_T):	\
-	$(OBJ_TEST_UNIT_CPP_1_DLL_T)\
-	$(TARGET_LIB_DLL_T)\
-	$(LIB_XCONTRACT_DLL_T)\
-	$(LIB_XTESTS_DLL_T)\
-	makefile
-	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_TEST_UNIT_CPP_1_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XTESTS_DLL_T) $(LIB_XCONTRACT_DLL_T) $(3PTY_LIBS__DLL_T)
-
-$(OBJ_TEST_UNIT_CPP_1_DLL_T):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_DLL_T) -Fo$@ $(SRC_TEST_CPP_1)
-
-$(TARG_TEST_UNIT_CPP_1_MT_R):	\
-	$(OBJ_TEST_UNIT_CPP_1_MT_R)\
-	$(TARGET_LIB_MT_R)\
-	$(LIB_XCONTRACT_MT_R)\
-	$(LIB_XTESTS_MT_R)\
-	makefile
-	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_TEST_UNIT_CPP_1_MT_R) $(TARGET_LIB_MT_R) $(LIB_XTESTS_MT_R) $(LIB_XCONTRACT_MT_R) $(3PTY_LIBS__MT_R)
-
-$(OBJ_TEST_UNIT_CPP_1_MT_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_MT_R) -Fo$@ $(SRC_TEST_CPP_1)
-
-$(TARG_TEST_UNIT_CPP_1_MT_T):	\
-	$(OBJ_TEST_UNIT_CPP_1_MT_T)\
-	$(TARGET_LIB_MT_T)\
-	$(LIB_XCONTRACT_MT_T)\
-	$(LIB_XTESTS_MT_T)\
-	makefile
-	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_TEST_UNIT_CPP_1_MT_T) $(TARGET_LIB_MT_T) $(LIB_XTESTS_MT_T) $(LIB_XCONTRACT_MT_T) $(3PTY_LIBS__MT_T)
-
-$(OBJ_TEST_UNIT_CPP_1_MT_T):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
-	$(CPPC) $(CPPC_ARGS_MT_T) -Fo$@ $(SRC_TEST_CPP_1)
-
-########################################
+##################################################
 # examples
 
 # C example client
@@ -1200,9 +997,8 @@ $(OBJ_TEST_UNIT_CPP_1_MT_T):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_
 $(TARG_EX_C_1_MT_D):	\
 	$(OBJ_EX_C_1_MT_D)\
 	$(TARGET_LIB_MT_D)\
-	$(LIB_XCONTRACT_MT_D)\
 	makefile
-	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_C_1_MT_D) $(TARGET_LIB_MT_D) $(LIB_XCONTRACT_MT_D) $(3PTY_LIBS__MT_D)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_C_1_MT_D) $(TARGET_LIB_MT_D) $(3PTY_LIBS__MT_D)
 
 $(OBJ_EX_C_1_MT_D):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_D) -Fo$@ $(SRC_EXAMPLE_C_1)
@@ -1210,9 +1006,8 @@ $(OBJ_EX_C_1_MT_D):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_MT_D):	\
 	$(OBJ_EX_C_2_MT_D)\
 	$(TARGET_LIB_MT_D)\
-	$(LIB_XCONTRACT_MT_D)\
 	makefile
-	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_C_2_MT_D) $(TARGET_LIB_MT_D) $(LIB_XCONTRACT_MT_D) $(3PTY_LIBS__MT_D)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_C_2_MT_D) $(TARGET_LIB_MT_D) $(3PTY_LIBS__MT_D)
 
 $(OBJ_EX_C_2_MT_D):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_D) -Fo$@ $(SRC_EXAMPLE_C_2)
@@ -1220,9 +1015,8 @@ $(OBJ_EX_C_2_MT_D):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_C_1_DLL_D):	\
 	$(OBJ_EX_C_1_DLL_D)\
 	$(TARGET_LIB_DLL_D)\
-	$(LIB_XCONTRACT_DLL_D)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_C_1_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XCONTRACT_DLL_D) $(3PTY_LIBS__DLL_D)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_C_1_DLL_D) $(TARGET_LIB_DLL_D) $(3PTY_LIBS__DLL_D)
 
 $(OBJ_EX_C_1_DLL_D):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_DLL_D) -Fo$@ $(SRC_EXAMPLE_C_1)
@@ -1230,9 +1024,8 @@ $(OBJ_EX_C_1_DLL_D):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_DLL_D):	\
 	$(OBJ_EX_C_2_DLL_D)\
 	$(TARGET_LIB_DLL_D)\
-	$(LIB_XCONTRACT_DLL_D)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_C_2_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XCONTRACT_DLL_D) $(3PTY_LIBS__DLL_D)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_C_2_DLL_D) $(TARGET_LIB_DLL_D) $(3PTY_LIBS__DLL_D)
 
 $(OBJ_EX_C_2_DLL_D):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_DLL_D) -Fo$@ $(SRC_EXAMPLE_C_2)
@@ -1240,9 +1033,8 @@ $(OBJ_EX_C_2_DLL_D):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_C_1_DLL_R):	\
 	$(OBJ_EX_C_1_DLL_R)\
 	$(TARGET_LIB_DLL_R)\
-	$(LIB_XCONTRACT_DLL_R)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_C_1_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XCONTRACT_DLL_R) $(3PTY_LIBS__DLL_R)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_C_1_DLL_R) $(TARGET_LIB_DLL_R) $(3PTY_LIBS__DLL_R)
 
 $(OBJ_EX_C_1_DLL_R):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_DLL_R) -Fo$@ $(SRC_EXAMPLE_C_1)
@@ -1250,9 +1042,8 @@ $(OBJ_EX_C_1_DLL_R):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_DLL_R):	\
 	$(OBJ_EX_C_2_DLL_R)\
 	$(TARGET_LIB_DLL_R)\
-	$(LIB_XCONTRACT_DLL_R)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_C_2_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XCONTRACT_DLL_R) $(3PTY_LIBS__DLL_R)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_C_2_DLL_R) $(TARGET_LIB_DLL_R) $(3PTY_LIBS__DLL_R)
 
 $(OBJ_EX_C_2_DLL_R):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_DLL_R) -Fo$@ $(SRC_EXAMPLE_C_2)
@@ -1260,9 +1051,8 @@ $(OBJ_EX_C_2_DLL_R):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_C_1_DLL_T):	\
 	$(OBJ_EX_C_1_DLL_T)\
 	$(TARGET_LIB_DLL_T)\
-	$(LIB_XCONTRACT_DLL_T)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_C_1_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XCONTRACT_DLL_T) $(3PTY_LIBS__DLL_T)
+	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_C_1_DLL_T) $(TARGET_LIB_DLL_T) $(3PTY_LIBS__DLL_T)
 
 $(OBJ_EX_C_1_DLL_T):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_DLL_T) -Fo$@ $(SRC_EXAMPLE_C_1)
@@ -1270,9 +1060,8 @@ $(OBJ_EX_C_1_DLL_T):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_DLL_T):	\
 	$(OBJ_EX_C_2_DLL_T)\
 	$(TARGET_LIB_DLL_T)\
-	$(LIB_XCONTRACT_DLL_T)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_C_2_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XCONTRACT_DLL_T) $(3PTY_LIBS__DLL_T)
+	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_C_2_DLL_T) $(TARGET_LIB_DLL_T) $(3PTY_LIBS__DLL_T)
 
 $(OBJ_EX_C_2_DLL_T):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_DLL_T) -Fo$@ $(SRC_EXAMPLE_C_2)
@@ -1280,9 +1069,8 @@ $(OBJ_EX_C_2_DLL_T):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_C_1_MT_R):	\
 	$(OBJ_EX_C_1_MT_R)\
 	$(TARGET_LIB_MT_R)\
-	$(LIB_XCONTRACT_MT_R)\
 	makefile
-	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_C_1_MT_R) $(TARGET_LIB_MT_R) $(LIB_XCONTRACT_MT_R) $(3PTY_LIBS__MT_R)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_C_1_MT_R) $(TARGET_LIB_MT_R) $(3PTY_LIBS__MT_R)
 
 $(OBJ_EX_C_1_MT_R):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_R) -Fo$@ $(SRC_EXAMPLE_C_1)
@@ -1290,9 +1078,8 @@ $(OBJ_EX_C_1_MT_R):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_MT_R):	\
 	$(OBJ_EX_C_2_MT_R)\
 	$(TARGET_LIB_MT_R)\
-	$(LIB_XCONTRACT_MT_R)\
 	makefile
-	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_C_2_MT_R) $(TARGET_LIB_MT_R) $(LIB_XCONTRACT_MT_R) $(3PTY_LIBS__MT_R)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_C_2_MT_R) $(TARGET_LIB_MT_R) $(3PTY_LIBS__MT_R)
 
 $(OBJ_EX_C_2_MT_R):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_R) -Fo$@ $(SRC_EXAMPLE_C_2)
@@ -1300,9 +1087,8 @@ $(OBJ_EX_C_2_MT_R):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_C_1_MT_T):	\
 	$(OBJ_EX_C_1_MT_T)\
 	$(TARGET_LIB_MT_T)\
-	$(LIB_XCONTRACT_MT_T)\
 	makefile
-	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_C_1_MT_T) $(TARGET_LIB_MT_T) $(LIB_XCONTRACT_MT_T) $(3PTY_LIBS__MT_T)
+	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_C_1_MT_T) $(TARGET_LIB_MT_T) $(3PTY_LIBS__MT_T)
 
 $(OBJ_EX_C_1_MT_T):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_T) -Fo$@ $(SRC_EXAMPLE_C_1)
@@ -1310,9 +1096,8 @@ $(OBJ_EX_C_1_MT_T):	$(SRC_EXAMPLE_C_1) $(HEADERS_LIB) makefile
 $(TARG_EX_C_2_MT_T):	\
 	$(OBJ_EX_C_2_MT_T)\
 	$(TARGET_LIB_MT_T)\
-	$(LIB_XCONTRACT_MT_T)\
 	makefile
-	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_C_2_MT_T) $(TARGET_LIB_MT_T) $(LIB_XCONTRACT_MT_T) $(3PTY_LIBS__MT_T)
+	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_C_2_MT_T) $(TARGET_LIB_MT_T) $(3PTY_LIBS__MT_T)
 
 $(OBJ_EX_C_2_MT_T):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 	$(CC) $(CC_ARGS_MT_T) -Fo$@ $(SRC_EXAMPLE_C_2)
@@ -1322,9 +1107,8 @@ $(OBJ_EX_C_2_MT_T):	$(SRC_EXAMPLE_C_2) $(HEADERS_LIB) makefile
 $(TARG_EX_CPP_1_MT_D):	\
 	$(OBJ_EX_CPP_1_MT_D)\
 	$(TARGET_LIB_MT_D)\
-	$(LIB_XCONTRACT_MT_D)\
 	makefile
-	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_CPP_1_MT_D) $(TARGET_LIB_MT_D) $(LIB_XCONTRACT_MT_D) $(3PTY_LIBS__MT_D)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_CPP_1_MT_D) $(TARGET_LIB_MT_D) $(3PTY_LIBS__MT_D)
 
 $(OBJ_EX_CPP_1_MT_D):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_MT_D) -Fo$@ $(SRC_EXAMPLE_CPP_1)
@@ -1332,9 +1116,8 @@ $(OBJ_EX_CPP_1_MT_D):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_2_MT_D):	\
 	$(OBJ_EX_CPP_2_MT_D)\
 	$(TARGET_LIB_MT_D)\
-	$(LIB_XCONTRACT_MT_D)\
 	makefile
-	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_CPP_2_MT_D) $(TARGET_LIB_MT_D) $(LIB_XCONTRACT_MT_D) $(3PTY_LIBS__MT_D)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_EX_CPP_2_MT_D) $(TARGET_LIB_MT_D) $(3PTY_LIBS__MT_D)
 
 $(OBJ_EX_CPP_2_MT_D):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_MT_D) -Fo$@ $(SRC_EXAMPLE_CPP_2)
@@ -1342,9 +1125,8 @@ $(OBJ_EX_CPP_2_MT_D):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_1_DLL_D):	\
 	$(OBJ_EX_CPP_1_DLL_D)\
 	$(TARGET_LIB_DLL_D)\
-	$(LIB_XCONTRACT_DLL_D)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_CPP_1_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XCONTRACT_DLL_D) $(3PTY_LIBS__DLL_D)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_CPP_1_DLL_D) $(TARGET_LIB_DLL_D) $(3PTY_LIBS__DLL_D)
 
 $(OBJ_EX_CPP_1_DLL_D):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_DLL_D) -Fo$@ $(SRC_EXAMPLE_CPP_1)
@@ -1352,9 +1134,8 @@ $(OBJ_EX_CPP_1_DLL_D):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP
 $(TARG_EX_CPP_2_DLL_D):	\
 	$(OBJ_EX_CPP_2_DLL_D)\
 	$(TARGET_LIB_DLL_D)\
-	$(LIB_XCONTRACT_DLL_D)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_CPP_2_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XCONTRACT_DLL_D) $(3PTY_LIBS__DLL_D)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_EX_CPP_2_DLL_D) $(TARGET_LIB_DLL_D) $(3PTY_LIBS__DLL_D)
 
 $(OBJ_EX_CPP_2_DLL_D):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_DLL_D) -Fo$@ $(SRC_EXAMPLE_CPP_2)
@@ -1362,9 +1143,8 @@ $(OBJ_EX_CPP_2_DLL_D):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP
 $(TARG_EX_CPP_1_DLL_R):	\
 	$(OBJ_EX_CPP_1_DLL_R)\
 	$(TARGET_LIB_DLL_R)\
-	$(LIB_XCONTRACT_DLL_R)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_CPP_1_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XCONTRACT_DLL_R) $(3PTY_LIBS__DLL_R)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_CPP_1_DLL_R) $(TARGET_LIB_DLL_R) $(3PTY_LIBS__DLL_R)
 
 $(OBJ_EX_CPP_1_DLL_R):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_DLL_R) -Fo$@ $(SRC_EXAMPLE_CPP_1)
@@ -1372,9 +1152,8 @@ $(OBJ_EX_CPP_1_DLL_R):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP
 $(TARG_EX_CPP_2_DLL_R):	\
 	$(OBJ_EX_CPP_2_DLL_R)\
 	$(TARGET_LIB_DLL_R)\
-	$(LIB_XCONTRACT_DLL_R)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_CPP_2_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XCONTRACT_DLL_R) $(3PTY_LIBS__DLL_R)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_EX_CPP_2_DLL_R) $(TARGET_LIB_DLL_R) $(3PTY_LIBS__DLL_R)
 
 $(OBJ_EX_CPP_2_DLL_R):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_DLL_R) -Fo$@ $(SRC_EXAMPLE_CPP_2)
@@ -1382,9 +1161,8 @@ $(OBJ_EX_CPP_2_DLL_R):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP
 $(TARG_EX_CPP_1_DLL_T):	\
 	$(OBJ_EX_CPP_1_DLL_T)\
 	$(TARGET_LIB_DLL_T)\
-	$(LIB_XCONTRACT_DLL_T)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_CPP_1_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XCONTRACT_DLL_T) $(3PTY_LIBS__DLL_T)
+	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_CPP_1_DLL_T) $(TARGET_LIB_DLL_T) $(3PTY_LIBS__DLL_T)
 
 $(OBJ_EX_CPP_1_DLL_T):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_DLL_T) -Fo$@ $(SRC_EXAMPLE_CPP_1)
@@ -1392,9 +1170,8 @@ $(OBJ_EX_CPP_1_DLL_T):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP
 $(TARG_EX_CPP_2_DLL_T):	\
 	$(OBJ_EX_CPP_2_DLL_T)\
 	$(TARGET_LIB_DLL_T)\
-	$(LIB_XCONTRACT_DLL_T)\
 	makefile
-	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_CPP_2_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XCONTRACT_DLL_T) $(3PTY_LIBS__DLL_T)
+	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_EX_CPP_2_DLL_T) $(TARGET_LIB_DLL_T) $(3PTY_LIBS__DLL_T)
 
 $(OBJ_EX_CPP_2_DLL_T):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_DLL_T) -Fo$@ $(SRC_EXAMPLE_CPP_2)
@@ -1402,9 +1179,8 @@ $(OBJ_EX_CPP_2_DLL_T):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP
 $(TARG_EX_CPP_1_MT_R):	\
 	$(OBJ_EX_CPP_1_MT_R)\
 	$(TARGET_LIB_MT_R)\
-	$(LIB_XCONTRACT_MT_R)\
 	makefile
-	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_CPP_1_MT_R) $(TARGET_LIB_MT_R) $(LIB_XCONTRACT_MT_R) $(3PTY_LIBS__MT_R)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_CPP_1_MT_R) $(TARGET_LIB_MT_R) $(3PTY_LIBS__MT_R)
 
 $(OBJ_EX_CPP_1_MT_R):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_MT_R) -Fo$@ $(SRC_EXAMPLE_CPP_1)
@@ -1412,9 +1188,8 @@ $(OBJ_EX_CPP_1_MT_R):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_2_MT_R):	\
 	$(OBJ_EX_CPP_2_MT_R)\
 	$(TARGET_LIB_MT_R)\
-	$(LIB_XCONTRACT_MT_R)\
 	makefile
-	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_CPP_2_MT_R) $(TARGET_LIB_MT_R) $(LIB_XCONTRACT_MT_R) $(3PTY_LIBS__MT_R)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_EX_CPP_2_MT_R) $(TARGET_LIB_MT_R) $(3PTY_LIBS__MT_R)
 
 $(OBJ_EX_CPP_2_MT_R):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_MT_R) -Fo$@ $(SRC_EXAMPLE_CPP_2)
@@ -1422,9 +1197,8 @@ $(OBJ_EX_CPP_2_MT_R):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_1_MT_T):	\
 	$(OBJ_EX_CPP_1_MT_T)\
 	$(TARGET_LIB_MT_T)\
-	$(LIB_XCONTRACT_MT_T)\
 	makefile
-	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_CPP_1_MT_T) $(TARGET_LIB_MT_T) $(LIB_XCONTRACT_MT_T) $(3PTY_LIBS__MT_T)
+	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_CPP_1_MT_T) $(TARGET_LIB_MT_T) $(3PTY_LIBS__MT_T)
 
 $(OBJ_EX_CPP_1_MT_T):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_MT_T) -Fo$@ $(SRC_EXAMPLE_CPP_1)
@@ -1432,11 +1206,153 @@ $(OBJ_EX_CPP_1_MT_T):	$(SRC_EXAMPLE_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP)
 $(TARG_EX_CPP_2_MT_T):	\
 	$(OBJ_EX_CPP_2_MT_T)\
 	$(TARGET_LIB_MT_T)\
-	$(LIB_XCONTRACT_MT_T)\
 	makefile
-	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_CPP_2_MT_T) $(TARGET_LIB_MT_T) $(LIB_XCONTRACT_MT_T) $(3PTY_LIBS__MT_T)
+	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_EX_CPP_2_MT_T) $(TARGET_LIB_MT_T) $(3PTY_LIBS__MT_T)
 
 $(OBJ_EX_CPP_2_MT_T):	$(SRC_EXAMPLE_CPP_2) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
 	$(CPPC) $(CPPC_ARGS_MT_T) -Fo$@ $(SRC_EXAMPLE_CPP_2)
 
-################################################################################
+
+
+
+
+
+
+
+##################################################
+# tests
+
+##############################
+# component tests
+
+##############################
+# scratch tests
+
+##############################
+# unit tests
+
+# C test client
+
+$(TARG_TEST_UNIT_C_1_MT_D):	\
+	$(OBJ_TEST_UNIT_C_1_MT_D)\
+	$(TARGET_LIB_MT_D)\
+	$(LIB_XTESTS_MT_D)\
+	makefile
+	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_TEST_UNIT_C_1_MT_D) $(TARGET_LIB_MT_D) $(LIB_XTESTS_MT_D) $(3PTY_LIBS__MT_D)
+
+$(OBJ_TEST_UNIT_C_1_MT_D):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_MT_D) -Fo$@ $(SRC_TEST_C_1)
+
+$(TARG_TEST_UNIT_C_1_DLL_D):	\
+	$(OBJ_TEST_UNIT_C_1_DLL_D)\
+	$(TARGET_LIB_DLL_D)\
+	$(LIB_XTESTS_DLL_D)\
+	makefile
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_TEST_UNIT_C_1_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XTESTS_DLL_D) $(3PTY_LIBS__DLL_D)
+
+$(OBJ_TEST_UNIT_C_1_DLL_D):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_DLL_D) -Fo$@ $(SRC_TEST_C_1)
+
+$(TARG_TEST_UNIT_C_1_DLL_R):	\
+	$(OBJ_TEST_UNIT_C_1_DLL_R)\
+	$(TARGET_LIB_DLL_R)\
+	$(LIB_XTESTS_DLL_R)\
+	makefile
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_TEST_UNIT_C_1_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XTESTS_DLL_R) $(3PTY_LIBS__DLL_R)
+
+$(OBJ_TEST_UNIT_C_1_DLL_R):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_DLL_R) -Fo$@ $(SRC_TEST_C_1)
+
+$(TARG_TEST_UNIT_C_1_DLL_T):	\
+	$(OBJ_TEST_UNIT_C_1_DLL_T)\
+	$(TARGET_LIB_DLL_T)\
+	$(LIB_XTESTS_DLL_T)\
+	makefile
+	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_TEST_UNIT_C_1_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XTESTS_DLL_T) $(3PTY_LIBS__DLL_T)
+
+$(OBJ_TEST_UNIT_C_1_DLL_T):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_DLL_T) -Fo$@ $(SRC_TEST_C_1)
+
+$(TARG_TEST_UNIT_C_1_MT_R):	\
+	$(OBJ_TEST_UNIT_C_1_MT_R)\
+	$(TARGET_LIB_MT_R)\
+	$(LIB_XTESTS_MT_R)\
+	makefile
+	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_TEST_UNIT_C_1_MT_R) $(TARGET_LIB_MT_R) $(LIB_XTESTS_MT_R) $(3PTY_LIBS__MT_R)
+
+$(OBJ_TEST_UNIT_C_1_MT_R):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_MT_R) -Fo$@ $(SRC_TEST_C_1)
+
+$(TARG_TEST_UNIT_C_1_MT_T):	\
+	$(OBJ_TEST_UNIT_C_1_MT_T)\
+	$(TARGET_LIB_MT_T)\
+	$(LIB_XTESTS_MT_T)\
+	makefile
+	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_TEST_UNIT_C_1_MT_T) $(TARGET_LIB_MT_T) $(LIB_XTESTS_MT_T) $(3PTY_LIBS__MT_T)
+
+$(OBJ_TEST_UNIT_C_1_MT_T):	$(SRC_TEST_C_1) $(HEADERS_LIB) makefile
+	$(CC) $(CC_ARGS_MT_T) -Fo$@ $(SRC_TEST_C_1)
+
+# C++ test client
+
+$(TARG_TEST_UNIT_CPP_1_MT_D):	\
+	$(OBJ_TEST_UNIT_CPP_1_MT_D)\
+	$(TARGET_LIB_MT_D)\
+	$(LIB_XTESTS_MT_D)\
+	makefile
+	$(LD) $(LD_ARGS_MT_D) -out:$@ $(OBJ_TEST_UNIT_CPP_1_MT_D) $(TARGET_LIB_MT_D) $(LIB_XTESTS_MT_D) $(3PTY_LIBS__MT_D)
+
+$(OBJ_TEST_UNIT_CPP_1_MT_D):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_MT_D) -Fo$@ $(SRC_TEST_CPP_1)
+
+$(TARG_TEST_UNIT_CPP_1_DLL_D):	\
+	$(OBJ_TEST_UNIT_CPP_1_DLL_D)\
+	$(TARGET_LIB_DLL_D)\
+	$(LIB_XTESTS_DLL_D)\
+	makefile
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ $(OBJ_TEST_UNIT_CPP_1_DLL_D) $(TARGET_LIB_DLL_D) $(LIB_XTESTS_DLL_D) $(3PTY_LIBS__DLL_D)
+
+$(OBJ_TEST_UNIT_CPP_1_DLL_D):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_DLL_D) -Fo$@ $(SRC_TEST_CPP_1)
+
+$(TARG_TEST_UNIT_CPP_1_DLL_R):	\
+	$(OBJ_TEST_UNIT_CPP_1_DLL_R)\
+	$(TARGET_LIB_DLL_R)\
+	$(LIB_XTESTS_DLL_R)\
+	makefile
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ $(OBJ_TEST_UNIT_CPP_1_DLL_R) $(TARGET_LIB_DLL_R) $(LIB_XTESTS_DLL_R) $(3PTY_LIBS__DLL_R)
+
+$(OBJ_TEST_UNIT_CPP_1_DLL_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_DLL_R) -Fo$@ $(SRC_TEST_CPP_1)
+
+$(TARG_TEST_UNIT_CPP_1_DLL_T):	\
+	$(OBJ_TEST_UNIT_CPP_1_DLL_T)\
+	$(TARGET_LIB_DLL_T)\
+	$(LIB_XTESTS_DLL_T)\
+	makefile
+	$(LD) $(LD_ARGS_DLL_T) -out:$@ $(OBJ_TEST_UNIT_CPP_1_DLL_T) $(TARGET_LIB_DLL_T) $(LIB_XTESTS_DLL_T) $(3PTY_LIBS__DLL_T)
+
+$(OBJ_TEST_UNIT_CPP_1_DLL_T):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_DLL_T) -Fo$@ $(SRC_TEST_CPP_1)
+
+$(TARG_TEST_UNIT_CPP_1_MT_R):	\
+	$(OBJ_TEST_UNIT_CPP_1_MT_R)\
+	$(TARGET_LIB_MT_R)\
+	$(LIB_XTESTS_MT_R)\
+	makefile
+	$(LD) $(LD_ARGS_MT_R) -out:$@ $(OBJ_TEST_UNIT_CPP_1_MT_R) $(TARGET_LIB_MT_R) $(LIB_XTESTS_MT_R) $(3PTY_LIBS__MT_R)
+
+$(OBJ_TEST_UNIT_CPP_1_MT_R):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_MT_R) -Fo$@ $(SRC_TEST_CPP_1)
+
+$(TARG_TEST_UNIT_CPP_1_MT_T):	\
+	$(OBJ_TEST_UNIT_CPP_1_MT_T)\
+	$(TARGET_LIB_MT_T)\
+	$(LIB_XTESTS_MT_T)\
+	makefile
+	$(LD) $(LD_ARGS_MT_T) -out:$@ $(OBJ_TEST_UNIT_CPP_1_MT_T) $(TARGET_LIB_MT_T) $(LIB_XTESTS_MT_T) $(3PTY_LIBS__MT_T)
+
+$(OBJ_TEST_UNIT_CPP_1_MT_T):	$(SRC_TEST_CPP_1) $(HEADERS_LIB) $(HEADERS_MAPPING_CPP) makefile
+	$(CPPC) $(CPPC_ARGS_MT_T) -Fo$@ $(SRC_TEST_CPP_1)
+
+############################################################################
