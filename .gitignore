@@ -37,6 +37,8 @@ Win32/
 
 # files (by name)
 
+.DS_Store
+.ruby-version
 .update_deps
 
 list_changes.cmd
