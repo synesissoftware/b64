@@ -4,18 +4,19 @@
  * Purpose:     Header file for the b64 C++-API.
  *
  * Created:     18th October 2004
- * Updated:     10th January 2017
+ * Updated:     23rd December 2023
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright 2004-2017, Matthew Wilson and Synesis Software
+ * Copyright 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
  * - Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer. 
+ *   list of conditions and the following disclaimer.
  * - Redistributions in binary form must reproduce the above copyright notice,
  *   this list of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
@@ -65,7 +66,7 @@
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
 # define B64_VER_B64_HPP_B64_REVISION   13
-# define B64_VER_B64_HPP_B64_EDIT       40
+# define B64_VER_B64_HPP_B64_EDIT       41
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +104,7 @@
 #  include <vector>
 # endif /* !B64_USE_CUSTOM_VECTOR */
 
- /* We'll now have a go at checking whether the string type is 
+ /* We'll now have a go at checking whether the string type is
   * known to be contiguous
   */
 # ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
@@ -287,7 +288,7 @@ private:
  *
  * <tt>&nbsp;&nbsp;\#define B64_CUSTOM_STRING_TYPE&nbsp;&nbsp;&nbsp;&nbsp;::stlsoft::basic_simple_string<char></tt>
  *
- * \note For Open Watcom compilation, this type is actually the class 
+ * \note For Open Watcom compilation, this type is actually the class
  * class <code>b64::watcom_string_for_b64</code>, a class adaptor for
  * the Open Watcom <code>String</code> class. The definition
  * of this class can be found in b64/b64.hpp.
@@ -298,7 +299,7 @@ typedef B64_CUSTOM_STRING_TYPE          string_t;
 typedef std::string                     string_t;
 #endif /* !B64_USE_CUSTOM_STRING */
 
-/** The blob type for the b64 namespace 
+/** The blob type for the b64 namespace
  *
  * \note This defaults to <tt>::std::vector< ::stlsoft::byte_t></tt>. It is possible to
  * override this, using
@@ -315,7 +316,7 @@ typedef std::string                     string_t;
  *
  * <tt>&nbsp;&nbsp;\#define B64_CUSTOM_BLOB_TYPE&nbsp;&nbsp;&nbsp;&nbsp;::stlsoft::pod_vector<unsigned char></tt>
  *
- * \note For Open Watcom compilation, this type is actually the class 
+ * \note For Open Watcom compilation, this type is actually the class
  * class <code>b64::watcom_vector_for_b64</code>, a class adaptor for
  * the <code>WCValVector&lt;unsigned char&gt;</code> specialisation. The definition
  * of this class can be found in b64/b64.hpp.
@@ -339,7 +340,7 @@ typedef std::vector< ::stlsoft::byte_t> blob_t;
  *
  * This function takes a pointer to a memory block to be encoded, and a number of
  * bytes to be encoded, and carries out a base-64 encoding on it, returning the
- * results in an instance of the string type \link #string_t string_t \endlink. See the 
+ * results in an instance of the string type \link #string_t string_t \endlink. See the
  * \ref section__cpp_api "example" from the main page
  *
  * \param src Pointer to the block to be encoded
@@ -423,7 +424,7 @@ inline string_t encode(void const* src, size_t srcSize, int flags, int lineLen =
  *
  * This function takes a pointer to a memory block to be encoded, and a number of
  * bytes to be encoded, and carries out a base-64 encoding on it, returning the
- * results in an instance of the string type \link #string_t string_t \endlink. See the 
+ * results in an instance of the string type \link #string_t string_t \endlink. See the
  * \ref section__cpp_api "example" from the main page
  *
  * \param src Pointer to the block to be encoded
@@ -536,8 +537,8 @@ inline string_t encode(blob_t const &blob, int flags, int lineLen = 0, B64_RC* r
  *   behaviour of the function.
  * \param rc The return code representing the status of the operation. May be NULL.
  * \param badChar If the flags parameter does not contain B64_F_STOP_ON_NOTHING, this
- *   parameter specifies the address of a pointer that will be set to point to the 
- *   character in the sequence that stops the parsing, as dictated by the flags 
+ *   parameter specifies the address of a pointer that will be set to point to the
+ *   character in the sequence that stops the parsing, as dictated by the flags
  *   parameter. May be NULL.
  *
  * \return The binary form of the block, as a \c blob_t
@@ -744,8 +745,8 @@ inline blob_t decode(string_t const &str, int flags = B64_F_STOP_ON_BAD_CHAR)
  *   behaviour of the function.
  * \param rc The return code representing the status of the operation. May be NULL.
  * \param badChar If the flags parameter does not contain B64_F_STOP_ON_NOTHING, this
- *   parameter specifies the address of a pointer that will be set to point to the 
- *   character in the sequence that stops the parsing, as dictated by the flags 
+ *   parameter specifies the address of a pointer that will be set to point to the
+ *   character in the sequence that stops the parsing, as dictated by the flags
  *   parameter. May be NULL.
  *
  * \return The binary form of the block, as a \c blob_t

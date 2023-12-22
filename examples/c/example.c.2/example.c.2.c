@@ -4,20 +4,20 @@
  * Purpose:     Implementation file for the example.c.2 project.
  *
  * Created:     27th April 2006
- * Updated:     10th January 2017
+ * Updated:     23rd December 2023
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2023, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
  *
  *              This source code is placed into the public domain 2006
  *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software. 
+ *              whatsoever to your use of the software.
  *
  *              This source code is provided by Synesis Software Pty Ltd "as is"
  *              and any warranties, whether expressed or implied, including, but
@@ -31,13 +31,13 @@
  *              liability, whether in contract, strict liability, or tort
  *              (including negligence or otherwise) arising in any way out of
  *              the use of this software, even if advised of the possibility of
- *              such damage. 
+ *              such damage.
  *
  *              Neither the name of Synesis Software Pty Ltd nor the names of
  *              any subdivisions, employees or agents of Synesis Software Pty
  *              Ltd, nor the names of any other contributors to this software
  *              may be used to endorse or promote products derived from this
- *              software without specific prior written permission. 
+ *              software without specific prior written permission.
  *
  * ////////////////////////////////////////////////////////////////////////// */
 
@@ -73,16 +73,16 @@ int main(void)
     /* Declare an array of bytes to use as the 'binary' blob to encode. */
     unsigned char   bytes[]  =   { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    /* Invoke b64_encode() to determine the maximum size of the encoded 
+    /* Invoke b64_encode() to determine the maximum size of the encoded
      * string, specifying the argument 0 for the destSize parameter.
-     * 
-     * Note: The value returned may be larger than the actual size 
+     *
+     * Note: The value returned may be larger than the actual size
      * required, but will never be smaller.
      */
     B64_RC  rc;
     size_t  cch     =   b64_encode2(&bytes[0], sizeof(bytes), NULL, 0, encodingFlags, encodingLineLen, &rc);
 
-    /* Using the length determined by the call to b64_encode(), create 
+    /* Using the length determined by the call to b64_encode(), create
      * a buffer of sufficient size.
      */
     char        *enc    =   (char*)malloc(cch);
@@ -111,7 +111,7 @@ int main(void)
      */
     cb = b64_decode2(enc, cch, NULL, 0, decodingFlags, &badChar, &rc);
 
-    /* Using the length determined by the call to b64_decode(), create 
+    /* Using the length determined by the call to b64_decode(), create
      * a buffer of sufficient size.
      */
     dec =   malloc(cb);
@@ -126,7 +126,7 @@ int main(void)
     }
     else
     {
-        /* Verify that the decoding is exactly the same size and contents as 
+        /* Verify that the decoding is exactly the same size and contents as
          * the encoding.
          */
         assert(cb == sizeof(bytes));

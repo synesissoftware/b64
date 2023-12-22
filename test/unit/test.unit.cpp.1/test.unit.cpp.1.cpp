@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.cpp.1 project.
  *
  * Created:     21st April 2009
- * Updated:     10th January 2017
+ * Updated:     23rd December 2023
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2023, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -42,7 +42,7 @@
  * forward declarations
  */
 
-namespace 
+namespace
 {
 
 static void test_encode_NULL();
@@ -197,7 +197,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-namespace 
+namespace
 {
 
 //  inline string_t encode(void const *src, size_t srcSize);
