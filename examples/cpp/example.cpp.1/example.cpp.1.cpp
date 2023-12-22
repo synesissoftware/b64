@@ -25,14 +25,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * macros
- */
-
-#ifndef NUM_ELEMENTS
-# define NUM_ELEMENTS(x)        (sizeof(x) / sizeof(0[x]))
-#endif /* !NUM_ELEMENTS */
-
 /* ////////////////////////////////////////////////////////////////////// */
 
 int main(int /* argc */, char ** /*argv*/)
@@ -42,10 +34,12 @@ int main(int /* argc */, char ** /*argv*/)
     try
     {
         /* Declare an array of bytes to use as the 'binary' blob to encode. */
-        unsigned char       bytes[]  =   { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        unsigned char   bytes[]  =   { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-        std::cout << "Converting " << NUM_ELEMENTS(bytes) << " bytes:\n";
-        std::copy(  bytes, bytes + NUM_ELEMENTS(bytes)
+        /* Print out the bytes to be encoded.
+         */
+        std::cout << "Encoding " << STLSOFT_NUM_ELEMENTS(bytes) << " bytes:\n";
+        std::copy(  bytes, bytes + STLSOFT_NUM_ELEMENTS(bytes)
                 ,   stlsoft::FILE_iterator<unsigned char, char>(stdout, " %d"));
         std::cout << std::endl;
 
@@ -62,9 +56,15 @@ int main(int /* argc */, char ** /*argv*/)
         b64::cpp::blob_t    dec =   b64::cpp::decode(enc);
 
         /* Verify that the decoding is exactly the same size and contents as
-         * the encoding.
+         * the encoding, and then print out the decoded bytes.
          */
+        assert(sizeof(bytes) == dec.size());
         assert(0 == ::memcmp(&bytes[0], &dec[0], sizeof(bytes)));
+
+        std::cout << "Decoded into " << STLSOFT_NUM_ELEMENTS(bytes) << " bytes:\n";
+        std::copy(  dec.begin(), dec.end()
+                ,   stlsoft::FILE_iterator<unsigned char, char>(stdout, " %d"));
+        std::cout << std::endl;
     }
     catch(b64::cpp::coding_exception &x)
     {

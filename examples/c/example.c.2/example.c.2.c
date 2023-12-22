@@ -59,7 +59,7 @@ int main(void)
     char const  *badChar;
     size_t      i;
 
-    printf("Converting %u bytes:\n", (unsigned)NUM_ELEMENTS(bytes));
+    printf("Encoding %u bytes with specific line-length:\n", (unsigned)NUM_ELEMENTS(bytes));
     for (i = 0; i != NUM_ELEMENTS(bytes); ++i)
     {
         printf(" %d", bytes[i]);
@@ -95,10 +95,19 @@ int main(void)
     else
     {
         /* Verify that the decoding is exactly the same size and contents as
-         * the encoding.
-         */
+        * the encoding, and then print out the decoded bytes.
+        */
         assert(cb == sizeof(bytes));
         assert(0 == memcmp(&bytes[0], dec, sizeof(bytes)));
+
+        printf("Decoded into %u bytes:\n", (unsigned)NUM_ELEMENTS(bytes));
+        for (i = 0; i != cb; ++i)
+        {
+            unsigned char byte = ((unsigned char*)dec)[i];
+
+            printf(" %d", byte);
+        }
+        puts("");
     }
 
     /* Clean up */
