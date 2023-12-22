@@ -66,7 +66,7 @@
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
 # define B64_VER_B64_HPP_B64_REVISION   13
-# define B64_VER_B64_HPP_B64_EDIT       41
+# define B64_VER_B64_HPP_B64_EDIT       42
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -810,3 +810,4 @@ namespace cpp
 #endif /* B64_INCL_B64_HPP_B64 */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
