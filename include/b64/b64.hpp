@@ -373,7 +373,7 @@ inline string_t encode(void const* src, size_t srcSize, int flags, int lineLen =
 
     // Make sure rc is non-NULL, since we will need to get the RC in order to
     // throw exception later.
-    if(NULL == rc)
+    if (NULL == rc)
     {
         rc = &rc_;
     }
@@ -410,7 +410,7 @@ inline string_t encode(void const* src, size_t srcSize, int flags, int lineLen =
 #endif /* B64_STRING_TYPE_IS_CONTIGUOUS */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( 0 != srcSize &&
+    if ( 0 != srcSize &&
         0 == n2 &&
         rc == &rc_)
     {
@@ -562,11 +562,11 @@ inline blob_t decode(b64_char_t const* src, size_t srcLen, int flags, b64_char_t
     B64_RC              rc_;
     b64_char_t const*   badChar_;
 
-    if(NULL == rc)
+    if (NULL == rc)
     {
         rc = &rc_;
     }
-    if(NULL == badChar)
+    if (NULL == badChar)
     {
         badChar = &badChar_;
     }
@@ -579,11 +579,11 @@ inline blob_t decode(b64_char_t const* src, size_t srcLen, int flags, b64_char_t
     v.resize(n2);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if( 0 != srcLen &&
+    if ( 0 != srcLen &&
         0 == n2 &&
         rc == &rc_)
     {
-        if(B64_RC_OK == *rc)
+        if (B64_RC_OK == *rc)
         {
             *rc = B64_RC_TRUNCATED_INPUT;
         }

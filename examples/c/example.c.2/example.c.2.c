@@ -60,7 +60,7 @@ int main(void)
     size_t      i;
 
     printf("Converting %u bytes:\n", (unsigned)NUM_ELEMENTS(bytes));
-    for(i = 0; i != NUM_ELEMENTS(bytes); ++i)
+    for (i = 0; i != NUM_ELEMENTS(bytes); ++i)
     {
         printf(" %d", bytes[i]);
     }
@@ -88,7 +88,7 @@ int main(void)
     cb = b64_decode2(enc, cch, dec, cb, decodingFlags, &badChar, &rc);
 
     /* Handle the error. */
-    if(0 == cb)
+    if (0 == cb)
     {
         fprintf(stderr, "decoding error %u at character %d: %s\n", rc, (int)(badChar - enc), badChar);
     }

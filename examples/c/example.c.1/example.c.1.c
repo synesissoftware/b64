@@ -53,7 +53,7 @@ int main(void)
     size_t  i;
 
     printf("Converting %u bytes:\n", (unsigned)NUM_ELEMENTS(bytes));
-    for(i = 0; i != NUM_ELEMENTS(bytes); ++i)
+    for (i = 0; i != NUM_ELEMENTS(bytes); ++i)
     {
         printf(" %d", bytes[i]);
     }

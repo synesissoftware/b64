@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.cpp.1", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.cpp.1", verbosity))
     {
         XTESTS_RUN_CASE(test_encode_NULL);
         XTESTS_RUN_CASE(test_encode_empty);
