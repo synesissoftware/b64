@@ -1,7 +1,7 @@
-b64 - History
-=============
+# b64 - History
 
-Updated:    12th October 2020
+
+----
 
 
 12th October 2020 - 1.4.6
@@ -141,5 +141,6 @@ Updated:    12th October 2020
 
  * This will be kept up to date from v1.1 (28th April 2006) onwards.
 
-=============================== end of file ================================
+
+<!-- ########################### end of file ########################### -->
 

@@ -600,7 +600,7 @@ C API:
 
 C++ API:
 
- + added ability to customise the namespace from b64, using the 
+ + added ability to customise the namespace from b64, using the
    B64_CUSTOM_NAMESPACE pre-processor symbol
 
 Distribution:
@@ -644,7 +644,7 @@ C API:
 
 C++ API:
 
- + added ability to customise the namespace from b64, using the 
+ + added ability to customise the namespace from b64, using the
    B64_CUSTOM_NAMESPACE pre-processor symbol
 
 Distribution:
