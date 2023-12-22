@@ -1,39 +1,66 @@
 
 # directories (by name)
 
-_internal/
+/.git-old/
+/.vs/
 
-bin/
-lib/
-ipch/
+/_build/
+/_internal/
 
-include/shwild/
-include/xcontract/
-include/xcover/
-include/xtests/
+/bin/
+/ipch/
+/lib/
 
-src/shwild/
-src/xcontract/
-src/xcover/
-src/xtests/
+/include/shwild/
+/include/xcontract/
+/include/xcover/
+/include/xtests/
 
-Debug/
-Debug Multithreaded/
+/src/shwild/
+/src/xcontract/
+/src/xcover/
+/src/xtests/
+
 Debug Multithreaded DLL/
-DebugMt/
+Debug Multithreaded Dll/
+Debug Multithreaded/
+Debug/
 DebugDll/
-Release/
-Release Multithreaded/
+DebugMTDLL/
+DebugMt/
+DebugNox/
+DebugUNIX/
+DebugUnix/
 Release Multithreaded DLL/
-ReleaseMt/
+Release Multithreaded Dll/
+Release Multithreaded/
+Release/
 ReleaseDll/
+ReleaseMTDLL/
+ReleaseMt/
+ReleaseNox/
+ReleaseUnix/
+UDebug/
+UDebugMt/
+URelease/
+UReleaseMt/
+Unicode Debug Multithreaded Dll/
+Unicode Debug Multithreaded/
+Unicode Release Multithreaded Dll/
+Unicode Release Multithreaded/
 
-x64/
 Win32/
+x64/
+
+build/CMakeFiles/
+
 
 # directories (by pattern)
 
 #build/*/
+/dox/*/
+/include-*/
+
 
 # files (by name)
 
@@ -42,34 +69,57 @@ Win32/
 .update_deps
 
 list_changes.cmd
+logging-bailout.txt
+prepare.cmd
+sh.exe.stackdump
 update_deps.cmd
+
+build/CMakeCache.txt
+build/makefile.tmpl
+build/makefile.tools.xml
+build/shwild.tmplgen
+include/stlsoft/dos2unix.has.been.performed
+include/stlsoft/internal/dos2unix.has.been.performed
+test/testpatterns.orj
+
 
 # files (by pattern)
 
 *~
 *.a
 *.app
+*.b64
+*.bak
 *.dll
 *.dylib
 *.exe
 *.gch
+*.idb
+*.ilk
 *.lib
+*.log
 *.ncb
 *.o
 *.obj
 *.opensdf
 *.opt
+*.org
 *.out
 *.pch
-*.scc
+*.pdb
+*.res
 *.sbr
+*.scc
 *.sdf
 *.so
 *.suo
-
-*.vcproj.user
-*.vcxproj.user
-
+*.swp
+*.tlog
+*.tmp
+*.unsuccessfulbuild
+*.vcproj*.user
+*.vcxproj*.user
+*.zip
 
 build/*.tmplgen
 build/*.tmpl
