@@ -6,20 +6,11 @@
  * Created:     21st April 2009
  * Updated:     23rd December 2023
  *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009-2023, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
- *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <b64/b64.hpp>
@@ -817,7 +808,7 @@ static void test_3_10(void)
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component implementation file include(s)
+ * test component implementation file include(s)
  */
 
 #include <b64/implicit_link.h>
