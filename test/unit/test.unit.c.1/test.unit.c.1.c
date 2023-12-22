@@ -4,22 +4,13 @@
  * Purpose:     Implementation file for the test.unit.c.1 project.
  *
  * Created:     21st April 2009
- * Updated:     10th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     23rd December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <b64/b64.h>
@@ -74,7 +65,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.c.1", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.c.1", verbosity))
     {
         XTESTS_RUN_CASE(test_1_00);
         XTESTS_RUN_CASE(test_1_01);
@@ -267,9 +258,10 @@ static void test_2_09()
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component implementation file include(s)
+ * test component implementation file include(s)
  */
 
 #include <b64/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

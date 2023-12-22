@@ -8,7 +8,7 @@
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -21,10 +21,9 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the names of Matthew Wilson and Synesis Information Systems nor
- *   the names of any contributors may be used to endorse or promote
- *   products derived from this software without specific prior written
- *   permission.
+ * - Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -183,18 +182,18 @@ static size_t b64_encode_(
     B64_ENFORCE_PRECONDITION(NULL != rc, "pointer to return code may not be NULL");
     *rc = B64_RC_OK;
 
-    if(lineLen > 0)
+    if (lineLen > 0)
     {
         size_t numLines = (total + (lineLen - 1)) / lineLen;
 
         total += 2 * (0 == numLines ? 0u : (numLines - 1));
     }
 
-    if(NULL == dest)
+    if (NULL == dest)
     {
         return total;
     }
-    else if(destLen < total)
+    else if (destLen < total)
     {
         *rc = B64_RC_INSUFFICIENT_BUFFER;
 
@@ -206,7 +205,7 @@ static size_t b64_encode_(
         b64_char_t* end =   dest + destLen;
         size_t      len =   0;
 
-        for(; NUM_PLAIN_DATA_BYTES <= srcSize; srcSize -= NUM_PLAIN_DATA_BYTES)
+        for (; NUM_PLAIN_DATA_BYTES <= srcSize; srcSize -= NUM_PLAIN_DATA_BYTES)
         {
             b64_char_t characters[NUM_ENCODED_DATA_BYTES];
 
@@ -258,7 +257,7 @@ static size_t b64_encode_(
             *p++ = b64_chars[(unsigned char)characters[3]];
             B64_ENFORCE_ASSUMPTION(NULL != b64_strchr_(b64_chars, *(p-1)));
 
-            if( ++len == lineLen &&
+            if ( ++len == lineLen &&
                 p != end)
             {
                 *p++ = '\r';
@@ -267,7 +266,7 @@ static size_t b64_encode_(
             }
         }
 
-        if(0 != srcSize)
+        if (0 != srcSize)
         {
             /* Deal with the overspill, by boosting it up to three bytes (using 0s)
              * and then appending '=' for any missing characters.
@@ -279,19 +278,19 @@ static size_t b64_encode_(
             unsigned char   dummy[NUM_PLAIN_DATA_BYTES];
             size_t          i;
 
-            for(i = 0; i != srcSize; ++i)
+            for (i = 0; i != srcSize; ++i)
             {
                 dummy[i] = *src++;
             }
 
-            for(; i != NUM_PLAIN_DATA_BYTES; ++i)
+            for (; i != NUM_PLAIN_DATA_BYTES; ++i)
             {
                 dummy[i] = '\0';
             }
 
             b64_encode_(&dummy[0], NUM_PLAIN_DATA_BYTES, p, NUM_ENCODED_DATA_BYTES * (1 + 2), 0, rc);
 
-            for(p += 1 + srcSize; srcSize++ != NUM_PLAIN_DATA_BYTES; )
+            for (p += 1 + srcSize; srcSize++ != NUM_PLAIN_DATA_BYTES; )
             {
                 *p++ = '=';
             }
@@ -327,11 +326,11 @@ static size_t b64_decode_(
     *badChar    =   NULL;
     *rc         =   B64_RC_OK;
 
-    if(NULL == dest)
+    if (NULL == dest)
     {
         return maxTotal;
     }
-    else if(destSize < maxTotal)
+    else if (destSize < maxTotal)
     {
         *rc = B64_RC_INSUFFICIENT_BUFFER;
 
@@ -352,17 +351,17 @@ static size_t b64_decode_(
         signed char             indexes[NUM_ENCODED_DATA_BYTES];    /* 4 */
 
 #ifdef _DEBUG
-        { size_t i; for(i = 0; i != destSize; ++i)
+        { size_t i; for (i = 0; i != destSize; ++i)
         {
             dest[i] = '~';
         }}
 #endif /* _DEBUG */
 
-        for(; begin != end; ++begin)
+        for (; begin != end; ++begin)
         {
             const b64_char_t ch = *begin;
 
-            if('=' == ch)
+            if ('=' == ch)
             {
                 B64_ENFORCE_ASSUMPTION(currIndex < NUM_ENCODED_DATA_BYTES);
 
@@ -375,15 +374,15 @@ static size_t b64_decode_(
                 /* NOTE: Had to rename 'index' to 'ix', due to name clash with GCC on 64-bit Linux. */
                 signed char ix = b64_indexes[(unsigned char)ch];
 
-                if(-1 == ix)
+                if (-1 == ix)
                 {
-                    switch(ch)
+                    switch (ch)
                     {
                         case    ' ':
                         case    '\t':
                         case    '\b':
                         case    '\v':
-                            if(B64_F_STOP_ON_UNEXPECTED_WS & flags)
+                            if (B64_F_STOP_ON_UNEXPECTED_WS & flags)
                             {
                                 *rc         =   B64_RC_DATA_ERROR;
                                 *badChar    =   begin;
@@ -397,7 +396,7 @@ static size_t b64_decode_(
                         case    '\n':
                             continue;
                         default:
-                            if(B64_F_STOP_ON_UNKNOWN_CHAR & flags)
+                            if (B64_F_STOP_ON_UNKNOWN_CHAR & flags)
                             {
                                 *rc         =   B64_RC_DATA_ERROR;
                                 *badChar    =   begin;
@@ -419,7 +418,7 @@ static size_t b64_decode_(
                 }
             }
 
-            if(NUM_ENCODED_DATA_BYTES == currIndex)
+            if (NUM_ENCODED_DATA_BYTES == currIndex)
             {
                 unsigned char bytes[NUM_PLAIN_DATA_BYTES];        /* 3 */
 
@@ -428,20 +427,20 @@ static size_t b64_decode_(
                 currIndex = 0;
 
                 *dest++ = bytes[0];
-                if(2 != numPads)
+                if (2 != numPads)
                 {
                     bytes[1] = (unsigned char)(((indexes[1] & 0xf) << 4) + ((indexes[2] & 0x3c) >> 2));
 
                     *dest++ = bytes[1];
 
-                    if(1 != numPads)
+                    if (1 != numPads)
                     {
                         bytes[2] = (unsigned char)(((indexes[2] & 0x3) << 6) + indexes[3]);
 
                         *dest++ = bytes[2];
                     }
                 }
-                if(0 != numPads)
+                if (0 != numPads)
                 {
                     break;
                 }
@@ -485,15 +484,15 @@ size_t b64_encode2(
      * elsewhere
      */
     B64_RC  rc_;
-    if(NULL == rc)
+    if (NULL == rc)
     {
         rc = &rc_;
     }
 
-    switch(B64_F_LINE_LEN_MASK & flags)
+    switch (B64_F_LINE_LEN_MASK & flags)
     {
         case    B64_F_LINE_LEN_USE_PARAM:
-            if(lineLen >= 0)
+            if (lineLen >= 0)
             {
                 break;
             }
@@ -548,11 +547,11 @@ size_t b64_decode2(
     /* Use Null Object (Variable) here for rc and badChar, so do not need to
      * check elsewhere.
      */
-    if(NULL == badChar)
+    if (NULL == badChar)
     {
         badChar = &badChar_;
     }
-    if(NULL == rc)
+    if (NULL == rc)
     {
         rc = &rc_;
     }
@@ -594,16 +593,16 @@ static b64_char_t const* b64_LookupCodeA_(int code, b64ErrorString_t_ const** ma
      */
     size_t  len_;
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
     /* Checked, indexed search. */
-    if( code >= 0 &&
+    if ( code >= 0 &&
         code < B64_max_RC_value)
     {
-        if(code == mappings[code]->code)
+        if (code == mappings[code]->code)
         {
             return (*len = mappings[code]->len, mappings[code]->str);
         }
@@ -612,9 +611,9 @@ static b64_char_t const* b64_LookupCodeA_(int code, b64ErrorString_t_ const** ma
     /* Linear search. Should only be needed if order in
      * b64_LookupErrorStringA_() messed up.
      */
-    { size_t i; for(i = 0; i != cMappings; ++i)
+    { size_t i; for (i = 0; i != cMappings; ++i)
     {
-        if(code == mappings[i]->code)
+        if (code == mappings[i]->code)
         {
             return (*len = mappings[i]->len, mappings[i]->str);
         }

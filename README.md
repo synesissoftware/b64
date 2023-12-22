@@ -1,32 +1,51 @@
-# b64
+# b64 <!-- omit in toc -->
+
 **b64** is a very small and simple standalone C-language library that provides [Base-64](https://en.wikipedia.org/wiki/Base64) encoding and decoding.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-1. [Introduction](#introduction)
-2. [Installation](#installation)
-3. [Components](#components)
-4. [Examples](#examples)
-5. [Project Information](#project-information)
+- [Introduction](#introduction)
+  - [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Components](#components)
+  - [C API / core library](#c-api--core-library)
+  - [C++ API](#c-api)
+- [Examples](#examples)
+- [Project Information](#project-information)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies-1)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 ## Introduction
 
 **b64** is a C-language library
 
-**b64** is a very small and simple standalone C-language library that provides [Base-64](https://en.wikipedia.org/wiki/Base64) encoding and decoding. It also provides a header-only C++ wrapper.
+**b64** is a very small and simple standalone C-language library that provides [Base-64](https://en.wikipedia.org/wiki/Base64) encoding and decoding. It also provides a header-only **C++ wrapper**.
 
-The **b64** core library is a pure standalone component:
+The **core library** is a pure standalone component:
 
  - It has *zero dependencies* on any other libraries;
  - It has *zero dependencies* on any part of the C standard library, except in debug builds (where it depends on `strchr()` and `assert()`);
  - It has *zero dependencies* on any host operating system facilities;
  - It does not allocate any memory;
- - It is released under the [BSD license](https://en.wikipedia.org/wiki/BSD_licenses), which basically means its free for any use, but you can't claim it's yours.
+ - It is released under the [BSD license](https://en.wikipedia.org/wiki/BSD_licenses), which basically means it's free for any use, but you can't claim it's yours.
 
-Base-64 conversion of binary regions, using **b64**, is available as part of the distribution of [Pantheios](http://github.com/synesissoftware/pantheios/), a high-performance C++ diagnostic logging API library.
+**NOTE**: Base-64 conversion of binary regions, using **b64**, is available as part of the distribution of [Pantheios](http://github.com/synesissoftware/pantheios/), a high-performance C++ diagnostic logging API library.
 
 
- (Note: the C++ wrapper depends on the [STLSoft libraries](http://github.com/synesissoftware/STLSoft-1.10/);)
+### Dependencies
+
+| Component      | Implemented in | Use in                     | Dependencies                                               |
+| ------------   | -------------- | -------------------------- | ---------------------------------------------------------- |
+| Core library   | C              | C, C++ - via **b64/b64.h** | -                                                          |
+| C++ API        | C++            | C++ - via **b64/b64.hpp**  | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/) |
+| Examples (C)   | C              | -                          | -                                                          |
+| Examples (C++) | C++            | -                          | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/) |
+| Tests (C)      | C              | -                          | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/), [xTests](http://github.com/synesissoftware/xTests/) |
+| Tests (C++)    | C++            | -                          | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/), [xTests](http://github.com/synesissoftware/xTests/) |
+
 
 ## Installation
 
@@ -164,14 +183,14 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 ### Dependencies
 
-#### STLSoft (C++ API-only)
+#### STLSoft (C++ API-only) <!-- omit in toc -->
 
 The C API has no non-standard dependencies. The C++ API depends on the STLSoft libraries, version 1.9.111 (or later). Version 1.10.1 beta21 (or later) is recommended.
 
 * [STLSoft 1.9](http://github.com/synesissoftware/STLSoft-1.9/)
 * [STLSoft 1.10](http://github.com/synesissoftware/STLSoft-1.10/) (Recommended)
 
-#### xTests (unit-tests only)
+#### xTests (unit-tests only) <!-- omit in toc -->
 
 The unit-test projects depend on the **xTests** project
 
@@ -187,4 +206,7 @@ Projects in which **b64** is used include:
 ### License
 
 **b64** is released under the 3-clause BSD license. See LICENSE for details.
+
+
+<!-- ########################### end of file ########################### -->
 
