@@ -4,11 +4,11 @@
  * Purpose:     Header file for the b64 C++-API.
  *
  * Created:     18th October 2004
- * Updated:     23rd December 2023
+ * Updated:     6th February 2004
  *
  * Home:        http://synesis.com.au/software/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -67,7 +67,7 @@
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
 # define B64_VER_B64_HPP_B64_REVISION   13
-# define B64_VER_B64_HPP_B64_EDIT       42
+# define B64_VER_B64_HPP_B64_EDIT       43
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,9 +151,9 @@
 
 /* #ifdef B64_ */
 
-#define B64_DECLARE_SHIM_PAIR_()		stlsoft_ns_using(c_str_data_a); stlsoft_ns_using(c_str_len_a)
-#define B64_INVOKE_SHIM_data_(s)		c_str_data_a(s)
-#define B64_INVOKE_SHIM_len_(s)			c_str_len_a(s)
+#define B64_DECLARE_SHIM_PAIR_()                            stlsoft_ns_using(c_str_data_a); stlsoft_ns_using(c_str_len_a)
+#define B64_INVOKE_SHIM_data_(s)                            c_str_data_a(s)
+#define B64_INVOKE_SHIM_len_(s)                             c_str_len_a(s)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # if defined(STLSOFT_COMPILER_IS_WATCOM)

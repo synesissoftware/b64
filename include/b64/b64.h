@@ -4,14 +4,14 @@
  * Purpose:     Header file for the b64 library
  *
  * Created:     18th October 2004
- * Updated:     23rd December 2023
+ * Updated:     6th February 2024
  *
  * Thanks:      To Adam McLaurin, for ideas regarding the b64_decode2() and
  *              b64_encode2().
  *
  * Home:        https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
 # define B64_VER_B64_H_B64_REVISION 7
-# define B64_VER_B64_H_B64_EDIT     42
+# define B64_VER_B64_H_B64_EDIT     43
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -102,12 +102,13 @@
 # define B64_VER_1_4_4          0x010404ff
 # define B64_VER_1_4_5          0x010405ff
 # define B64_VER_1_4_6          0x010406ff
+# define B64_VER_1_4_7          0x010407ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       4
-#define B64_VER_REVISION    6
-#define B64_VER             0x010406ff
+#define B64_VER_REVISION    7
+#define B64_VER             0x010407ff
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

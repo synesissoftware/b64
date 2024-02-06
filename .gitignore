@@ -85,9 +85,13 @@ test/testpatterns.orj
 
 # files (by pattern)
 
+RCa0*
+RCb0*
+
 *~
 *.a
 *.app
+*.aps
 *.b64
 *.bak
 *.dll
@@ -96,6 +100,7 @@ test/testpatterns.orj
 *.gch
 *.idb
 *.ilk
+*.ipch
 *.lib
 *.log
 *.ncb
@@ -119,6 +124,7 @@ test/testpatterns.orj
 *.unsuccessfulbuild
 *.vcproj*.user
 *.vcxproj*.user
+*.xcuserstate
 *.zip
 
 build/*.tmplgen

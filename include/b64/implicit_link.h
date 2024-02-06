@@ -4,11 +4,11 @@
  * Purpose:     Implicit linking for the b64 API.
  *
  * Created:     5th March 2006
- * Updated:     11th October 2020
+ * Updated:     6th February 2024
  *
  * Home:        https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_IMPLICIT_LINK_MAJOR      1
 # define B64_VER_B64_H_IMPLICIT_LINK_MINOR      5
-# define B64_VER_B64_H_IMPLICIT_LINK_REVISION   1
-# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       15
+# define B64_VER_B64_H_IMPLICIT_LINK_REVISION   2
+# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       16
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -221,7 +221,7 @@
 #    if 0
 #    elif _MSC_VER < 1920
 #     define B64_IMPL_LINK_COMPILER_NAME        "vc15"
-#    elif _MSC_VER <= 1927
+#    elif _MSC_VER <= 1929
 #     define B64_IMPL_LINK_COMPILER_NAME        "vc16"
 #    else
 #     error Visual C++ version that is >= vc16 is not recognised

@@ -1,7 +1,7 @@
 b64 - Changes
 =============
 
-Updated:    12th October 2020
+Updated:    6th February 2024
 
 
     ************************************
@@ -13,6 +13,12 @@ Updated:    12th October 2020
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+6th February 2024 - 1.4.7
+=========================
+
+ * CMake support
 
 
 12th October 2020 - 1.4.6
