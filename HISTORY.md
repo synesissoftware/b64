@@ -4,6 +4,13 @@
 ----
 
 
+10th July 2024 - 1.4.8
+----------------------
+
+ * Windows CMake compatibility
+ * GCC compatibility
+
+
 6th February 2024 - 1.4.7
 -------------------------
 
