@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        b64.c
+ * File:    b64.c
  *
- * Purpose:     Implementation file for the b64 library
+ * Purpose: Implementation file for the b64 library
  *
- * Created:     18th October 2004
- * Updated:     11th October 2020
+ * Created: 18th October 2004
+ * Updated: 10th July 2024
  *
- * Home:        http://synesis.com.au/software/
+ * Home:    http://synesis.com.au/software/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -378,34 +378,37 @@ static size_t b64_decode_(
                 {
                     switch (ch)
                     {
-                        case    ' ':
-                        case    '\t':
-                        case    '\b':
-                        case    '\v':
-                            if (B64_F_STOP_ON_UNEXPECTED_WS & flags)
-                            {
-                                *rc         =   B64_RC_DATA_ERROR;
-                                *badChar    =   begin;
-                                return 0;
-                            }
-                            else
-                            {
-                                /* Fall through */
-                            }
-                        case    '\r':
-                        case    '\n':
+                    case ' ':
+                    case '\t':
+                    case '\b':
+                    case '\v':
+
+                        if (B64_F_STOP_ON_UNEXPECTED_WS & flags)
+                        {
+                            *rc         =   B64_RC_DATA_ERROR;
+                            *badChar    =   begin;
+
+                            return 0;
+                        }
+
+                        /* fall through */
+                    case '\r':
+                    case '\n':
+
+                        continue;
+                    default:
+
+                        if (B64_F_STOP_ON_UNKNOWN_CHAR & flags)
+                        {
+                            *rc         =   B64_RC_DATA_ERROR;
+                            *badChar    =   begin;
+
+                            return 0;
+                        }
+                        else
+                        {
                             continue;
-                        default:
-                            if (B64_F_STOP_ON_UNKNOWN_CHAR & flags)
-                            {
-                                *rc         =   B64_RC_DATA_ERROR;
-                                *badChar    =   begin;
-                                return 0;
-                            }
-                            else
-                            {
-                                continue;
-                            }
+                        }
                     }
                 }
                 else
@@ -491,23 +494,35 @@ size_t b64_encode2(
 
     switch (B64_F_LINE_LEN_MASK & flags)
     {
-        case    B64_F_LINE_LEN_USE_PARAM:
-            if (lineLen >= 0)
-            {
-                break;
-            }
-            /* Fall through to 64 */
-        case    B64_F_LINE_LEN_64:
-            lineLen = 64;
+    case B64_F_LINE_LEN_USE_PARAM:
+
+        if (lineLen >= 0)
+        {
             break;
-        case    B64_F_LINE_LEN_76:
-            lineLen = 76;
-            break;
-        default:
-            B64_ENFORCE_PRECONDITION(0, "Bad line length flag specified to b64_encode2()");
-        case    B64_F_LINE_LEN_INFINITE:
-            lineLen = 0;
-            break;
+        }
+        else
+        {
+
+        /* fall through */
+    case B64_F_LINE_LEN_64:
+
+        lineLen = 64;
+        }
+
+        break;
+    case B64_F_LINE_LEN_76:
+
+        lineLen = 76;
+        break;
+    default:
+
+        B64_ENFORCE_PRECONDITION(0, "Bad line length flag specified to b64_encode2()");
+
+        /* fall through */
+    case B64_F_LINE_LEN_INFINITE:
+
+        lineLen = 0;
+        break;
     }
 
     B64_ENFORCE_PRECONDITION(0 == (lineLen % 4), "Bad line length flag specified to b64_encode2()");
