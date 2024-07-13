@@ -5,7 +5,7 @@ add_executable(example.cpp.2
 
 target_link_libraries(example.cpp.2
 	PRIVATE
-		b64
+		core
 		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 )
 

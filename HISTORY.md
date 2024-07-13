@@ -4,6 +4,12 @@
 ----
 
 
+14th July 2024 - 1.5.1
+----------------------
+
+ * Various CMake standardisations and simplifications
+
+
 10th July 2024 - 1.4.8
 ----------------------
 

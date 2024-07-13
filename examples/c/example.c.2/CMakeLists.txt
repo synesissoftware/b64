@@ -4,7 +4,7 @@ add_executable(example.c.2
 )
 
 target_link_libraries(example.c.2
-	b64
+	core
 )
 
 target_compile_options(example.c.2 PRIVATE

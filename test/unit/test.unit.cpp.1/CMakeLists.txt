@@ -7,7 +7,7 @@ link_directories(${CMAKE_SOURCE_DIR}/projects/core)
 
 target_link_libraries(test.unit.cpp.1
 	PRIVATE
-		b64
+		core
 		xTests::xTests.core
 )
 

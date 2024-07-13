@@ -1,7 +1,7 @@
 b64 - Changes
 =============
 
-Updated:    10th July 2024
+Updated:    14th July 2024
 
 
     ************************************
@@ -16,8 +16,14 @@ Updated:    10th July 2024
 
 
 
-10th July  2024 - 1.4.8
-=======================
+14th July 2024 - 1.5.1
+======================
+
+ * Various CMake standardisations and simplifications
+
+
+10th July 2024 - 1.4.8
+======================
 
  * Windows CMake compatibility
  * GCC compatibility

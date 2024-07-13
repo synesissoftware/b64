@@ -3,7 +3,7 @@ set(CORE_SRCS
 	b64.c
 )
 
-add_library(b64
+add_library(core
 	${CORE_SRCS}
 )
 
@@ -47,36 +47,31 @@ set(CORE_PUBLIC_HEADERS
 	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/b64.hpp"
 )
 
-set_target_properties(b64 PROPERTIES
+set_target_properties(core PROPERTIES
 	OUTPUT_NAME "b64"
 	PUBLIC_HEADER "${CORE_PUBLIC_HEADERS}"
 )
 
-target_include_directories(b64 PUBLIC
+target_include_directories(core PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
 	$<INSTALL_INTERFACE:include>
 )
 
-target_compile_options(b64 PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		# -Wno-deprecated-copy-with-user-provided-copy
-		# -Wno-missing-braces
-		# -Wno-missing-field-initializers
-		# -Wno-unused-parameter
-		# -Wno-unused-value
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+target_compile_options(core
+	PRIVATE
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
+		>
 )
 
 
 # ##########################################################
 # install
 
-install(TARGETS b64
+install(TARGETS core
 	EXPORT project-targets
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
