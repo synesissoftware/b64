@@ -8,7 +8,7 @@ link_directories(${CMAKE_SOURCE_DIR}/projects/core)
 target_link_libraries(test.unit.cpp.1
 	PRIVATE
 		core
-		xTests::xTests.core
+		$<IF:$<VERSION_LESS:${xTests_VERSION},"0.23">,xTests::xTests.core,xTests::core>
 )
 
 target_compile_options(test.unit.cpp.1 PRIVATE

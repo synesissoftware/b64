@@ -106,12 +106,13 @@
 # define B64_VER_1_4_7          0x010407ff
 # define B64_VER_1_4_8          0x010408ff
 # define B64_VER_1_5_1          0x010501ff
+# define B64_VER_1_5_2          0x010502ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
-#define B64_VER_REVISION    1
-#define B64_VER             B64_VER_1_5_1
+#define B64_VER_REVISION    2
+#define B64_VER             B64_VER_1_5_2
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,12 @@
 ----
 
 
+14th July 2024 - 1.5.2
+----------------------
+
+ * Compatible with xTests before and after 0.23
+
+
 14th July 2024 - 1.5.1
 ----------------------
 
