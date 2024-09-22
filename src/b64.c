@@ -300,6 +300,41 @@ static size_t b64_encode_(
     }
 }
 
+/** This function calculates the exact buffer size required for decoding
+* the provided base54 string into. 
+*/
+static size_t b64_decode_exact_size(const char* base64Str, size_t length)
+{
+    // GERRY: Fix for decode target buffer size check error 
+    // Check and inspect padding at the end of the base64 string
+    size_t padding = 0;
+    if (length >= 2 && base64Str[length - 1] == '=') {
+        padding++;
+        if (base64Str[length - 2] == '=') {
+            padding++;
+            // Also check for padding overruns (invalid base64, but check and adjust anyway)
+            if (length > 2) {
+                if (base64Str[length - 3] == '=') {
+                    padding++;
+                    if (length > 3) {
+                        if (base64Str[length - 4] == '=') {
+                            padding++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Calculate the exact decoded length
+    size_t decodedLength = (length * 3 / 4) - padding;
+    // We can underrun with invalid, short base64 encoded string, check for safety
+    if (decodedLength < 0)
+        decodedLength = 0;
+
+    return decodedLength;
+}
+
 /** This function reads in a character string in 4-character chunks, and writes
  * out the converted form in 3-byte chunks to the destination.
  */
@@ -315,7 +350,7 @@ static size_t b64_decode_(
 {
     const size_t            wholeChunks     =   (srcLen / NUM_ENCODED_DATA_BYTES);
     const size_t            remainderBytes  =   (srcLen % NUM_ENCODED_DATA_BYTES);
-    size_t                  maxTotal        =   (wholeChunks + (0 != remainderBytes)) * NUM_PLAIN_DATA_BYTES;
+    size_t                  maxTotal        =   b64_decode_exact_size(src, srcLen); // wholeChunks + (0 != remainderBytes)) * NUM_PLAIN_DATA_BYTES;
     unsigned char* const    dest_           =   dest;
 
     ((void)remainderBytes); /* Avoids warning with Borland */
