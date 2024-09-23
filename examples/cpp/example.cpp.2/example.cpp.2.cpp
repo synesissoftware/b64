@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        example.cpp.2.cpp
+ * File:    example.cpp.2.cpp
  *
- * Purpose:     Illustrates encoding and decoding of array of bytes with
- *              flags and custom line-length (using C++ API).
+ * Purpose: Illustrates encoding and decoding of array of bytes with flags
+ *          and custom line-length (using C++ API).
  *
- * Created:     27th April 2006
- * Updated:     23rd December 2023
+ * Created: 27th April 2006
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,7 +25,10 @@
 #include <assert.h>
 #include <stdlib.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int /* argc */, char ** /*argv*/)
 {
@@ -71,13 +74,14 @@ int main(int /* argc */, char ** /*argv*/)
                 ,   stlsoft::FILE_iterator<unsigned char, char>(stdout, " %d"));
         std::cout << std::endl;
     }
-    catch(b64::cpp::coding_exception &x)
+    catch (b64::cpp::coding_exception &x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

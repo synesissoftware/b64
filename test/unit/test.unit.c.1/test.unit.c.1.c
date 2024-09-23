@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.c.1.c
+ * File:    test.unit.c.1.c
  *
- * Purpose:     Implementation file for the test.unit.c.1 project.
+ * Purpose: Implementation file for the test.unit.c.1 project.
  *
- * Created:     21st April 2009
- * Updated:     23rd December 2023
+ * Created: 21st April 2009
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,6 +14,7 @@
  */
 
 #include <b64/b64.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -27,6 +28,7 @@
 
 /* Standard C Header Files */
 #include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -53,6 +55,7 @@ static void test_2_06(void);
 static void test_2_07(void);
 static void test_2_08(void);
 static void test_2_09(void);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -97,16 +100,17 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-static void test_1_00()
+static void test_1_00(void)
 {
     XTESTS_TEST_INTEGER_EQUAL(0u, b64_encode(NULL, 0, NULL, 0));
 }
 
-static void test_1_01()
+static void test_1_01(void)
 {
     unsigned char   bytes[] = { 0 };
     char            result[1001];
@@ -118,7 +122,7 @@ static void test_1_01()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("AA==", result, 4u);
 }
 
-static void test_1_02()
+static void test_1_02(void)
 {
     unsigned char   bytes[] = { 1 };
     char            result[1001];
@@ -130,7 +134,7 @@ static void test_1_02()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("AQ==", result, 4u);
 }
 
-static void test_1_03()
+static void test_1_03(void)
 {
     unsigned char   bytes[] = { 10 };
     char            result[1001];
@@ -142,7 +146,7 @@ static void test_1_03()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("Cg==", result, 4u);
 }
 
-static void test_1_04()
+static void test_1_04(void)
 {
     unsigned char   bytes[] = { 100 };
     char            result[1001];
@@ -154,7 +158,7 @@ static void test_1_04()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("ZA==", result, 4u);
 }
 
-static void test_1_05()
+static void test_1_05(void)
 {
     unsigned char   bytes[] = { 128 };
     char            result[1001];
@@ -166,7 +170,7 @@ static void test_1_05()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("gA==", result, 4u);
 }
 
-static void test_1_06()
+static void test_1_06(void)
 {
     unsigned char   bytes[] = { 255 };
     char            result[1001];
@@ -178,7 +182,7 @@ static void test_1_06()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/w==", result, 4u);
 }
 
-static void test_1_07()
+static void test_1_07(void)
 {
     char            bytes[] = "This is a test string";
     char            result[1001];
@@ -190,7 +194,7 @@ static void test_1_07()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("VGhpcyBpcyBhIHRlc3Qgc3RyaW5n", result, 28u);
 }
 
-static void test_1_08()
+static void test_1_08(void)
 {
     signed char bytes[] = { 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7 };
     char        result[1001];
@@ -202,14 +206,14 @@ static void test_1_08()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("BwYFBAMCAQD//v38+/r5", result, 20u);
 }
 
-static void test_1_09()
+static void test_1_09(void)
 {
 }
 
 
 
 
-static void test_2_00()
+static void test_2_00(void)
 {
     char const      enc[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ=";
     unsigned char   bytes[10];
@@ -220,48 +224,42 @@ static void test_2_00()
     XTESTS_TEST_ENUM_EQUAL(B64_RC_INSUFFICIENT_BUFFER, rc);
 }
 
-static void test_2_01()
+static void test_2_01(void)
 {
 }
 
-static void test_2_02()
+static void test_2_02(void)
 {
 }
 
-static void test_2_03()
+static void test_2_03(void)
 {
 }
 
-static void test_2_04()
+static void test_2_04(void)
 {
 }
 
-static void test_2_05()
+static void test_2_05(void)
 {
 }
 
-static void test_2_06()
+static void test_2_06(void)
 {
 }
 
-static void test_2_07()
+static void test_2_07(void)
 {
 }
 
-static void test_2_08()
+static void test_2_08(void)
 {
 }
 
-static void test_2_09()
+static void test_2_09(void)
 {
 }
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * test component implementation file include(s)
- */
-
-#include <b64/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

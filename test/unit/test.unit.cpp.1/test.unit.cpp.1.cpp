@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.cpp.1.cpp
+ * File:    test.unit.cpp.1.cpp
  *
- * Purpose:     Implementation file for the test.unit.cpp.1 project.
+ * Purpose: Unit test for C++ API.
  *
- * Created:     21st April 2009
- * Updated:     23rd December 2023
+ * Created: 21st April 2009
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,6 +14,7 @@
  */
 
 #include <b64/b64.hpp>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -28,6 +29,7 @@
 
 /* Standard C Header Files */
 #include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -97,8 +99,8 @@ static void test_4_7(void);
 static void test_4_8(void);
 static void test_4_9(void);
 #endif /* 0 */
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -183,6 +185,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
@@ -595,7 +598,7 @@ static void test_3_00(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, x.get_badChar());
@@ -615,7 +618,7 @@ static void test_3_01(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_EQUAL(NULL, x.get_badChar());
@@ -634,7 +637,7 @@ static void test_3_02(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -652,7 +655,7 @@ static void test_3_03(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_EQUAL(NULL, x.get_badChar());
@@ -671,7 +674,7 @@ static void test_3_04(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -689,7 +692,7 @@ static void test_3_05(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, x.get_badChar());
@@ -709,7 +712,7 @@ static void test_3_06(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -727,7 +730,7 @@ static void test_3_07(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -751,7 +754,7 @@ static void test_3_08(void)
         XTESTS_TEST_CHARACTER_EQUAL('%', *badChar);
         XTESTS_TEST_ENUM_EQUAL(B64_RC_DATA_ERROR, rc);
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -775,7 +778,7 @@ static void test_3_09(void)
         XTESTS_TEST_CHARACTER_EQUAL('%', *badChar);
         XTESTS_TEST_ENUM_EQUAL(B64_RC_DATA_ERROR, rc);
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -795,7 +798,7 @@ static void test_3_10(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_EQUAL(NULL, x.get_badChar());
@@ -803,15 +806,8 @@ static void test_3_10(void)
     }
 }
 
-
-
 } /* anonymous namespace */
 
-/* /////////////////////////////////////////////////////////////////////////
- * test component implementation file include(s)
- */
-
-#include <b64/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

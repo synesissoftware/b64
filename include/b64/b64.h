@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 14th July 2024
+ * Updated: 24th September 2024
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
  *          b64_encode2().
@@ -60,7 +60,7 @@
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
 # define B64_VER_B64_H_B64_REVISION 9
-# define B64_VER_B64_H_B64_EDIT     45
+# define B64_VER_B64_H_B64_EDIT     46
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -534,9 +534,7 @@ namespace stlsoft
     }
 
 } /* namespace stlsoft */
-
 # endif /* !B64_DOCUMENTATION_SKIP_SECTION */
-
 #endif /* !B64_NO_NAMESPACE */
 
 
