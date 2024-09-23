@@ -350,7 +350,17 @@ static size_t b64_decode_(
 {
     const size_t            wholeChunks     =   (srcLen / NUM_ENCODED_DATA_BYTES);
     const size_t            remainderBytes  =   (srcLen % NUM_ENCODED_DATA_BYTES);
-    size_t                  maxTotal        =   b64_decode_exact_size(src, srcLen); // wholeChunks + (0 != remainderBytes)) * NUM_PLAIN_DATA_BYTES;
+    size_t                  maxTotal        =   0;
+    if (src) 
+    {
+        maxTotal = b64_decode_exact_size(src, srcLen);
+    } 
+    else 
+    {
+        // If we have not provided source base64 to decode, we cannot inspect, so instead 
+        // make best guess as before
+		maxTotal = (wholeChunks + (0 != remainderBytes)) * NUM_PLAIN_DATA_BYTES;
+	}
     unsigned char* const    dest_           =   dest;
 
     ((void)remainderBytes); /* Avoids warning with Borland */
