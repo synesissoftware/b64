@@ -16,6 +16,22 @@ Updated:    14th July 2024
 
 
 
+24th September 2024 - 1.5.3
+===========================
+
+* fixed problem with `b64_decode()` buffer size check - thanks to Gerry Hornbill;
+* added unit-tests to capture the problematic approximate return value from `b64_decode2()` when given null destination buffer pointer (for purpose of estimation of required buffer size)
+* added **b64dec** example program
+* added **b64enc** example program
+* added missing STLSoft dependencies in unit-test CMake files
+* removed unncessary elements form CMake files
+* CMake files boilerplate changes
+* update to CMake build scripts
+* removing explicit inclusion of **b64/implicit_link.h** from unit test source files
+* code canonicalisation
+* improving C compatibility
+
+
 14th July 2024 - 1.5.2
 ======================
 

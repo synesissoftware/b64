@@ -7,7 +7,8 @@
  * Updated: 24th September 2024
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
- *          b64_encode2().
+ *          b64_encode2(). To Gerry Hornbill for the exact required size
+ *          returned by b64_decode2().
  *
  * Home:    https://github.com/synesissoftware/b64
  *
@@ -59,8 +60,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 9
-# define B64_VER_B64_H_B64_EDIT     47
+# define B64_VER_B64_H_B64_REVISION 10
+# define B64_VER_B64_H_B64_EDIT     48
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -107,12 +108,13 @@
 # define B64_VER_1_4_8          0x010408ff
 # define B64_VER_1_5_1          0x010501ff
 # define B64_VER_1_5_2          0x010502ff
+# define B64_VER_1_5_3          0x010503ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
-#define B64_VER_REVISION    2
-#define B64_VER             B64_VER_1_5_2
+#define B64_VER_REVISION    3
+#define B64_VER             B64_VER_1_5_3
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -393,9 +395,7 @@ b64_decode(
  *   the converted buffer was longer than \c destSize, or a bad character
  *   stopped parsing.
  *
- * \note The function returns the required length if \c dest is NULL. The
- *   returned size might be larger than the actual required size, but will
- *   never be smaller.
+ * \note The function returns the required length if \c dest is NULL.
  *
  * \note The behaviour of both
  * \link b64::b64_encode2 b64_encode2()\endlink

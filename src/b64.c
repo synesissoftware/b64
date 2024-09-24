@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 10th July 2024
+ * Updated: 24th September 2024
  *
  * Home:    http://synesis.com.au/software/
  *
@@ -50,9 +50,10 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_C_B64_MAJOR    1
 # define B64_VER_C_B64_MINOR    3
-# define B64_VER_C_B64_REVISION 6
-# define B64_VER_C_B64_EDIT     25
+# define B64_VER_C_B64_REVISION 7
+# define B64_VER_C_B64_EDIT     26
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,34 +72,38 @@
 #endif /* B64_USING_XCONTRACT_ */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * contract enforcements
  */
 
 #ifdef B64_USING_XCONTRACT_
-# define B64_ENFORCE_PRECONDITION(expr, msg)        XCONTRACT_ENFORCE_PRECONDITION_PARAMETERS_2((expr), (msg))
-# define B64_ENFORCE_ASSUMPTION(expr)               XCONTRACT_ENFORCE_ASSUMPTION_2((expr), "design invariant violated")
+# define B64_ENFORCE_PRECONDITION(expr, msg)                XCONTRACT_ENFORCE_PRECONDITION_PARAMETERS_2((expr), (msg))
+# define B64_ENFORCE_ASSUMPTION(expr)                       XCONTRACT_ENFORCE_ASSUMPTION_2((expr), "design invariant violated")
 #else /* ? B64_USING_XCONTRACT_ */
-# define B64_ENFORCE_PRECONDITION(expr, msg)        assert((expr))
-# define B64_ENFORCE_ASSUMPTION(expr)               assert((expr))
+# define B64_ENFORCE_PRECONDITION(expr, msg)                assert((expr))
+# define B64_ENFORCE_ASSUMPTION(expr)                       assert((expr))
 #endif /* B64_USING_XCONTRACT_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants and definitions
  */
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
-# define NUM_PLAIN_DATA_BYTES        (3)
-# define NUM_ENCODED_DATA_BYTES      (4)
+# define NUM_PLAIN_DATA_BYTES                               (3)
+# define NUM_ENCODED_DATA_BYTES                             (4)
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #ifndef NUM_ELEMENTS
-# define NUM_ELEMENTS(x)        (sizeof(x) / sizeof(x[0]))
+# define NUM_ELEMENTS(x)                                    (sizeof(x) / sizeof(x[0]))
 #endif /* !NUM_ELEMENTS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * warnings
@@ -108,6 +113,7 @@
     _MSC_VER < 1000
 # pragma warning(disable : 4705)
 #endif /* _MSC_VER < 1000 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * data
@@ -158,6 +164,7 @@ static const signed char    b64_indexes[] =
     ,   -1, -1, -1, -1, -1, -1, -1, -1
     ,   -1, -1, -1, -1, -1, -1, -1, -1
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -300,8 +307,65 @@ static size_t b64_encode_(
     }
 }
 
-/** This function reads in a character string in 4-character chunks, and writes
- * out the converted form in 3-byte chunks to the destination.
+/** This function calculates the exact buffer size required for decoding
+ * the provided base64 string into.
+ */
+static size_t b64_decode_exact_size_(
+    char const* base64Str
+,   size_t      length
+)
+{
+    /* check and inspect padding at the end of the base64 string */
+    size_t padding = 0;
+
+    if (length >= 2 && base64Str[length - 1] == '=')
+    {
+        ++padding;
+
+        if (base64Str[length - 2] == '=')
+        {
+            ++padding;
+
+            /* TODO: determine a way to enable optionally the following -
+             * maybe with a new flag, or compile option
+             *
+             */
+
+#if 0
+            /* also check for padding overruns (invalid base64, but check and adjust anyway) */
+            if (length > 2) {
+
+                if (base64Str[length - 3] == '=')
+                {
+                    ++padding;
+
+                    if (length > 3)
+                    {
+                        if (base64Str[length - 4] == '=')
+                        {
+                            ++padding;
+                        }
+                    }
+                }
+            }
+#endif
+        }
+    }
+
+    /* calculate the exact decoded length */
+    size_t decodedLength = (length * 3 / 4) - padding;
+
+    /* we can underrun with invalid, short base64 encoded string, check for safety */
+    if (decodedLength < 0)
+    {
+        decodedLength = 0;
+    }
+
+    return decodedLength;
+}
+
+/** This function reads in a character string in 4-character chunks, and
+ * writes out the converted form in 3-byte chunks to the destination.
  */
 static size_t b64_decode_(
     b64_char_t const*   src
@@ -313,12 +377,19 @@ static size_t b64_decode_(
 ,   B64_RC*             rc
 )
 {
-    const size_t            wholeChunks     =   (srcLen / NUM_ENCODED_DATA_BYTES);
-    const size_t            remainderBytes  =   (srcLen % NUM_ENCODED_DATA_BYTES);
-    size_t                  maxTotal        =   (wholeChunks + (0 != remainderBytes)) * NUM_PLAIN_DATA_BYTES;
+    size_t                  maxTotal;
     unsigned char* const    dest_           =   dest;
 
-    ((void)remainderBytes); /* Avoids warning with Borland */
+    B64_ENFORCE_PRECONDITION(NULL != src || 0 == srcLen, "`src` must not be nullptr unless `srcLen` is 0");
+
+    if (NULL != src)
+    {
+        maxTotal = b64_decode_exact_size_(src, srcLen);
+    }
+    else
+    {
+        maxTotal = 0;
+    }
 
     B64_ENFORCE_PRECONDITION(NULL != badChar, "pointer to bad character may not be NULL");
     B64_ENFORCE_PRECONDITION(NULL != rc, "pointer to return code may not be NULL");
@@ -450,9 +521,15 @@ static size_t b64_decode_(
             }
         }
 
+        /* In normal processing, these two values should now always be the same, but
+         * when applying B64_F_STOP_ON_NOTHING
+         */
+        B64_ENFORCE_ASSUMPTION((size_t)(dest - dest_) <= maxTotal);
+
         return (size_t)(dest - dest_);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -574,6 +651,7 @@ size_t b64_decode2(
     return b64_decode_(src, srcLen, (unsigned char*)dest, destSize, flags, badChar, rc);
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef B64_DOCUMENTATION_SKIP_SECTION
@@ -666,6 +744,7 @@ size_t b64_getErrorStringLength(B64_RC code)
 
     return (b64_LookupErrorStringA_((int)code, &len), len);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

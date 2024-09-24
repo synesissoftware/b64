@@ -266,8 +266,7 @@ static void test_2_02(void)
         B64_RC          rc  =   B64_RC_OK;
         size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, NULL, 0, 0, NULL, &rc);
 
-        /* TODO: change 3 -> 1 when incorporate GH fix */
-        XTESTS_TEST_INTEGER_EQUAL(3, n);
+        XTESTS_TEST_INTEGER_EQUAL(1, n);
     }
 }
 
@@ -290,8 +289,7 @@ static void test_2_03(void)
         B64_RC          rc  =   B64_RC_OK;
         size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, NULL, 0, 0, NULL, &rc);
 
-        /* TODO: change 3 -> 2 when incorporate GH fix */
-        XTESTS_TEST_INTEGER_EQUAL(3, n);
+        XTESTS_TEST_INTEGER_EQUAL(2, n);
     }
 }
 
@@ -339,8 +337,7 @@ static void test_2_05(void)
         B64_RC          rc  =   B64_RC_OK;
         size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, NULL, 0, 0, NULL, &rc);
 
-        /* TODO: change 21 -> 20 when incorporate GH fix */
-        XTESTS_TEST_INTEGER_EQUAL(21, n);
+        XTESTS_TEST_INTEGER_EQUAL(20, n);
     }
 }
 
