@@ -1,31 +1,34 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        example.cpp.2.cpp
+ * File:    example.cpp.2.cpp
  *
- * Purpose:     Illustrates encoding and decoding of array of bytes with
- *              flags and custom line-length (using C++ API).
+ * Purpose: Illustrates encoding and decoding of array of bytes with flags
+ *          and custom line-length (using C++ API).
  *
- * Created:     27th April 2006
- * Updated:     23rd December 2023
+ * Created: 27th April 2006
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/b64.hpp>
 
-/* STLSoft C++ Header Files */
+/* STLSoft C++ header files */
 #include <stlsoft/stlsoft.h>                    /* If you can't see this file, d/l latest STLSoft 1.9+ from http://www.stlsoft.org/ */
 #include <stlsoft/iterator/FILE_iterator.hpp>   /* If you can't see this file, d/l STLSoft 1.10+ or STLSoft 1.10 alpha (for use with STLSoft 1.9), from http://www.stlsoft.org/ */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <assert.h>
 #include <stdlib.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int /* argc */, char ** /*argv*/)
 {
@@ -71,13 +74,14 @@ int main(int /* argc */, char ** /*argv*/)
                 ,   stlsoft::FILE_iterator<unsigned char, char>(stdout, " %d"));
         std::cout << std::endl;
     }
-    catch(b64::cpp::coding_exception &x)
+    catch (b64::cpp::coding_exception &x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

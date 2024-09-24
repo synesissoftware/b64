@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for b64
 #
 # Created:  6th February 2024
-# Updated:  14th July 2024
+# Updated:  24th September 2024
 #
 # ######################################################################## #
 
@@ -120,7 +120,7 @@ if(BUILD_TESTING)
 	message("-- enabled building of tests ...")
 
 	add_subdirectory(test)
-endif()
+endif(BUILD_TESTING)
 
 
 # ##########################################################
@@ -132,7 +132,7 @@ if(BUILD_EXAMPLES)
 	message("-- enabled building of examples ...")
 
 	add_subdirectory(examples)
-endif()
+endif(BUILD_EXAMPLES)
 
 
 # ##########################################################

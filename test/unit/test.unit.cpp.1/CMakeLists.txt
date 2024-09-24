@@ -8,6 +8,7 @@ link_directories(${CMAKE_SOURCE_DIR}/projects/core)
 target_link_libraries(test.unit.cpp.1
 	PRIVATE
 		core
+		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 		$<IF:$<VERSION_LESS:${xTests_VERSION},"0.23">,xTests::xTests.core,xTests::core>
 )
 

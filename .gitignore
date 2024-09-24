@@ -11,6 +11,8 @@
 /ipch/
 /lib/
 
+/scratch/
+
 /include/shwild/
 /include/xcontract/
 /include/xcover/
