@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        implicit_link.cpp
+ * File:    implicit_link.cpp
  *
- * Purpose:     Implicit link file for the test.unit.c.1 project.
+ * Purpose: Implicit link file for the test.unit.c.1 project.
  *
- * Created:     21st April 2009
- * Updated:     23rd December 2023
+ * Created: 21st April 2009
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -13,10 +13,10 @@
  * includes
  */
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/implicit_link.h>
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */

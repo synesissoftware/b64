@@ -60,7 +60,7 @@
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
 # define B64_VER_B64_H_B64_REVISION 9
-# define B64_VER_B64_H_B64_EDIT     46
+# define B64_VER_B64_H_B64_EDIT     47
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -196,7 +196,7 @@ namespace B64_NAMESPACE
  *
  * \note Currently, this is always \c char, supporting only multibyte strings
  */
-typedef char    b64_char_t;
+typedef char                                                b64_char_t;
 
 /** Return codes (from b64_encode2() / b64_decode2())
  */
@@ -212,7 +212,7 @@ enum B64_RC
 };
 
 #ifndef __cplusplus
-typedef enum B64_RC B64_RC;
+typedef enum B64_RC                                         B64_RC;
 #endif /* !__cplusplus */
 
 /** Coding behaviour modification flags (for b64_encode2() / b64_decode2())
@@ -229,9 +229,8 @@ enum B64_FLAGS
     ,   B64_F_STOP_ON_UNEXPECTED_WS =   0x0200  /*!< Causes decoding to break if any unexpected whitespace is encountered. Ignored by b64_encode2(). */
     ,   B64_F_STOP_ON_BAD_CHAR      =   0x0300  /*!< Causes decoding to break if any non-Base-64 [a-zA-Z0-9=+/] character is encountered. Ignored by b64_encode2(). */
 };
-
 #ifndef __cplusplus
-typedef enum B64_FLAGS  B64_FLAGS;
+typedef enum B64_FLAGS                                      B64_FLAGS;
 #endif /* !__cplusplus */
 
 
@@ -532,13 +531,18 @@ namespace stlsoft
     {
         return B64_NAMESPACE_QUALIFIER::b64_getStatusCodeString(code);
     }
-
 } /* namespace stlsoft */
 # endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 #endif /* !B64_NO_NAMESPACE */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* B64_INCL_B64_H_B64 */
 

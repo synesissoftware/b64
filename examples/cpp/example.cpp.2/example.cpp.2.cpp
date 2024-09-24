@@ -10,18 +10,18 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/b64.hpp>
 
-/* STLSoft C++ Header Files */
+/* STLSoft C++ header files */
 #include <stlsoft/stlsoft.h>                    /* If you can't see this file, d/l latest STLSoft 1.9+ from http://www.stlsoft.org/ */
 #include <stlsoft/iterator/FILE_iterator.hpp>   /* If you can't see this file, d/l STLSoft 1.10+ or STLSoft 1.10 alpha (for use with STLSoft 1.9), from http://www.stlsoft.org/ */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <assert.h>
 #include <stdlib.h>
 
