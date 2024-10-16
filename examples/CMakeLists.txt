@@ -23,7 +23,11 @@ if(WIN32)
 endif(WIN32)
 
 add_subdirectory(c)
-add_subdirectory(cpp)
+
+if(NOT NO_B64_CPP_API)
+
+	add_subdirectory(cpp)
+endif()
 
 
 # ############################## end of file ############################# #

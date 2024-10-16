@@ -37,8 +37,13 @@ endif(WIN32)
 # `install()` step
 set(CORE_PUBLIC_HEADERS
 	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h"
-	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/b64.hpp"
 )
+if(NOT NO_B64_CPP_API)
+
+	list(APPEND CORE_PUBLIC_HEADERS
+		"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/b64.hpp"
+	)
+endif()
 
 set_target_properties(core PROPERTIES
 	OUTPUT_NAME "b64"

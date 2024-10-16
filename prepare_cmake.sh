@@ -6,11 +6,12 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
-CMakeExamplesDisabled=0
-CMakeTestingDisabled=0
-CMakeVerboseMakefile=0
+ExamplesDisabled=0
+TestingDisabled=0
+VerboseMakefile=0
 Configuration=Release
 MinGW=0
+NoCpp=0
 RunMake=0
 STLSoftDirGiven=
 
@@ -23,7 +24,7 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     -v|--cmake-verbose-makefile)
 
-      CMakeVerboseMakefile=1
+      VerboseMakefile=1
       ;;
     -d|--debug-configuration)
 
@@ -31,15 +32,19 @@ while [[ $# -gt 0 ]]; do
       ;;
     -E|--disable-examples)
 
-      CMakeExamplesDisabled=1
+      ExamplesDisabled=1
       ;;
     -T|--disable-testing)
 
-      CMakeTestingDisabled=1
+      TestingDisabled=1
       ;;
     --mingw)
 
       MinGW=1
+      ;;
+    -C|--no-cpp)
+
+      NoCpp=1
       ;;
     -m|--run-make)
 
@@ -75,12 +80,16 @@ Flags/options:
 
     -T
     --disable-testing
-        disables building of tests (by setting BUILD_TESTING=OFF). This is
-        necessary, for example, when installing on a system that does not
-        (yet) have xTests - which itself depends on STLSOFT - installed
+        disables building of tests (by setting BUILD_TESTING=OFF). Unless
+        testing is disabled the STLSoft and xTests libraries will be
+        required to be available to CMake
 
     --mingw
         uses explicitly the "MinGW Makefiles" generator
+
+    -C
+    --no-cpp
+        does not install, prepare, or use C++ API (which requires STLSoft)
 
     -m
     --run-make
@@ -117,11 +126,11 @@ cd $CMakeDir
 
 echo "Executing CMake (in ${CMakeDir})"
 
-if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $NoCpp -eq 0 ]; then CMakeNoCppApiFlag="OFF" ; else CMakeNoCppApiFlag="ON" ; fi
+if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
-if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
-
-if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
 
@@ -129,6 +138,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -140,6 +150,7 @@ else
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)
@@ -157,7 +168,7 @@ fi
 
 cd ->/dev/null
 
-if [ $CMakeVerboseMakefile -ne 0 ]; then
+if [ $VerboseMakefile -ne 0 ]; then
 
   echo -e "contents of $CMakeDir:"
   ls -al $CMakeDir

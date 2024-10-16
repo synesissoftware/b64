@@ -1,26 +1,14 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_automated_test_program(test.unit.cpp.1 test.unit.cpp.1.cpp)
 
-add_executable(test.unit.cpp.1
-	test.unit.cpp.1.cpp
-)
+Significant enhancement and refactoring around use of CMake:
+~ Compatibility with legacy versions of Visual C++;
+~ Significant refactoring of ./CMakeLists.txt;
++ added CMake variable `NO_B64_CPP_API` that allows eschewal of use of **b64** C++ API (which relies on **STLSoft**);
++ added **cmake/LanguageFullVersion.cmake** file, which defines CMake variable `X_CMAKE_CXX_FULLSTANDARD`;
++ added **cmake/TargetMacros.cmake** file, which defines CMake functions `define_automated_test_program()` and `define_example_program()`, and applied them throughout examples and test programs;
++ **./prepare_cmake.sh** CMake driver script now recognises option '--no-cpp', which activates `NO_B64_CPP_API` and, therefore, turns off b64 C++ API;
++ added **./run_all_examples.sh**;
++ added **./run_all_scratch_tests.sh**;
 
-link_directories(${CMAKE_SOURCE_DIR}/projects/core)
-
-target_link_libraries(test.unit.cpp.1
-	PRIVATE
-		core
-		$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
-		$<IF:$<VERSION_LESS:${xTests_VERSION},"0.23">,xTests::xTests.core,xTests::core>
-)
-
-target_compile_options(test.unit.cpp.1 PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
-
-
-# ############################## end of file ############################# #
 
