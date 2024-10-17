@@ -4,20 +4,23 @@
  * Purpose: Implementation file for the test.unit.c.1 project.
  *
  * Created: 21st April 2009
- * Updated: 24th September 2024
+ * Updated: 17th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <b64/b64.h>
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -43,7 +46,6 @@ static void test_1_05(void);
 static void test_1_06(void);
 static void test_1_07(void);
 static void test_1_08(void);
-static void test_1_09(void);
 
 static void test_2_00(void);
 static void test_2_01(void);
@@ -51,10 +53,6 @@ static void test_2_02(void);
 static void test_2_03(void);
 static void test_2_04(void);
 static void test_2_05(void);
-static void test_2_06(void);
-static void test_2_07(void);
-static void test_2_08(void);
-static void test_2_09(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +77,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_06);
         XTESTS_RUN_CASE(test_1_07);
         XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
 
         XTESTS_RUN_CASE(test_2_00);
         XTESTS_RUN_CASE(test_2_01);
@@ -87,10 +84,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_2_03);
         XTESTS_RUN_CASE(test_2_04);
         XTESTS_RUN_CASE(test_2_05);
-        XTESTS_RUN_CASE(test_2_06);
-        XTESTS_RUN_CASE(test_2_07);
-        XTESTS_RUN_CASE(test_2_08);
-        XTESTS_RUN_CASE(test_2_09);
 
         XTESTS_PRINT_RESULTS();
 
@@ -205,12 +198,6 @@ static void test_1_08(void)
     result[1000] = '\0';
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("BwYFBAMCAQD//v38+/r5", result, 20u);
 }
-
-static void test_1_09(void)
-{
-}
-
-
 
 
 static void test_2_00(void)
@@ -339,22 +326,6 @@ static void test_2_05(void)
 
         XTESTS_TEST_INTEGER_EQUAL(20, n);
     }
-}
-
-static void test_2_06(void)
-{
-}
-
-static void test_2_07(void)
-{
-}
-
-static void test_2_08(void)
-{
-}
-
-static void test_2_09(void)
-{
 }
 
 

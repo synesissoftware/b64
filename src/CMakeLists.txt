@@ -1,11 +1,14 @@
 
-set(CORE_SRCS
-	b64.c
-)
+# ######################################################################## #
+# File:     /src/CMakeLists.txt
+#
+# Purpose:  CMake lists file for b64 core library
+#
+# Created:  ...
+# Updated:  17th October 2024
+#
+# ######################################################################## #
 
-add_library(core
-	${CORE_SRCS}
-)
 
 if(UNIX)
 
@@ -28,6 +31,21 @@ if(WIN32)
 	endif()
 endif(WIN32)
 
+if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+
+	add_compile_options("/Zc:__cplusplus")
+endif()
+
+
+
+set(CORE_SRCS
+	b64.c
+)
+
+add_library(core
+	${CORE_SRCS}
+)
+
 
 # specify the primary public headers for the library, which controls whether
 # they'll be installed
@@ -37,17 +55,23 @@ endif(WIN32)
 # `install()` step
 set(CORE_PUBLIC_HEADERS
 	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h"
-	"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/b64.hpp"
 )
+if(NOT NO_B64_CPP_API)
+
+	list(APPEND CORE_PUBLIC_HEADERS
+		"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/b64.hpp"
+	)
+endif()
 
 set_target_properties(core PROPERTIES
 	OUTPUT_NAME "b64"
 	PUBLIC_HEADER "${CORE_PUBLIC_HEADERS}"
 )
 
-target_include_directories(core PUBLIC
-	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-	$<INSTALL_INTERFACE:include>
+target_include_directories(core
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
 )
 
 target_compile_options(core
@@ -71,16 +95,6 @@ install(TARGETS core
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME_LOWER}
 )
-
-# additional headers into specific sub-directories
-#[====[
-install(
-	DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/internal
-	DESTINATION include/${PROJECT_NAME_LOWER}
-	FILES_MATCHING
-	PATTERN "*.h*"
-)
-]====]
 
 
 # ############################## end of file ############################# #

@@ -4,13 +4,16 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
+MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
-CMakeExamplesDisabled=0
-CMakeTestingDisabled=0
-CMakeVerboseMakefile=0
 Configuration=Release
+ExamplesDisabled=0
+MinGW=0
+NoCpp=0
 RunMake=0
 STLSoftDirGiven=
+TestingDisabled=0
+VerboseMakefile=0
 
 
 # ##########################################################
@@ -21,7 +24,7 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     -v|--cmake-verbose-makefile)
 
-      CMakeVerboseMakefile=1
+      VerboseMakefile=1
       ;;
     -d|--debug-configuration)
 
@@ -29,15 +32,28 @@ while [[ $# -gt 0 ]]; do
       ;;
     -E|--disable-examples)
 
-      CMakeExamplesDisabled=1
+      ExamplesDisabled=1
       ;;
     -T|--disable-testing)
 
-      CMakeTestingDisabled=1
+      TestingDisabled=1
+      ;;
+    --mingw)
+
+      MinGW=1
+      ;;
+    -C|--no-cpp)
+
+      NoCpp=1
       ;;
     -m|--run-make)
 
       RunMake=1
+      ;;
+    -s|--stlsoft-root-dir)
+
+      shift
+      STLSoftDirGiven=$1
       ;;
     --help)
 
@@ -55,8 +71,8 @@ Flags/options:
 
     -v
     --cmake-verbose-makefile
-        configures CMake to run verbosely (by setting
-        CMAKE_VERBOSE_MAKEFILE=ON)
+        configures CMake to run verbosely (by setting CMAKE_VERBOSE_MAKEFILE
+        to be ON)
 
     -d
     --debug-configuration
@@ -69,13 +85,26 @@ Flags/options:
 
     -T
     --disable-testing
-        disables building of tests (by setting BUILD_TESTING=OFF). This is
-        necessary, for example, when installing on a system that does not
-        (yet) have xTests - which itself depends on STLSOFT - installed
+        disables building of tests (by setting BUILD_TESTING=OFF). Unless
+        testing is disabled the STLSoft and xTests libraries will be
+        required to be available to CMake
+
+    --mingw
+        uses explicitly the "MinGW Makefiles" generator
+
+    -C
+    --no-cpp
+        does not install, prepare, or use C++ API (which requires STLSoft)
 
     -m
     --run-make
         executes make after a successful running of CMake
+
+    -s <dir>
+    --stlsoft-root-dir <dir>
+        specifies the STLSoft root-directory, which will be passed to CMake
+        as the variable STLSOFT, and which will override the environment
+        variable STLSOFT (if present)
 
 
     standard flags:
@@ -108,34 +137,51 @@ cd $CMakeDir
 
 echo "Executing CMake (in ${CMakeDir})"
 
-if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $NoCpp -eq 0 ]; then CMakeNoCppApiFlag="OFF" ; else CMakeNoCppApiFlag="ON" ; fi
+if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
+if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
-if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $MinGW -ne 0 ]; then
 
-if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
-
-cmake \
-  -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
-  -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
-  -DCMAKE_BUILD_TYPE=$Configuration \
-  -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+  cmake \
+    $CMakeSTLSoftVariable \
+    -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
+    -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
+    -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
+    -G "MinGW Makefiles" \
     -S $Dir \
-  -B $CMakeDir \
-  || (cd ->/dev/null ; exit 1)
+    -B $CMakeDir \
+    || (cd ->/dev/null ; exit 1)
+else
+
+  cmake \
+    $CMakeSTLSoftVariable \
+    -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
+    -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
+    -DCMAKE_BUILD_TYPE=$Configuration \
+    -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
+    -S $Dir \
+    -B $CMakeDir \
+    || (cd ->/dev/null ; exit 1)
+fi
 
 status=0
 
 if [ $RunMake -ne 0 ]; then
 
-  echo "Executing make"
+  echo "Executing build (via command \`$MakeCmd\`)"
 
-  make
+  $MakeCmd
   status=$?
 fi
 
 cd ->/dev/null
 
-if [ $CMakeVerboseMakefile -ne 0 ]; then
+if [ $VerboseMakefile -ne 0 ]; then
 
   echo -e "contents of $CMakeDir:"
   ls -al $CMakeDir

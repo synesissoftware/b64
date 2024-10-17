@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 24th September 2024
+ * Updated: 16th October 2024
  *
  * Home:    http://synesis.com.au/software/
  *
@@ -50,8 +50,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_C_B64_MAJOR    1
 # define B64_VER_C_B64_MINOR    3
-# define B64_VER_C_B64_REVISION 7
-# define B64_VER_C_B64_EDIT     26
+# define B64_VER_C_B64_REVISION 8
+# define B64_VER_C_B64_EDIT     27
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -355,11 +355,13 @@ static size_t b64_decode_exact_size_(
     /* calculate the exact decoded length */
     size_t decodedLength = (length * 3 / 4) - padding;
 
+#if 0
     /* we can underrun with invalid, short base64 encoded string, check for safety */
     if (decodedLength < 0)
     {
         decodedLength = 0;
     }
+#endif
 
     return decodedLength;
 }
