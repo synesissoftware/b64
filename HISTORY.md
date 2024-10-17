@@ -4,6 +4,15 @@
 ----
 
 
+17th October 2024 - 1.5.4
+-------------------------
+
+ * Significant enhancement and refactoring around use of CMake;
+ * Compatibility with legacy versions of Visual C++;
+ * MinGW compatibility;
+ * General tidying;
+
+
 24th September 2024 - 1.5.3
 ---------------------------
 
