@@ -22,6 +22,11 @@ if(WIN32)
 	endif()
 endif(WIN32)
 
+if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+
+	add_compile_options("/Zc:__cplusplus")
+endif()
+
 add_subdirectory(c)
 
 if(NOT NO_B64_CPP_API)
