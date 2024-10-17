@@ -76,6 +76,7 @@ status=0
 if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
+
     echo "Executing make and then running all scratch test programs"
 
     mkdir -p $CMakeDir || exit 1
