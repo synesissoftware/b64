@@ -31,7 +31,7 @@ if(WIN32)
 	endif()
 endif(WIN32)
 
-if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
 	add_compile_options("/Zc:__cplusplus")
 endif()
