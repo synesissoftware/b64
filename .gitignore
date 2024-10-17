@@ -8,10 +8,14 @@
 /_internal/
 
 /bin/
-/ipch/
 /lib/
 
+/doc/
+/dox/
+/ideas/
+/releases/
 /scratch/
+/temp/
 
 /include/shwild/
 /include/xcontract/
@@ -52,15 +56,12 @@ Unicode Release Multithreaded Dll/
 Unicode Release Multithreaded/
 
 Win32/
+ipch/
 x64/
-
-build/CMakeFiles/
 
 
 # directories (by pattern)
 
-#build/*/
-/dox/*/
 /include-*/
 
 
@@ -76,7 +77,6 @@ prepare.cmd
 sh.exe.stackdump
 update_deps.cmd
 
-build/CMakeCache.txt
 build/makefile.tmpl
 build/makefile.tools.xml
 build/shwild.tmplgen
@@ -86,9 +86,6 @@ test/testpatterns.orj
 
 
 # files (by pattern)
-
-RCa0*
-RCb0*
 
 *~
 *.a
@@ -129,8 +126,10 @@ RCb0*
 *.xcuserstate
 *.zip
 
+RCa0*
+RCb0*
+
 build/*.tmplgen
 build/*.tmpl
 build/*.tools.xml
-
 
