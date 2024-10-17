@@ -6,14 +6,14 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
-ExamplesDisabled=0
-TestingDisabled=0
-VerboseMakefile=0
 Configuration=Release
+ExamplesDisabled=0
 MinGW=0
 NoCpp=0
 RunMake=0
 STLSoftDirGiven=
+TestingDisabled=0
+VerboseMakefile=0
 
 
 # ##########################################################
@@ -50,6 +50,11 @@ while [[ $# -gt 0 ]]; do
 
       RunMake=1
       ;;
+    -s|--stlsoft-root-dir)
+
+      shift
+      STLSoftDirGiven=$1
+      ;;
     --help)
 
         cat << EOF
@@ -66,8 +71,8 @@ Flags/options:
 
     -v
     --cmake-verbose-makefile
-        configures CMake to run verbosely (by setting
-        CMAKE_VERBOSE_MAKEFILE=ON)
+        configures CMake to run verbosely (by setting CMAKE_VERBOSE_MAKEFILE
+        to be ON)
 
     -d
     --debug-configuration
@@ -94,6 +99,12 @@ Flags/options:
     -m
     --run-make
         executes make after a successful running of CMake
+
+    -s <dir>
+    --stlsoft-root-dir <dir>
+        specifies the STLSoft root-directory, which will be passed to CMake
+        as the variable STLSOFT, and which will override the environment
+        variable STLSOFT (if present)
 
 
     standard flags:
@@ -128,13 +139,14 @@ echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $NoCpp -eq 0 ]; then CMakeNoCppApiFlag="OFF" ; else CMakeNoCppApiFlag="ON" ; fi
+if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
-
 
 if [ $MinGW -ne 0 ]; then
 
   cmake \
+    $CMakeSTLSoftVariable \
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
@@ -146,6 +158,7 @@ if [ $MinGW -ne 0 ]; then
 else
 
   cmake \
+    $CMakeSTLSoftVariable \
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
