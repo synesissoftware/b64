@@ -13,10 +13,10 @@
  * includes
  */
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/implicit_link.h>
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */

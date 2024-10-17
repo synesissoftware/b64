@@ -4,6 +4,56 @@
 ----
 
 
+17th October 2024 - 1.5.4
+-------------------------
+
+ * Significant enhancement and refactoring around use of CMake;
+ * Compatibility with legacy versions of Visual C++;
+ * MinGW compatibility;
+ * General tidying;
+
+
+24th September 2024 - 1.5.3
+---------------------------
+
+ * fixed problem with `b64_decode()` buffer size check - thanks to Gerry Hornbill;
+ * added unit-tests to capture the problematic approximate return value from `b64_decode2()` when given null destination buffer pointer (for purpose of estimation of required buffer size)
+ * added missing STLSoft dependencies in unit-test CMake files
+ * added **b64dec** example program
+ * added **b64enc** example program
+ * removed unncessary elements form CMake files
+ * CMake files boilerplate changes
+ * update to CMake build scripts
+ * removing explicit inclusion of **b64/implicit_link.h** from unit test source files
+ * code canonicalisation
+ * improving C compatibility
+
+
+14th July 2024 - 1.5.2
+----------------------
+
+ * Compatible with xTests before and after 0.23
+
+
+14th July 2024 - 1.5.1
+----------------------
+
+ * Various CMake standardisations and simplifications
+
+
+10th July 2024 - 1.4.8
+----------------------
+
+ * Windows CMake compatibility
+ * GCC compatibility
+
+
+6th February 2024 - 1.4.7
+-------------------------
+
+ * CMake support
+
+
 12th October 2020 - 1.4.6
 -------------------------
 

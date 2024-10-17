@@ -1,7 +1,7 @@
 b64 - Changes
 =============
 
-Updated:    12th October 2020
+Updated:    14th July 2024
 
 
     ************************************
@@ -13,6 +13,77 @@ Updated:    12th October 2020
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+
+17th October 2024 - 1.5.4
+=========================
+
+Summary:
+--------
+
+ * Significant enhancement and refactoring around use of CMake;
+ * Compatibility with legacy versions of Visual C++;
+ * MinGW compatibility;
+ * General tidying;
+
+Changes:
+--------
+
+Significant enhancement and refactoring around use of CMake:
+ * **./prepare_cmake.sh** CMake driver script now recognises option '--no-cpp', which activates `NO_B64_CPP_API` and, therefore, turns off b64 C++ API;
+ * added **./run_all_examples.sh**;
+ * added **./run_all_scratch_tests.sh**;
+ * added **cmake/LanguageFullVersion.cmake** file, which defines CMake variable `X_CMAKE_CXX_FULLSTANDARD`;
+ * added **cmake/TargetMacros.cmake** file, which defines CMake functions `define_automated_test_program()` and `define_example_program()`, and applied them throughout examples and test programs;
+ * added CMake variable `NO_B64_CPP_API` that allows eschewal of use of **b64** C++ API (which relies on **STLSoft**);
+
+General tidying:
+ * cleaning out empty test cases
+ * tidying
+ * settings
+ * ignores
+
+
+24th September 2024 - 1.5.3
+===========================
+
+* fixed problem with `b64_decode()` buffer size check - thanks to Gerry Hornbill;
+* added unit-tests to capture the problematic approximate return value from `b64_decode2()` when given null destination buffer pointer (for purpose of estimation of required buffer size)
+* added **b64dec** example program
+* added **b64enc** example program
+* added missing STLSoft dependencies in unit-test CMake files
+* removed unncessary elements form CMake files
+* CMake files boilerplate changes
+* update to CMake build scripts
+* removing explicit inclusion of **b64/implicit_link.h** from unit test source files
+* code canonicalisation
+* improving C compatibility
+
+
+14th July 2024 - 1.5.2
+======================
+
+ * Compatible with xTests before and after 0.23
+
+
+14th July 2024 - 1.5.1
+======================
+
+ * Various CMake standardisations and simplifications
+
+
+10th July 2024 - 1.4.8
+======================
+
+ * Windows CMake compatibility
+ * GCC compatibility
+
+
+6th February 2024 - 1.4.7
+=========================
+
+ * CMake support
 
 
 12th October 2020 - 1.4.6

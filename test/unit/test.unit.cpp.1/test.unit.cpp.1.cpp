@@ -1,33 +1,38 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.cpp.1.cpp
+ * File:    test.unit.cpp.1.cpp
  *
- * Purpose:     Implementation file for the test.unit.cpp.1 project.
+ * Purpose: Unit test for C++ API.
  *
- * Created:     21st April 2009
- * Updated:     23rd December 2023
+ * Created: 21st April 2009
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <b64/b64.hpp>
 
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/string/simple_string.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -60,18 +65,6 @@ static void test_1_5(void);
 static void test_1_6(void);
 static void test_1_7(void);
 static void test_1_8(void);
-static void test_1_9(void);
-
-static void test_2_0(void);
-static void test_2_1(void);
-static void test_2_2(void);
-static void test_2_3(void);
-static void test_2_4(void);
-static void test_2_5(void);
-static void test_2_6(void);
-static void test_2_7(void);
-static void test_2_8(void);
-static void test_2_9(void);
 
 static void test_3_00(void);
 static void test_3_01(void);
@@ -84,21 +77,8 @@ static void test_3_07(void);
 static void test_3_08(void);
 static void test_3_09(void);
 static void test_3_10(void);
-
-#if 0
-static void test_4_0(void);
-static void test_4_1(void);
-static void test_4_2(void);
-static void test_4_3(void);
-static void test_4_4(void);
-static void test_4_5(void);
-static void test_4_6(void);
-static void test_4_7(void);
-static void test_4_8(void);
-static void test_4_9(void);
-#endif /* 0 */
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -138,18 +118,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_6);
         XTESTS_RUN_CASE(test_1_7);
         XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-
-        XTESTS_RUN_CASE(test_2_0);
-        XTESTS_RUN_CASE(test_2_1);
-        XTESTS_RUN_CASE(test_2_2);
-        XTESTS_RUN_CASE(test_2_3);
-        XTESTS_RUN_CASE(test_2_4);
-        XTESTS_RUN_CASE(test_2_5);
-        XTESTS_RUN_CASE(test_2_6);
-        XTESTS_RUN_CASE(test_2_7);
-        XTESTS_RUN_CASE(test_2_8);
-        XTESTS_RUN_CASE(test_2_9);
 
         XTESTS_RUN_CASE(test_3_00);
         XTESTS_RUN_CASE(test_3_01);
@@ -163,19 +131,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_3_09);
         XTESTS_RUN_CASE(test_3_10);
 
-#if 0
-        XTESTS_RUN_CASE(test_4_0);
-        XTESTS_RUN_CASE(test_4_1);
-        XTESTS_RUN_CASE(test_4_2);
-        XTESTS_RUN_CASE(test_4_3);
-        XTESTS_RUN_CASE(test_4_4);
-        XTESTS_RUN_CASE(test_4_5);
-        XTESTS_RUN_CASE(test_4_6);
-        XTESTS_RUN_CASE(test_4_7);
-        XTESTS_RUN_CASE(test_4_8);
-        XTESTS_RUN_CASE(test_4_9);
-#endif /* 0 */
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -183,6 +138,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
@@ -471,9 +427,6 @@ static void test_encode_80_4()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB\r\nAQEBAQEBAQEBAQEBAQEBAQEBAQE=", b64::encode(blob, 0, 80, NULL));
 }
 
-
-
-
 static void test_1_0()
 {
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", b64::encode(NULL, 0u));
@@ -534,55 +487,6 @@ static void test_1_8()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("BwYFBAMCAQD//v38+/r5", b64::encode(&bytes[0], sizeof(bytes)));
 }
 
-static void test_1_9()
-{
-}
-
-
-
-
-static void test_2_0()
-{
-}
-
-static void test_2_1()
-{
-}
-
-static void test_2_2()
-{
-}
-
-static void test_2_3()
-{
-}
-
-static void test_2_4()
-{
-}
-
-static void test_2_5()
-{
-}
-
-static void test_2_6()
-{
-}
-
-static void test_2_7()
-{
-}
-
-static void test_2_8()
-{
-}
-
-static void test_2_9()
-{
-}
-
-
-
 static void test_3_00(void)
 {
     using namespace b64;
@@ -595,7 +499,7 @@ static void test_3_00(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, x.get_badChar());
@@ -615,7 +519,7 @@ static void test_3_01(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_EQUAL(NULL, x.get_badChar());
@@ -634,7 +538,7 @@ static void test_3_02(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -652,7 +556,7 @@ static void test_3_03(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_EQUAL(NULL, x.get_badChar());
@@ -671,7 +575,7 @@ static void test_3_04(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -689,7 +593,7 @@ static void test_3_05(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, x.get_badChar());
@@ -709,7 +613,7 @@ static void test_3_06(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -727,7 +631,7 @@ static void test_3_07(void)
 
         XTESTS_TEST_PASSED();
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -751,7 +655,7 @@ static void test_3_08(void)
         XTESTS_TEST_CHARACTER_EQUAL('%', *badChar);
         XTESTS_TEST_ENUM_EQUAL(B64_RC_DATA_ERROR, rc);
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -775,7 +679,7 @@ static void test_3_09(void)
         XTESTS_TEST_CHARACTER_EQUAL('%', *badChar);
         XTESTS_TEST_ENUM_EQUAL(B64_RC_DATA_ERROR, rc);
     }
-    catch(b64::coding_exception& /* x */)
+    catch (b64::coding_exception& /* x */)
     {
         XTESTS_TEST_FAIL("should not reach here");
     }
@@ -795,7 +699,7 @@ static void test_3_10(void)
 
         XTESTS_TEST_FAIL("should not reach here");
     }
-    catch(b64::coding_exception& x)
+    catch (b64::coding_exception& x)
     {
         XTESTS_TEST_ENUM_EQUAL(b64::B64_RC_DATA_ERROR, x.get_rc());
         XTESTS_TEST_POINTER_EQUAL(NULL, x.get_badChar());
@@ -803,15 +707,8 @@ static void test_3_10(void)
     }
 }
 
-
-
 } /* anonymous namespace */
 
-/* /////////////////////////////////////////////////////////////////////////
- * test component implementation file include(s)
- */
-
-#include <b64/implicit_link.h>
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

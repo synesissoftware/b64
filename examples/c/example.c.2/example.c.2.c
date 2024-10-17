@@ -1,23 +1,24 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        example.c.2.c
+ * File:    example.c.2.c
  *
- * Purpose:     Illustrates encoding and decoding of array of bytes with
- *              flags and custom line-length (using C API).
+ * Purpose: Illustrates encoding and decoding of array of bytes with flags
+ *          and custom line-length (using C API).
  *
- * Created:     27th April 2006
- * Updated:     23rd December 2023
+ * Created: 27th April 2006
+ * Updated: 24th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/b64.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -27,7 +28,10 @@
 # define NUM_ELEMENTS(x)        (sizeof(x) / sizeof(0[x]))
 #endif /* !NUM_ELEMENTS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(void)
 {
@@ -116,6 +120,7 @@ int main(void)
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

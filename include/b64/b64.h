@@ -1,17 +1,18 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        b64/b64.h
+ * File:    b64/b64.h
  *
- * Purpose:     Header file for the b64 library
+ * Purpose: Header file for the b64 library
  *
- * Created:     18th October 2004
- * Updated:     23rd December 2023
+ * Created: 18th October 2004
+ * Updated: 17th October 2024
  *
- * Thanks:      To Adam McLaurin, for ideas regarding the b64_decode2() and
- *              b64_encode2().
+ * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
+ *          b64_encode2(). To Gerry Hornbill for the exact required size
+ *          returned by b64_decode2().
  *
- * Home:        https://github.com/synesissoftware/b64
+ * Home:    https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,6 +52,7 @@
 #ifndef B64_INCL_B64_H_B64
 #define B64_INCL_B64_H_B64
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,8 +60,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 7
-# define B64_VER_B64_H_B64_EDIT     42
+# define B64_VER_B64_H_B64_REVISION 11
+# define B64_VER_B64_H_B64_EDIT     49
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -102,18 +104,26 @@
 # define B64_VER_1_4_4          0x010404ff
 # define B64_VER_1_4_5          0x010405ff
 # define B64_VER_1_4_6          0x010406ff
+# define B64_VER_1_4_7          0x010407ff
+# define B64_VER_1_4_8          0x010408ff
+# define B64_VER_1_5_1          0x010501ff
+# define B64_VER_1_5_2          0x010502ff
+# define B64_VER_1_5_3          0x010503ff
+# define B64_VER_1_5_4          0x010504ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
-#define B64_VER_MINOR       4
-#define B64_VER_REVISION    6
-#define B64_VER             0x010406ff
+#define B64_VER_MINOR       5
+#define B64_VER_REVISION    4
+#define B64_VER             B64_VER_1_5_4
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #include <stddef.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * features
@@ -128,6 +138,7 @@
 #  define B64_VARIANT_TEST
 # endif /* !B64_VARIANT_TEST */
 #endif /* SYNESIS_VARIANT_TEST */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -150,16 +161,20 @@
 #ifndef B64_NO_NAMESPACE
 
 # ifdef B64_CUSTOM_NAMESPACE
-#  define B64_NAMESPACE     B64_CUSTOM_NAMESPACE
+
+#  define B64_NAMESPACE                                     B64_CUSTOM_NAMESPACE
 # else /* ? B64_CUSTOM_NAMESPACE */
-#  define B64_NAMESPACE     b64
+
+#  define B64_NAMESPACE                                     b64
 # endif /* B64_CUSTOM_NAMESPACE */
 
 # if defined(B64_CUSTOM_NAMESPACE) && \
      defined(B64_CUSTOM_NAMESPACE_QUALIFIER)
-#  define B64_NAMESPACE_QUALIFIER       B64_CUSTOM_NAMESPACE_QUALIFIER
+
+#  define B64_NAMESPACE_QUALIFIER                           B64_CUSTOM_NAMESPACE_QUALIFIER
 # else /* B64_CUSTOM_NAMESPACE && B64_CUSTOM_NAMESPACE_QUALIFIER */
-#  define B64_NAMESPACE_QUALIFIER       ::B64_NAMESPACE
+
+#  define B64_NAMESPACE_QUALIFIER                           ::B64_NAMESPACE
 # endif /* B64_CUSTOM_NAMESPACE && B64_CUSTOM_NAMESPACE_QUALIFIER */
 
 
@@ -175,6 +190,7 @@ namespace B64_NAMESPACE
 {
 #endif /* !B64_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -183,7 +199,7 @@ namespace B64_NAMESPACE
  *
  * \note Currently, this is always \c char, supporting only multibyte strings
  */
-typedef char    b64_char_t;
+typedef char                                                b64_char_t;
 
 /** Return codes (from b64_encode2() / b64_decode2())
  */
@@ -199,7 +215,7 @@ enum B64_RC
 };
 
 #ifndef __cplusplus
-typedef enum B64_RC B64_RC;
+typedef enum B64_RC                                         B64_RC;
 #endif /* !__cplusplus */
 
 /** Coding behaviour modification flags (for b64_encode2() / b64_decode2())
@@ -216,10 +232,10 @@ enum B64_FLAGS
     ,   B64_F_STOP_ON_UNEXPECTED_WS =   0x0200  /*!< Causes decoding to break if any unexpected whitespace is encountered. Ignored by b64_encode2(). */
     ,   B64_F_STOP_ON_BAD_CHAR      =   0x0300  /*!< Causes decoding to break if any non-Base-64 [a-zA-Z0-9=+/] character is encountered. Ignored by b64_encode2(). */
 };
-
 #ifndef __cplusplus
-typedef enum B64_FLAGS  B64_FLAGS;
+typedef enum B64_FLAGS                                      B64_FLAGS;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -380,9 +396,7 @@ b64_decode(
  *   the converted buffer was longer than \c destSize, or a bad character
  *   stopped parsing.
  *
- * \note The function returns the required length if \c dest is NULL. The
- *   returned size might be larger than the actual required size, but will
- *   never be smaller.
+ * \note The function returns the required length if \c dest is NULL.
  *
  * \note The behaviour of both
  * \link b64::b64_encode2 b64_encode2()\endlink
@@ -431,7 +445,6 @@ b64_getErrorStringLength(
     B64_RC  code
 );
 
-
 /** \def b64_getStatusCodeString(code)
  *
  * Returns the textual description of the error
@@ -440,7 +453,7 @@ b64_getErrorStringLength(
  *
  * \see b64_getStatusCodeStringLength, b64_getErrorString, b64_getErrorStringLength
  */
-#define b64_getStatusCodeString         b64_getErrorString
+#define b64_getStatusCodeString                             b64_getErrorString
 
 /** \def b64_getStatusCodeStringLength(code)
  *
@@ -450,12 +463,12 @@ b64_getErrorStringLength(
  *
  * \see b64_getStatusCodeString, b64_getErrorString, b64_getErrorStringLength
  */
-#define b64_getStatusCodeStringLength   b64_getErrorStringLength
-
+#define b64_getStatusCodeStringLength                       b64_getErrorStringLength
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -519,14 +532,18 @@ namespace stlsoft
     {
         return B64_NAMESPACE_QUALIFIER::b64_getStatusCodeString(code);
     }
-
 } /* namespace stlsoft */
-
 # endif /* !B64_DOCUMENTATION_SKIP_SECTION */
-
 #endif /* !B64_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* B64_INCL_B64_H_B64 */
 

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        b64/implicit_link.h
+ * File:    b64/implicit_link.h
  *
- * Purpose:     Implicit linking for the b64 API.
+ * Purpose: Implicit linking for the b64 API.
  *
- * Created:     5th March 2006
- * Updated:     11th October 2020
+ * Created: 5th March 2006
+ * Updated: 10th July 2024
  *
- * Home:        https://github.com/synesissoftware/b64
+ * Home:    https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_IMPLICIT_LINK_MAJOR      1
 # define B64_VER_B64_H_IMPLICIT_LINK_MINOR      5
-# define B64_VER_B64_H_IMPLICIT_LINK_REVISION   1
-# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       15
+# define B64_VER_B64_H_IMPLICIT_LINK_REVISION   3
+# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       17
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,8 +73,8 @@
  * macros and definitions
  */
 
-#  define B64_IMPL_LINK_STRINGIZE_2_(x)   #x
-#  define B64_IMPL_LINK_STRINGIZE_1_(x)   B64_IMPL_LINK_STRINGIZE_2_(x)
+#  define B64_IMPL_LINK_STRINGIZE_2_(x)                     #x
+#  define B64_IMPL_LINK_STRINGIZE_1_(x)                     B64_IMPL_LINK_STRINGIZE_2_(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * architecture discrimination
@@ -221,8 +221,10 @@
 #    if 0
 #    elif _MSC_VER < 1920
 #     define B64_IMPL_LINK_COMPILER_NAME        "vc15"
-#    elif _MSC_VER <= 1927
+#    elif _MSC_VER <= 1929
 #     define B64_IMPL_LINK_COMPILER_NAME        "vc16"
+#    elif _MSC_VER <= 1940
+#     define B64_IMPL_LINK_COMPILER_NAME        "vc17"
 #    else
 #     error Visual C++ version that is >= vc16 is not recognised
 #    endif
