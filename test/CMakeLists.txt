@@ -25,7 +25,7 @@ if(WIN32)
 	add_definitions(-DB64_INCL_B64_H_IMPLICIT_LINK)
 endif(WIN32)
 
-if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
 	add_compile_options("/Zc:__cplusplus")
 endif()

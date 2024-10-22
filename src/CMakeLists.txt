@@ -31,7 +31,7 @@ if(WIN32)
 	endif()
 endif(WIN32)
 
-if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
 	add_compile_options("/Zc:__cplusplus")
 endif()
@@ -59,7 +59,7 @@ set(CORE_PUBLIC_HEADERS
 if(NOT NO_B64_CPP_API)
 
 	list(APPEND CORE_PUBLIC_HEADERS
-		"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/b64.hpp"
+		"${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.hpp"
 	)
 endif()
 
