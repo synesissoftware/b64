@@ -16,6 +16,12 @@ Updated:    14th July 2024
 
 
 
+18th November 2024 - 1.5.5
+==========================
+
+ * added CMake MSVC MT support;
+
+
 17th October 2024 - 1.5.4
 =========================
 

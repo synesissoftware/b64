@@ -8,6 +8,7 @@ MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 Configuration=Release
 ExamplesDisabled=0
+MSVC_MT=0
 MinGW=0
 NoCpp=0
 RunMake=0
@@ -41,6 +42,10 @@ while [[ $# -gt 0 ]]; do
     --mingw)
 
       MinGW=1
+      ;;
+    --msvc-mt)
+
+      MSVC_MT=1
       ;;
     -C|--no-cpp)
 
@@ -92,6 +97,10 @@ Flags/options:
     --mingw
         uses explicitly the "MinGW Makefiles" generator
 
+    --msvc-mt
+        when using Visual C++ (MSVC), the static runtime library will be
+        selected; the default is the dynamic runtime library
+
     -C
     --no-cpp
         does not install, prepare, or use C++ API (which requires STLSoft)
@@ -138,6 +147,7 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
 if [ $NoCpp -eq 0 ]; then CMakeNoCppApiFlag="OFF" ; else CMakeNoCppApiFlag="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
@@ -163,6 +173,7 @@ else
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
     -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
     -S $Dir \
     -B $CMakeDir \
