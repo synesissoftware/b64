@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for b64
 #
 # Created:  6th February 2024
-# Updated:  17th November 2024
+# Updated:  31st December 2024
 #
 # ######################################################################## #
 
@@ -144,7 +144,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.22)
+	set(xTests_REQUIRED_VERSION_ 0.26)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
