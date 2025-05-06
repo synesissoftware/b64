@@ -6,6 +6,7 @@
 
 | Date                  | News Item          |
 | --------------------- | ------------------ |
+| 6th May 2025          | 1.5.6 released     |
 | 18th November 2024    | 1.5.5 released     |
 | 17th October 2024     | 1.5.4 released     |
 | 24th September 2024   | 1.5.3 released     |

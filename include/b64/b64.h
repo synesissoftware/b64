@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 18th November 2024
+ * Updated: 6th May 2025
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
  *          b64_encode2(). To Gerry Hornbill for the exact required size
@@ -12,7 +12,7 @@
  *
  * Home:    https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,8 +60,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 12
-# define B64_VER_B64_H_B64_EDIT     50
+# define B64_VER_B64_H_B64_REVISION 13
+# define B64_VER_B64_H_B64_EDIT     51
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /** \def B64_VER_MAJOR
@@ -111,12 +111,13 @@
 # define B64_VER_1_5_3          0x010503ff
 # define B64_VER_1_5_4          0x010504ff
 # define B64_VER_1_5_5          0x010505ff
+# define B64_VER_1_5_6          0x010506ff
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
 #define B64_VER_REVISION    5
-#define B64_VER             B64_VER_1_5_57
+#define B64_VER             B64_VER_1_5_6
 
 
 /* /////////////////////////////////////////////////////////////////////////
