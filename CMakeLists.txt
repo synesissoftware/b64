@@ -77,6 +77,13 @@ if(MSVC)
 
 		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 	endif(MSVC_USE_MT)
+else(MSVC)
+
+	if(MSVC_USE_MT)
+
+		# this here just to absorb warning about not using `MSVC_USE_MT` (to
+		# enable **prepare_cmake.sh** to be simple)
+	endif(MSVC_USE_MT)
 endif(MSVC)
 
 
@@ -174,7 +181,37 @@ include(GNUInstallDirs)
 # targets
 
 # ################################################
-# main library
+# custom definitions
+
+if(UNIX)
+
+	set(_BUILD_AS_UNIX 1)
+
+	message("-- Operating system Unix")
+else(UNIX)
+
+	if(WIN32)
+
+		if(USE_UNIXEM)
+
+			set(_BUILD_AS_UNIX 1)
+
+			message("-- Operating system Unix (synthesised on Windows)")
+		else(USE_UNIXEM)
+
+			set(_BUILD_AS_WIN32 1)
+
+			message("-- Operating system Windows")
+		endif(USE_UNIXEM)
+	else(WIN32)
+
+		message("-- Operating system unknown")
+	endif(WIN32)
+endif(UNIX)
+
+
+# ################################################
+# main libraries
 
 add_subdirectory(src)
 

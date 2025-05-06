@@ -5,18 +5,18 @@
 # Purpose:  CMake lists file for b64 core library
 #
 # Created:  ...
-# Updated:  17th October 2024
+# Updated:  6th May 2025
 #
 # ######################################################################## #
 
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	add_definitions(-DUNIX)
 	add_definitions(-Dunix)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
@@ -29,13 +29,19 @@ if(WIN32)
 
 		add_definitions(-DWIN32)
 	endif()
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
-if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if(MSVC)
+	if(MSVC_VERSION LESS 1920)
 
-	add_compile_options("/Zc:__cplusplus")
-endif()
+		add_compile_options("/wd4822")
+	endif()
 
+	if(MSVC_VERSION GREATER_EQUAL 1914)
+
+		add_compile_options("/Zc:__cplusplus")
+	endif()
+endif(MSVC)
 
 
 set(CORE_SRCS
@@ -72,6 +78,10 @@ target_include_directories(core
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
 		$<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(core
+	PUBLIC
 )
 
 target_compile_options(core
