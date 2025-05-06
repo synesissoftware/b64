@@ -88,19 +88,28 @@ test/testpatterns.orj
 # files (by pattern)
 
 *~
+*.???_obj
 *.a
 *.app
 *.aps
 *.b64
 *.bak
+*.chm
+*.d
 *.dll
+*.dsp
 *.dylib
 *.exe
 *.gch
 *.idb
 *.ilk
+*.iobj
 *.ipch
+*.ipdb
+*.la
+*.lai
 *.lib
+*.lo
 *.log
 *.ncb
 *.o
@@ -111,10 +120,12 @@ test/testpatterns.orj
 *.out
 *.pch
 *.pdb
+*.rar
 *.res
 *.sbr
 *.scc
 *.sdf
+*.slo
 *.so
 *.suo
 *.swp
