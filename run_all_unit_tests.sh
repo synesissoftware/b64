@@ -18,11 +18,11 @@ Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -l|--list-only)
+    --list-only|-l)
 
       ListOnly=1
       ;;
-    -M|--no-make)
+    --no-make|-M)
 
       RunMake=0
       ;;

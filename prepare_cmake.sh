@@ -24,19 +24,19 @@ VerboseMakefile=0
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -v|--cmake-verbose-makefile)
+    --cmake-verbose-makefile|-v)
 
       VerboseMakefile=1
       ;;
-    -d|--debug-configuration)
+    --debug-configuration|-d)
 
       Configuration=Debug
       ;;
-    -E|--disable-examples)
+    --disable-examples|-E)
 
       ExamplesDisabled=1
       ;;
-    -T|--disable-testing)
+    --disable-testing|-T)
 
       TestingDisabled=1
       ;;
@@ -48,15 +48,15 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
-    -C|--no-cpp)
+    --no-cpp|-C)
 
-      NoCpp=1
+      NO_cxx=1
       ;;
-    -m|--run-make)
+    --run-make|-m)
 
       RunMake=1
       ;;
-    -s|--stlsoft-root-dir)
+    --stlsoft-root-dir|-s)
 
       shift
       STLSoftDirGiven=$1

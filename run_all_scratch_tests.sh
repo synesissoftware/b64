@@ -17,20 +17,20 @@ RunMake=1
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -l|--list-only)
+    --list-only|-l)
 
       ListOnly=1
       ;;
-    -M|--no-make)
+    --no-make|-M)
 
       RunMake=0
       ;;
     --help)
 
       cat << EOF
-xTests is a small, lightweight, portable, simple unit- and component-test framework suitable for exercising C and C++ libraries
+b64 is a small and simple standalone C-language library that provides Base-64 encoding and decoding
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
+Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
 Runs all (matching) scratch-test programs
 
 $ScriptPath [ ... flags/options ... ]
@@ -101,13 +101,13 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all scratch test programs"
+    echo "Listing all scratch (and performance) test programs"
   else
 
-    echo "Running all scratch test programs"
+    echo "Running all scratch (and performance) test programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' ')' -exec test -x {} \; -print)
+  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)
   do
 
     if [ $ListOnly -ne 0 ]; then
