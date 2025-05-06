@@ -4,13 +4,15 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
 Configuration=Release
 ExamplesDisabled=0
 MSVC_MT=0
 MinGW=0
-NoCpp=0
+NO_cxx=0
+NO_shwild=0
 RunMake=0
 STLSoftDirGiven=
 TestingDisabled=0
@@ -23,19 +25,19 @@ VerboseMakefile=0
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -v|--cmake-verbose-makefile)
+    --cmake-verbose-makefile|-v)
 
       VerboseMakefile=1
       ;;
-    -d|--debug-configuration)
+    --debug-configuration|-d)
 
       Configuration=Debug
       ;;
-    -E|--disable-examples)
+    --disable-examples|-E)
 
       ExamplesDisabled=1
       ;;
-    -T|--disable-testing)
+    --disable-testing|-T)
 
       TestingDisabled=1
       ;;
@@ -47,15 +49,19 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
-    -C|--no-cpp)
+    --no-cpp|-C)
 
-      NoCpp=1
+      NO_cxx=1
       ;;
-    -m|--run-make)
+    --no-shwild)
+
+      NO_shwild=1
+      ;;
+    --run-make|-m)
 
       RunMake=1
       ;;
-    -s|--stlsoft-root-dir)
+    --stlsoft-root-dir|-s)
 
       shift
       STLSoftDirGiven=$1
@@ -105,6 +111,9 @@ Flags/options:
     --no-cpp
         does not install, prepare, or use C++ API (which requires STLSoft)
 
+    --no-shwild
+        prevents recognising shwild library
+
     -m
     --run-make
         executes make after a successful running of CMake
@@ -148,7 +157,8 @@ echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
-if [ $NoCpp -eq 0 ]; then CMakeNoCppApiFlag="OFF" ; else CMakeNoCppApiFlag="ON" ; fi
+if [ $NO_cxx -eq 0 ]; then CMakeNoCppApiFlag="OFF" ; else CMakeNoCppApiFlag="ON" ; fi
+if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
@@ -161,6 +171,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -175,6 +186,7 @@ else
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
     -DNO_B64_CPP_API:BOOL=$CMakeNoCppApiFlag \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)

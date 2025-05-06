@@ -1,7 +1,7 @@
 b64 - Changes
 =============
 
-Updated:    14th July 2024
+Updated:    6th May 2025
 
 
     ************************************
@@ -14,6 +14,27 @@ Updated:    14th July 2024
     *                                  *
     ************************************
 
+
+
+6th May 2025 - 1.5.6
+====================
+
+Summary:
+--------
+
+ * MinGW compatibility;
+ * Added '--no-shwild' flag (to **prepare_cmake.sh**);
+ * Various CMake scripts canonicalisation;
+
+Details:
+--------
+
+ * Added '--no-shwild' flag (**prepare_cmake.sh**)
+ * CMake helper scripts : ~ canonicalisation
+ * Updated **xTests** version demand
+ * Preparation for **UNIXem** compatibility
+ * Miscellaneous canonical mods
+ * CMake helper scripts now define default make command as "mingw32-make.xe" if recognise MinGW
 
 
 18th November 2024 - 1.5.5

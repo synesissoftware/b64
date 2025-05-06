@@ -4,7 +4,8 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
 ListOnly=0
 RunMake=1
@@ -16,20 +17,20 @@ RunMake=1
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -l|--list-only)
+    --list-only|-l)
 
       ListOnly=1
       ;;
-    -M|--no-make)
+    --no-make|-M)
 
       RunMake=0
       ;;
     --help)
 
       cat << EOF
-xTests is a small, lightweight, portable, simple unit- and component-test framework suitable for exercising C and C++ libraries
+b64 is a small and simple standalone C-language library that provides Base-64 encoding and decoding
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
+Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
 Runs all example programs
 
 $ScriptPath [ ... flags/options ... ]

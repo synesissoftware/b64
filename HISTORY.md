@@ -4,6 +4,14 @@
 ----
 
 
+6th May 2025 - 1.5.6
+---------------------
+
+ * MinGW compatibility;
+ * Added '--no-shwild' flag (to **prepare_cmake.sh**);
+ * Various CMake scripts canonicalisation;
+
+
 18th November 2024 - 1.5.5
 --------------------------
 
