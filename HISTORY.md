@@ -1,4 +1,4 @@
-# b64 - History
+# b64 - History <!-- omit in toc -->
 
 
 ----

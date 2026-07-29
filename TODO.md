@@ -1,4 +1,4 @@
-# b64 - To Do
+# b64 - To Do <!-- omit in toc -->
 
 
 ----
