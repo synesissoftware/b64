@@ -1,14 +1,14 @@
-# b64 - To Do <!-- omit in toc -->
+# b64 - TODO <!-- omit in toc -->
 
 
-----
+## Functional improvements
+
+\<none>
 
 
+## Performance improvements
 
-## b64 1.4 TODOs:
-
-  There are no known TODOs with version 1.4.
+\<none>
 
 
 <!-- ########################### end of file ########################### -->
-
