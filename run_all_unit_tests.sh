@@ -35,7 +35,7 @@ while [[ $# -gt 0 ]]; do
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) unit-test programs
+Runs all (matching) component-test and unit-test programs
 
 $ScriptPath [ ... flags/options ... ]
 
