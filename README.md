@@ -8,7 +8,7 @@ Very small and simple standalone C-language library that provides Base-64 encodi
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/b64.svg)](https://github.com/synesissoftware/b64/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/b64)](https://github.com/synesissoftware/b64/commits/master)
-[![CMake on multiple platforms](https://github.com/synesissoftware/b64/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/synesissoftware/b64/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/synesissoftware/b64/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/b64/actions/workflows/ci.yml)
 
 
 ## Table of Contents <!-- omit in toc -->
