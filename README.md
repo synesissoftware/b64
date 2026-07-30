@@ -13,19 +13,19 @@ Very small and simple standalone C-language library that provides Base-64 encodi
 
 ## Table of Contents <!-- omit in toc -->
 
-* [Introduction](#introduction)
-	* [Dependencies](#dependencies)
-* [Installation](#installation)
-* [Components](#components)
-	* [C API / core library](#c-api--core-library)
-	* [C++ API](#c-api)
-* [Examples](#examples)
-* [Project Information](#project-information)
-	* [Where to get help](#where-to-get-help)
-	* [Contribution guidelines](#contribution-guidelines)
-	* [Dependencies](#dependencies-1)
-	* [Related projects](#related-projects)
-	* [License](#license)
+- [Introduction](#introduction)
+  - [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Components](#components)
+  - [C API / core library](#c-api--core-library)
+  - [C++ API](#c-api)
+- [Examples](#examples)
+- [Project Information](#project-information)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies-1)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 
 ## Introduction
@@ -57,7 +57,10 @@ The **core library** is a pure standalone component:
 
 ## Installation
 
-T.B.C.
+Detailed instructions - via **CMake**, via bundling, via custom makefile
+parameters - are provided in the accompanying [INSTALL.md](./INSTALL.md)
+file.
+
 
 
 ## Components

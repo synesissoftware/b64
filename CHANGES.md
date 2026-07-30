@@ -73,11 +73,11 @@
 * tidying solution files;
 
 
-## 1.4.2 - 1st December 2011
+## 1.4.2 - 4th February 2012
 
-* added b64_getStatusCodeString(), b64_getStatusCodeStringLength(); deprecated b64_getErrorString() and b64_getErrorStringLength();
-* now implemented shims in terms of b64_getStatusCodeString() and b64_getStatusCodeStringLength();
-* ensures exception bears code B64_RC_TRUNCATED_INPUT when input truncated (it previously was passing B64_RC_OK);
+* added `b64_getStatusCodeString()`, `b64_getStatusCodeStringLength()`; deprecated `b64_getErrorString()` and `b64_getErrorStringLength()`;
+* now implemented shims in terms of `b64_getStatusCodeString()` and `b64_getStatusCodeStringLength()`;
+* ensures exception bears code `B64_RC_TRUNCATED_INPUT` when input truncated (it previously was passing `B64_RC_OK`);
 * abstracted declaration and application of string access shims, in readiness for widestring builds and/or STLSoft 1.10+;
 * added implicit link support for VC++10;
 * added core library names according to implicit link format, i.e. b64.1.core.*;
@@ -95,7 +95,7 @@
 * added test variant for all makefile projects;
 * added support for Borland 5.9+;
 * preparations for widestring support;
-* fixed defect in b64_encode()/b64_encode2();
+* fixed defect in `b64_encode()`/`b64_encode2()`;
 * fixed defective use of std::vector subscript operator;
 * improvements in C++ API exception handling, including message and additional information;
 * NOTE: bundles xContract 0.3.1;
@@ -135,11 +135,12 @@
 
 ## 1.2.5 - 8th February 2008
 
-* workaround for weird GCC bug on 64-bit Linux;
+* compatibility with Visual C++ 8+ "Safe String" library;
 
 
 ## 1.2.4 - 30th April 2007
 
+* compatibility with STLSoft 1.9.1;
 * version released on Extended STL, volume 1: CD;
 
 
@@ -159,11 +160,9 @@
 
 ## 1.2.1 - 7th December 2006
 
-* b64_getErrorString() and b64_getErrorStringLength();
-* deprecated b64/cpp/b64.hpp;
-* b64/b64.hpp;
-* all public C++ names moved from b64::cpp namespace into b64 namespace; old namespace retained for backwards compatibility;
-* fix to b64::decode() to avoiding invoking subscript operator for empty blob_t instances;
+* New error functions to API: `b64_getErrorString()` and `b64_getErrorStringLength()`;
+* Change to C++ namespace and include file path: deprecated **b64/cpp/b64.hpp** in favour of **b64/b64.hpp**; all public C++ names moved from `b64::cpp` into `b64` (old namespace retained for backwards compatibility);
+* fix to `b64::decode()` to avoid invoking subscript operator for empty `blob_t` instances;
 
 
 ## 1.1.3 - 2nd August 2006
@@ -184,7 +183,7 @@
 
 ## 1.1.1 - 28th April 2006
 
-* no changes;
+* Change tracking begins with this release (v1.1, 28th April 2006);
 
 
 <!-- ########################### end of file ########################### -->
