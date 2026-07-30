@@ -190,14 +190,14 @@
 ------------------------------
 
  * No changes to functionality from 1.1.2
-  (see CHANGES.txt for details)
+  (see CHANGES.md for details)
 
 
 26th July 2006 - 1.1.2
 ------------------------------
 
  * No changes to functionality from 1.1.1
-  (see CHANGES.txt for details)
+  (see CHANGES.md for details)
 
 
 28th April 2006 - 1.1.1
