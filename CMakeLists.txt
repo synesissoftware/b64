@@ -149,6 +149,8 @@ if(BUILD_TESTING OR NOT NO_B64_CPP_API)
 			set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 		endif()
 
+		get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
+
 		include_directories(${STLSOFT_INCLUDE_DIR})
 	endif()
 endif()
