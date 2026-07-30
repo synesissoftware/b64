@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for b64
 #
 # Created:  6th February 2024
-# Updated:  6th May 2025
+# Updated:  30th July 2026
 #
 # ######################################################################## #
 
@@ -46,15 +46,14 @@ string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MAJOR${RX_WS}+
 set(_VERSION_MAJOR ${CMAKE_MATCH_1})
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MINOR${RX_WS}+([0-9]+)" MINOR_DUMMY ${_header_file})
 set(_VERSION_MINOR ${CMAKE_MATCH_1})
-string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_REVISION${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
-set(_VERSION_PATCH ${CMAKE_MATCH_1})
+string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_(PATCH|REVISION)${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
+set(_VERSION_PATCH ${CMAKE_MATCH_2})
 
 # set project version number here
 set(PROJECT_VERSION_MAJOR ${_VERSION_MAJOR})
 set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
-
 
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
@@ -66,6 +65,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 if(MSVC)
+
+	if(MSVC_VERSION LESS 1800)
+
+		add_compile_options("/wd4996")
+	endif()
 
 	if(MSVC_VERSION LESS 1930)
 
@@ -106,6 +110,7 @@ include(TargetMacros)
 
 option(BUILD_EXAMPLES "Build examples" ON)
 
+option(BUILD_TESTING "Build tests" ON)
 
 # ######################################
 # features
