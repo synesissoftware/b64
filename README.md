@@ -1,36 +1,44 @@
 # b64 <!-- omit in toc -->
 
-**b64** is a very small and simple standalone C-language library that provides [Base-64](https://en.wikipedia.org/wiki/Base64) encoding and decoding.
+Very small and simple standalone C-language library that provides Base-64 encoding and decoding.
+
+
+![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![GitHub release](https://img.shields.io/github/v/release/synesissoftware/b64.svg)](https://github.com/synesissoftware/b64/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/b64)](https://github.com/synesissoftware/b64/commits/master)
+[![CMake on multiple platforms](https://github.com/synesissoftware/b64/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/synesissoftware/b64/actions/workflows/cmake-multi-platform.yml)
+
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Introduction](#introduction)
-  - [Dependencies](#dependencies)
-- [Installation](#installation)
-- [Components](#components)
-  - [C API / core library](#c-api--core-library)
-  - [C++ API](#c-api)
-- [Examples](#examples)
-- [Project Information](#project-information)
-  - [Where to get help](#where-to-get-help)
-  - [Contribution guidelines](#contribution-guidelines)
-  - [Dependencies](#dependencies-1)
-  - [Related projects](#related-projects)
-  - [License](#license)
+* [Introduction](#introduction)
+	* [Dependencies](#dependencies)
+* [Installation](#installation)
+* [Components](#components)
+	* [C API / core library](#c-api--core-library)
+	* [C++ API](#c-api)
+* [Examples](#examples)
+* [Project Information](#project-information)
+	* [Where to get help](#where-to-get-help)
+	* [Contribution guidelines](#contribution-guidelines)
+	* [Dependencies](#dependencies-1)
+	* [Related projects](#related-projects)
+	* [License](#license)
+
 
 ## Introduction
-
-**b64** is a C-language library
 
 **b64** is a very small and simple standalone C-language library that provides [Base-64](https://en.wikipedia.org/wiki/Base64) encoding and decoding. It also provides a header-only **C++ wrapper**.
 
 The **core library** is a pure standalone component:
 
- - It has *zero dependencies* on any other libraries;
- - It has *zero dependencies* on any part of the C standard library, except in debug builds (where it depends on `strchr()` and `assert()`);
- - It has *zero dependencies* on any host operating system facilities;
- - It does not allocate any memory;
- - It is released under the [BSD license](https://en.wikipedia.org/wiki/BSD_licenses), which basically means it's free for any use, but you can't claim it's yours.
+* It has *zero dependencies* on any other libraries;
+* It has *zero dependencies* on any part of the C standard library, except in debug builds (where it depends on `strchr()` and `assert()`);
+* It has *zero dependencies* on any host operating system facilities;
+* It does not allocate any memory;
+* It is released under the [BSD license](https://en.wikipedia.org/wiki/BSD_licenses), which basically means it's free for any use, but you can't claim it's yours.
 
 **NOTE**: Base-64 conversion of binary regions, using **b64**, is available as part of the distribution of [Pantheios](http://github.com/synesissoftware/pantheios/), a high-performance C++ diagnostic logging API library.
 
@@ -51,12 +59,12 @@ The **core library** is a pure standalone component:
 
 T.B.C.
 
+
 ## Components
 
 ### C API / core library
 
 ```C
-
 enum B64_RC
 {
         B64_RC_OK                   =   0   /* Operation was successful. */
@@ -77,7 +85,6 @@ enum B64_FLAGS
     ,   B64_F_STOP_ON_UNEXPECTED_WS =   0x0200  /* Causes decoding to break if any unexpected whitespace is encountered. Ignored by b64_encode2(). */
     ,   B64_F_STOP_ON_BAD_CHAR      =   0x0300  /* Causes decoding to break if any non-Base-64 [a-zA-Z0-9=+/] character is encountered. Ignored by b64_encode2(). */
 };
-
 
 size_t
 b64_encode(
@@ -126,18 +133,16 @@ size_t
 b64_getStatusCodeStringLength(
     B64_RC  code
 );
-
 ```
+
 
 ### C++ API
 
 ```C++
-
 typedef std::basic_string<b64_char_t>   string_t;
 typedef std::vector<byte_t_>            blob_t;
 
 class coding_exception;
-
 
 string_t encode(void const* src, size_t srcSize, int flags, int lineLen = 0, B64_RC* rc = NULL);
 
@@ -164,12 +169,13 @@ blob_t decode(int flags, S const &str);
 blob_t decode(string_t const &str, int flags = B64_F_STOP_ON_BAD_CHAR);
 
 blob_t decode(string_t const &str, int flags, b64_char_t const** badChar, B64_RC* rc = NULL);
-
 ```
+
 
 ## Examples
 
 Examples are provided in the ```examples``` directory, along with a markdown description for each.
+
 
 ## Project Information
 
@@ -177,9 +183,11 @@ Examples are provided in the ```examples``` directory, along with a markdown des
 
 [GitHub Page](https://github.com/synesissoftware/b64 "GitHub Page")
 
+
 ### Contribution guidelines
 
 Defect reports, feature requests, and pull requests are welcome on https://github.com/synesissoftware/b64.
+
 
 ### Dependencies
 
@@ -189,6 +197,7 @@ The C API has no non-standard dependencies. The C++ API depends on the STLSoft l
 
 * [STLSoft 1.9](http://github.com/synesissoftware/STLSoft-1.9/)
 * [STLSoft 1.10](http://github.com/synesissoftware/STLSoft-1.10/) (Recommended)
+
 
 #### xTests (unit-tests only) <!-- omit in toc -->
 
@@ -203,10 +212,10 @@ Projects in which **b64** is used include:
 
 * [**Pantheios**](https://github.com/synesissoftware/Pantheios)
 
+
 ### License
 
 **b64** is released under the 3-clause BSD license. See LICENSE for details.
 
 
 <!-- ########################### end of file ########################### -->
-
