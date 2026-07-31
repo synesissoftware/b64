@@ -1,14 +1,34 @@
-# b64 - To Do
+# b64 - TODO <!-- omit in toc -->
+
+## Table of Contents <!-- omit in toc -->
+
+- [Functional improvements](#functional-improvements)
+- [Performance improvements](#performance-improvements)
+- [Packaging improvements](#packaging-improvements)
 
 
-----
+## Table of Contents <!-- omit in toc -->
+
+- [Functional improvements](#functional-improvements)
+- [Performance improvements](#performance-improvements)
+- [Packaging improvements](#packaging-improvements)
 
 
+## Functional improvements
 
-## b64 1.4 TODOs:
+* [ ] Simplified C++ API when STLSoft not available or suppressed;
 
-  There are no known TODOs with version 1.4.
+
+## Performance improvements
+
+* [ ] Benchmarks;
+
+
+## Packaging improvements
+
+* [ ] GitHub Actions;
+* [ ] GitHub Actions for all prepare permutations;
+* [ ] **prepare_cmake.sh** does not offer '--msvc-mt' unless on Windows;
 
 
 <!-- ########################### end of file ########################### -->
-

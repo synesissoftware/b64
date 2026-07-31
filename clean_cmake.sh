@@ -16,10 +16,8 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     --help)
 
+      [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-b64 is a small and simple standalone C-language library that provides Base-64 encoding and decoding
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
 Executes CMake-generated artefacts to clean project
 
 $ScriptPath [ ... flags/options ... ]

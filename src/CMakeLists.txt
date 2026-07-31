@@ -80,9 +80,20 @@ target_include_directories(core
 		$<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(core
-	PUBLIC
-)
+if(NOT NO_B64_CPP_API)
+	target_link_libraries(core
+		PUBLIC
+			$<$<BOOL:${STLSoft_FOUND}>:STLSoft::STLSoft>
+	)
+
+	if(DEFINED STLSOFT_INCLUDE_DIR)
+
+		target_include_directories(core
+			PUBLIC
+				${STLSOFT_INCLUDE_DIR}
+		)
+	endif()
+endif()
 
 target_compile_options(core
 	PRIVATE
