@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 6th May 2025
+ * Updated: 2nd August 2026
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
  *          b64_encode2(). To Gerry Hornbill for the exact required size
@@ -12,7 +12,7 @@
  *
  * Home:    https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,64 +60,42 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 13
-# define B64_VER_B64_H_B64_EDIT     51
+# define B64_VER_B64_H_B64_REVISION 14
+# define B64_VER_B64_H_B64_EDIT     52
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
-/** \def B64_VER_MAJOR
- * The major version number of b64
+/**
+ * \def B64_VER_MAJOR
+ *
+ * The Major version number of the b64 library
+ *
+ * \def B64_VER_MINOR
+ *
+ * Minor version number of the b64 library
+ *
+ * \def B64_VER_PATCH
+ *
+ * The patch number of the b64 library
+ *
+ * \def B64_VER
+ *
+ * The composite version of the b64 library
  */
-
-/** \def B64_VER_MINOR
- * The minor version number of b64
- */
-
-/** \def B64_VER_REVISION
- * The revision version number of b64
- */
-
-/** \def B64_VER
- * The current composite version number of b64
- */
-
-#ifndef B64_DOCUMENTATION_SKIP_SECTION
-# define B64_VER_1_0_1          0x01000100
-# define B64_VER_1_0_2          0x01000200
-# define B64_VER_1_0_3          0x01000300
-# define B64_VER_1_1_1          0x01010100
-# define B64_VER_1_1_2          0x01010200
-# define B64_VER_1_1_3          0x01010300
-# define B64_VER_1_2_1          0x01020100
-# define B64_VER_1_2_2          0x01020200
-# define B64_VER_1_2_3          0x01020300
-# define B64_VER_1_2_4          0x01020400
-# define B64_VER_1_2_5          0x01020500
-# define B64_VER_1_2_6          0x01020600
-# define B64_VER_1_2_7          0x01020700
-# define B64_VER_1_3_1          0x010301ff
-# define B64_VER_1_3_2          0x010302ff
-# define B64_VER_1_3_3          0x010303ff
-# define B64_VER_1_3_4          0x010304ff
-# define B64_VER_1_4_1_ALPHA_1  0x01040101
-# define B64_VER_1_4_2          0x010402ff
-# define B64_VER_1_4_3          0x010403ff
-# define B64_VER_1_4_4          0x010404ff
-# define B64_VER_1_4_5          0x010405ff
-# define B64_VER_1_4_6          0x010406ff
-# define B64_VER_1_4_7          0x010407ff
-# define B64_VER_1_4_8          0x010408ff
-# define B64_VER_1_5_1          0x010501ff
-# define B64_VER_1_5_2          0x010502ff
-# define B64_VER_1_5_3          0x010503ff
-# define B64_VER_1_5_4          0x010504ff
-# define B64_VER_1_5_5          0x010505ff
-# define B64_VER_1_5_6          0x010506ff
-#endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
-#define B64_VER_REVISION    5
-#define B64_VER             B64_VER_1_5_6
+#define B64_VER_PATCH       7
+#define B64_VER_ALPHABETA   0xC1
+
+#define B64_VER \
+    (0\
+        |   (   B64_VER_MAJOR       << 24   ) \
+        |   (   B64_VER_MINOR       << 16   ) \
+        |   (   B64_VER_PATCH       <<  8   ) \
+        |   (   B64_VER_ALPHABETA   <<  0   ) \
+    )
+
+#define B64_VER_REVISION    B64_VER_PATCH
 
 
 /* /////////////////////////////////////////////////////////////////////////

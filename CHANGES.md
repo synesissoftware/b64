@@ -1,6 +1,18 @@
 # **b64** Changes <!-- omit in toc -->
 
 
+## 1.5.7 - 2nd August 2026
+
+* Added modular GitHub Actions CI (**ci.yml** / **ci-cell.yml**) with install-smoke coverage;
+* Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;
+* Expanded **FAQ.md**, **INSTALL.md**, and **README.md**;
+* Removed legacy Visual Studio project/solution files and custom makefiles under **build/**;
+* CMake improvements (incl. `BUILD_TESTING`, legacy MSVC warning suppression, absolute **STLSoft** include path, conditional **STLSoft** linkage for the C++ API);
+* Enhanced CMake helper scripts (shared **.sis/script_info_lines.txt**; **run_all_unit_tests.sh** `--unit-only` / `--component-only` and `--no-make` guard);
+* Corrected `B64_VER_REVISION` to match the release revision;
+* Project boilerplate updates (**.gitattributes**, **.gitignore**, **.vimrc**, **.vscode/settings.json**);
+
+
 ## 1.5.6 - 6th May 2025
 
 * MinGW compatibility;
