@@ -62,7 +62,6 @@ parameters - are provided in the accompanying [INSTALL.md](./INSTALL.md)
 file.
 
 
-
 ## Components
 
 ### C API / core library
