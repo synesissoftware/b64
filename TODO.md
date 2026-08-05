@@ -21,7 +21,9 @@
 
 * [x] ~~~GitHub Actions~~~ ✅;
 * [ ] GitHub Actions for all prepare permutations;
-* [ ] **prepare_cmake.sh** does not offer '--msvc-mt' unless on Windows;
+* [ ] **prepare_cmake.sh** should not offer '--mingw' unless on Windows;
+* [ ] **prepare_cmake.sh** should not offer '--msvc-mt' unless on Windows;
+* [ ] **libver.sh** (like that of Pantheios;
 
 
 <!-- ########################### end of file ########################### -->
