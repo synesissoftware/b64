@@ -143,8 +143,11 @@ The primary choice for installation is by use of **CMake**.
    target_link_libraries(your_target PRIVATE b64::core)
    ```
 
-   Use of **b64/b64.hpp** additionally requires **STLSoft**
-   (`find_package(STLSoft REQUIRED)`).
+   When the installed **b64** was built with the C++ API, **`find_package(b64)`**
+   pulls in **STLSoft** via **`find_dependency`**. An explicit
+   `find_package(STLSoft REQUIRED)` is still fine (and required if you
+   include **b64/b64.hpp** while using a build of **b64** that did not
+   record the **STLSoft** package dependency).
 
 
 ## Bundled
