@@ -19,7 +19,7 @@
 
 ## Packaging improvements
 
-* [x] ~~~GitHub Actions~~~ ✅;
+* [x] ~~~GitHub Actions~~~ - ✅;
 * [ ] GitHub Actions for all prepare permutations;
 * [ ] **prepare_cmake.sh** does not offer '--msvc-mt' unless on Windows;
 

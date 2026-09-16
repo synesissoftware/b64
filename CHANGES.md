@@ -1,4 +1,4 @@
-# **b64** Changes <!-- omit in toc -->
+# b64 - Changes <!-- omit in toc -->
 
 
 ## 1.5.7 - 2nd August 2026
