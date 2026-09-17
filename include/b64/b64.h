@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 2nd August 2026
+ * Updated: 17th September 2026
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
  *          b64_encode2(). To Gerry Hornbill for the exact required size
@@ -95,7 +95,9 @@
         |   (   B64_VER_ALPHABETA   <<  0   ) \
     )
 
-#define B64_VER_REVISION    B64_VER_PATCH
+#ifndef B64_DOCUMENTATION_SKIP_SECTION
+# define B64_VER_REVISION                                   B64_VER_PATCH
+#endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
