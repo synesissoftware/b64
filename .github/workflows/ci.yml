@@ -210,7 +210,7 @@ jobs:
           cat > "$CONSUMER/CMakeLists.txt" <<'EOF'
           cmake_minimum_required(VERSION 3.13)
           project(b64_install_smoke CXX)
-          find_package(STLSoft REQUIRED)
+          # STLSoft must come from b64-config.cmake's find_dependency().
           find_package(b64 REQUIRED)
           add_executable(consumer consumer.cpp)
           target_link_libraries(consumer PRIVATE b64::core)
