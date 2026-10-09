@@ -1,7 +1,14 @@
-# **b64** Changes <!-- omit in toc -->
+# b64 - Changes <!-- omit in toc -->
 
 
-## 1.5.8-beta1 - 6th August 2026
+## 1.5.8-beta1 - 9th October 2026
+
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+* Added a CMake scratch version reporter under **test/scratch/versions**;
+* Corrected its CMake executable target to **test.scratch.versions**;
+* Added native Windows helper runners and canonicalised the CMake helper scripts;
+* Added conditional `find_dependency(STLSoft)` handling to the installed **b64** CMake package configuration;
 
 
 
@@ -12,7 +19,6 @@
 * Expanded **FAQ.md**, **INSTALL.md**, and **README.md**;
 * Removed legacy Visual Studio project/solution files and custom makefiles under **build/**;
 * CMake improvements (incl. `BUILD_TESTING`, legacy MSVC warning suppression, absolute **STLSoft** include path, conditional **STLSoft** linkage for the C++ API);
-* **CMake** package config: `find_dependency(STLSoft)` when the C++ API was built against the **STLSoft** package, so consumers of **`b64::core`** get a complete imported graph;
 * Enhanced CMake helper scripts (shared **.sis/script_info_lines.txt**; **run_all_unit_tests.sh** `--unit-only` / `--component-only` and `--no-make` guard);
 * Corrected `B64_VER_REVISION` to match the release revision;
 * Project boilerplate updates (**.gitattributes**, **.gitignore**, **.vimrc**, **.vscode/settings.json**);
