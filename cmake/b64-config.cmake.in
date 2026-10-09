@@ -1,3 +1,12 @@
 @PACKAGE_INIT@
-include("${CMAKE_CURRENT_LIST_DIR}/@EXPORT_NAME@-targets.cmake")
 
+include(CMakeFindDependencyMacro)
+
+# The C++ API links STLSoft publicly when it was discovered via
+# find_package() at build time.
+if(@STLSoft_FOUND@)
+
+	find_dependency(STLSoft)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/@EXPORT_NAME@-targets.cmake")
