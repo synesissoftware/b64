@@ -1,0 +1,7 @@
+# Example programs that are allowed to fail: CLI demos exit non-zero when
+# invoked with no input argument (usage / missing-args path).
+# run_all_examples.{sh,cmd} still executes each of them, but reports a
+# non-zero exit as anticipated rather than failing the run.
+# List program names or stems (b64dec and b64dec.exe are equivalent).
+b64dec
+b64enc
