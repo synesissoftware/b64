@@ -5,12 +5,11 @@ on:
     branches:
       - master
       - dev
+      - boilerplate
+      - idiomatic
       - rc1
       - rc2
       - rc3
-      - rc4
-      - rc5
-      - update
   pull_request:
 
 concurrency:
@@ -101,44 +100,14 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install STLSoft dependency
-        shell: bash
-        run: |
-          set -euo pipefail
-          DEPS="${RUNNER_TEMP}/sis-deps"
-          STLSRC="${RUNNER_TEMP}/stlsoft-src"
-          STLBUILD="${RUNNER_TEMP}/stlsoft-build"
-          mkdir -p "$DEPS"
-          git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSRC"
-          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --config "${{ env.BUILD_TYPE }}" --parallel
-            cmake --install "$STLBUILD" --config "${{ env.BUILD_TYPE }}"
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$STLSRC" -B "$STLBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel 2
-            cmake --install "$STLBUILD"
-          else
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel
-            cmake --install "$STLBUILD"
-          fi
-          echo "SIS_DEPS=$DEPS" >> "$GITHUB_ENV"
+      - name: Install SIS dependencies
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ env.BUILD_TYPE }}
+          c-compiler: ${{ matrix.c_compiler == 'mingw' && 'gcc' || matrix.c_compiler }}
+          cpp-compiler: ${{ matrix.c_compiler == 'mingw' && 'g++' || matrix.cpp_compiler }}
+          dependencies: STLSoft
+          toolchain: ${{ matrix.c_compiler == 'mingw' && 'mingw' || '' }}
 
       - name: Configure
         shell: bash

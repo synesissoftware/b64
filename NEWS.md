@@ -6,6 +6,7 @@
 
 | Date                  | News Item          | Details |
 | --------------------- | ------------------ | ------- |
+| 14th October 2026     | [1.5.8 released](https://github.com/synesissoftware/b64/releases/tag/1.5.8) | Tip helpers; `B64_VER_RELSTATUS`; Phase **4c**; CI **install-sis-deps** / xbit / **.cmd** |
 | 9th October 2026      | [1.5.8-beta1 released](https://github.com/synesissoftware/b64/releases/tag/1.5.8-beta1) | CMake target, helper, and packaging updates |
 | 2nd August 2026       | [1.5.7 released](https://github.com/synesissoftware/b64/releases/tag/1.5.7) | Modular CI and CMake improvements |
 | 6th May 2025          | 1.5.6 released     | MinGW and CMake compatibility |
