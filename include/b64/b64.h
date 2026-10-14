@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 9th October 2026
+ * Updated: 14th October 2026
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
  *          b64_encode2(). To Gerry Hornbill for the exact required size
@@ -60,8 +60,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 15
-# define B64_VER_B64_H_B64_EDIT     53
+# define B64_VER_B64_H_B64_REVISION 16
+# define B64_VER_B64_H_B64_EDIT     54
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -77,6 +77,11 @@
  *
  * The patch number of the b64 library
  *
+ * \def B64_VER_RELSTATUS
+ *
+ * The release status of the b64 library, in the range 1-0xFE for
+ * prerelease versions, and 0xFF for a released version
+ *
  * \def B64_VER
  *
  * The composite version of the b64 library
@@ -85,17 +90,18 @@
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
 #define B64_VER_PATCH       8
-#define B64_VER_ALPHABETA   0x81
+#define B64_VER_RELSTATUS   0xFF
 
 #define B64_VER \
     (0\
         |   (   B64_VER_MAJOR       << 24   ) \
         |   (   B64_VER_MINOR       << 16   ) \
         |   (   B64_VER_PATCH       <<  8   ) \
-        |   (   B64_VER_ALPHABETA   <<  0   ) \
+        |   (   B64_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
+# define B64_VER_ALPHABETA                                  B64_VER_RELSTATUS
 # define B64_VER_REVISION                                   B64_VER_PATCH
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 

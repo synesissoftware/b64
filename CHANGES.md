@@ -1,6 +1,14 @@
 # b64 - Changes <!-- omit in toc -->
 
 
+## 1.5.8 - 14th October 2026
+
+* Synced tip **cmake-helpers** runners (**run_all_examples** / **scratch** / **unit**);
+* Migrated `B64_VER_ALPHABETA` to `B64_VER_RELSTATUS` (prior name retained as documentation-skip alias) and promoted to release status `0xFF`;
+* Phase **4c** polish: `PROGRAM_NAME` **test.scratch.versions**;
+* CI hygiene: **install-sis-deps**, execute-bit restore after artifact download, Windows **.cmd** dogfood, canonical push branches;
+
+
 ## 1.5.8-beta1 - 9th October 2026
 
 * Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
