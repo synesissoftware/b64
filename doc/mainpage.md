@@ -50,8 +50,8 @@ allocate, then call again. The encoded form is **not** NUL-terminated.
 
 unsigned char const bytes[] = { 0x01, 0x02, 0x03, 0x04 };
 
-size_t const    n       =   b64_encode(bytes, sizeof(bytes), NULL, 0);
-b64_char_t*     encoded =   (b64_char_t*)malloc(n);
+size_t const  n       = b64_encode(bytes, sizeof(bytes), NULL, 0);
+b64_char_t*   encoded = (b64_char_t*)malloc(n);
 
 if (NULL != encoded)
 {
@@ -77,9 +77,9 @@ The header-only C++ API (**b64/b64.hpp**) provides `b64::encode()` and
 ```cpp
 #include <b64/b64.hpp>
 
-unsigned char const bytes[]     =   { 1, 2, 3 };
-b64::string_t const encoded     =   b64::encode(bytes);    // "AQID"
-b64::blob_t const   decoded     =   b64::decode(encoded);  // { 1, 2, 3 }
+unsigned char const bytes[] = { 1, 2, 3 };
+b64::string_t const encoded = b64::encode(bytes);    // "AQID"
+b64::blob_t const   decoded = b64::decode(encoded);  // { 1, 2, 3 }
 ```
 
 
