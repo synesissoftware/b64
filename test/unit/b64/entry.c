@@ -382,6 +382,5 @@ static void TEST_b64_decode2_SINGLE_PADDING_ONLY(void)
     }
 }
 
-
 /* ///////////////////////////// end of file //////////////////////////// */
 

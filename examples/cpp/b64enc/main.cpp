@@ -11,8 +11,6 @@
 #include <string.h>
 
 
-
-
 void encode_input(char const* input_string)
 {
     size_t const len = ::strlen(input_string);
@@ -99,7 +97,6 @@ int main(int argc, char* argv[])
 
     return EXIT_FAILURE;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

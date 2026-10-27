@@ -73,7 +73,6 @@ size_t const SIZES[] =
 
 int const   LINE_LEN_FLAGS_64   =   b64::B64_F_LINE_LEN_64;
 int const   LINE_LEN_FLAGS_76   =   b64::B64_F_LINE_LEN_76;
-
 } // anonymous namespace
 
 
@@ -106,7 +105,6 @@ struct impl
     char const*     name;
     scenario_fn_t*  fn;
 };
-
 } // anonymous namespace
 
 
@@ -398,7 +396,6 @@ run_group(
         }
     }
 }
-
 } // anonymous namespace
 
 
@@ -507,7 +504,6 @@ int main(int /*argc*/, char* /*argv*/[])
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -189,8 +189,8 @@ class watcom_vector_for_b64
     : public WCValVector<unsigned char>
 {
 private:
-    typedef WCValVector<unsigned char>  parent_class_type;
-    typedef watcom_vector_for_b64       class_type;
+    typedef WCValVector<unsigned char>                      parent_class_type;
+    typedef watcom_vector_for_b64                           class_type;
 public:
     watcom_vector_for_b64()
     {}
@@ -233,13 +233,13 @@ class coding_exception
     : public stlsoft_ns_qual_std(runtime_error)
 {
 public:
-    typedef stlsoft_ns_qual_std(runtime_error)  parent_class_type;
-    typedef coding_exception                    class_type;
+    typedef stlsoft_ns_qual_std(runtime_error)              parent_class_type;
+    typedef coding_exception                                class_type;
 private:
 #if defined(B64_USE_CUSTOM_STRING)
-    typedef B64_CUSTOM_STRING_TYPE              string_type;
+    typedef B64_CUSTOM_STRING_TYPE                          string_type;
 #else /* B64_USE_CUSTOM_STRING */
-    typedef std::string                         string_type;
+    typedef std::string                                     string_type;
 #endif /* !B64_USE_CUSTOM_STRING */
 
 public:
@@ -303,9 +303,9 @@ private:
  * of this class can be found in b64/b64.hpp.
  */
 #if defined(B64_USE_CUSTOM_STRING)
-typedef B64_CUSTOM_STRING_TYPE          string_t;
+typedef B64_CUSTOM_STRING_TYPE                              string_t;
 #else /* B64_USE_CUSTOM_STRING */
-typedef std::string                     string_t;
+typedef std::string                                         string_t;
 #endif /* !B64_USE_CUSTOM_STRING */
 
 /** The blob type for the b64 namespace
@@ -331,13 +331,13 @@ typedef std::string                     string_t;
  * of this class can be found in b64/b64.hpp.
  */
 #if defined(B64_USE_CUSTOM_VECTOR)
-typedef B64_CUSTOM_BLOB_TYPE            blob_t;
+typedef B64_CUSTOM_BLOB_TYPE                                blob_t;
 #else /* B64_USE_CUSTOM_VECTOR */
 # ifndef B64_DOCUMENTATION_SKIP_SECTION
-typedef ::stlsoft::byte_t               byte_t_;
-typedef std::vector<byte_t_>            blob_t;
+typedef ::stlsoft::byte_t                                   byte_t_;
+typedef std::vector<byte_t_>                                blob_t;
 # else /* !B64_DOCUMENTATION_SKIP_SECTION */
-typedef std::vector< ::stlsoft::byte_t> blob_t;
+typedef std::vector< ::stlsoft::byte_t>                     blob_t;
 # endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 #endif /* !B64_USE_CUSTOM_VECTOR */
 
@@ -809,14 +809,20 @@ namespace cpp
 
     using B64_NAMESPACE::decode;
     using B64_NAMESPACE::encode;
-
 } /* namespace cpp */
 
 #ifndef B64_NO_NAMESPACE
 } /* namespace B64_NAMESPACE */
 #endif /* !B64_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 #endif /* B64_INCL_B64_HPP_B64 */
 

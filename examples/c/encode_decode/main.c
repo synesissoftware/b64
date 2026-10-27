@@ -25,7 +25,7 @@
  */
 
 #ifndef NUM_ELEMENTS
-# define NUM_ELEMENTS(x)        (sizeof(x) / sizeof(0[x]))
+# define NUM_ELEMENTS(x)                                    (sizeof(x) / sizeof(0[x]))
 #endif /* !NUM_ELEMENTS */
 
 
@@ -108,7 +108,6 @@ int main(void)
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

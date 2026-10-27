@@ -682,9 +682,7 @@ static void TEST_decode_PTR_AND_LEN_STOP_ON_BAD_CHAR_THROWS_WITH_BADCHAR(void)
         XTESTS_TEST_CHARACTER_EQUAL('%', *badChar);
     }
 }
-
 } /* anonymous namespace */
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

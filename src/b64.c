@@ -753,6 +753,5 @@ size_t b64_getErrorStringLength(B64_RC code)
     return (b64_LookupErrorStringA_((int)code, &len), len);
 }
 
-
 /* ///////////////////////////// end of file //////////////////////////// */
 
