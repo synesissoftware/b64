@@ -17,6 +17,7 @@
 ## Performance improvements
 
 * [ ] Benchmarks;
+* [ ] Add performance tests (**test/performance/**, programs **test.performance.\<subject\>**) for encoding and decoding, via both the C API and the C++ API, across a range of block sizes and line-length settings;
 
 
 ## Packaging improvements
@@ -25,6 +26,7 @@
 * [ ] GitHub Actions for all prepare permutations;
 * [ ] **prepare_cmake.sh** should not offer '--mingw' unless on Windows;
 * [ ] **prepare_cmake.sh** should not offer '--msvc-mt' unless on Windows;
+* [ ] Canonicalise the names of the **examples** and **test** directories (e.g. `test.unit.c.1` → `test.unit.<subject>`, `example.c.1` → `example.<subject>`), including their CMake targets and any references in documentation and CI;
 * [x] ~~~scratch version reporter (**test/scratch/versions**, target **test.scratch.versions**)~~~ - ✅;
 
 
