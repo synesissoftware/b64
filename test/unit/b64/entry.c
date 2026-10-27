@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.c.1.c
+ * File:    entry.c
  *
- * Purpose: Implementation file for the test.unit.c.1 project.
+ * Purpose: Implementation file for the test.unit.b64 project.
  *
  * Created: 21st April 2009
  * Updated: 28th October 2026
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.c.1", verbosity))
+    if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
         XTESTS_RUN_CASE(TEST_b64_encode_NULL_AND_EMPTY);
         XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_0);

@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example.c.1.c
+ * File:    examples/c/encode_decode/main.c
  *
  * Purpose: Illustrates encoding and decoding of array of bytes (using C
  *          API).
  *
  * Created: 27th April 2006
- * Updated: 24th September 2024
+ * Updated: 28th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

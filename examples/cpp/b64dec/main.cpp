@@ -38,7 +38,8 @@ void decode_input(char const* input_string)
         << "\n' ("
         << r.size()
         << " byte(s))"
-        << std::endl;
+        << std::endl
+        ;
 }
 
 int main(int argc, char* argv[])
@@ -53,7 +54,8 @@ int main(int argc, char* argv[])
                 << "USAGE: "
                 << argv[0]
                 << " { <input-string> | --help }"
-                << std::endl;
+                << std::endl
+                ;
 
             return EXIT_SUCCESS;
         }
@@ -101,7 +103,8 @@ int main(int argc, char* argv[])
             << input_string
             << "': "
             << x.what()
-            << std::endl;
+            << std::endl
+            ;
     }
     catch (std::exception& x)
     {
@@ -109,7 +112,8 @@ int main(int argc, char* argv[])
             << argv[0]
             << " exception: "
             << x.what()
-            << std::endl;
+            << std::endl
+            ;
     }
 
     return EXIT_FAILURE;

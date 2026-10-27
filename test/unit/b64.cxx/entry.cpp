@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.cpp.1.cpp
+ * File:    entry.cpp
  *
  * Purpose: Unit test for C++ API.
  *
@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.cpp.1", verbosity))
+    if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
         XTESTS_RUN_CASE(TEST_encode_NULL);
         XTESTS_RUN_CASE(TEST_encode_EMPTY);
