@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example.c.1.c
+ * File:    examples/c/encode_decode/main.c
  *
  * Purpose: Illustrates encoding and decoding of array of bytes (using C
  *          API).
  *
  * Created: 27th April 2006
- * Updated: 24th September 2024
+ * Updated: 28th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,7 +25,7 @@
  */
 
 #ifndef NUM_ELEMENTS
-# define NUM_ELEMENTS(x)        (sizeof(x) / sizeof(0[x]))
+# define NUM_ELEMENTS(x)                                    (sizeof(x) / sizeof(0[x]))
 #endif /* !NUM_ELEMENTS */
 
 
@@ -108,7 +108,6 @@ int main(void)
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

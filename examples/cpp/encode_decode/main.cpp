@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    example.cpp.2.cpp
+ * File:    examples/cpp/encode_decode/main.cpp
  *
- * Purpose: Illustrates encoding and decoding of array of bytes with flags
- *          and custom line-length (using C++ API).
+ * Purpose: Illustrates encoding and decoding of array of bytes (using C++
+ *          API).
  *
  * Created: 27th April 2006
- * Updated: 24th September 2024
+ * Updated: 28th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,36 +32,31 @@
 
 int main(int /* argc */, char ** /*argv*/)
 {
-    /* Conversion using encode() and decode(), with encoding flags. */
+    /* Simple conversion using encode() and decode(). */
 
     try
     {
-        /* Flags that will control the conversions. */
-        unsigned  encodingFlags   =   b64::B64_F_LINE_LEN_USE_PARAM;      /* encode() will use the lineLen parameter to determine line length. */
-        unsigned  decodingFlags   =   b64::B64_F_STOP_ON_UNKNOWN_CHAR;    /* decode() will fail if any non-b64-character / non-white-space character is in the encoded string. */
-        int       encodingLineLen =   4;                                  /* Encoding line length will be 4 characters. */
-
         /* Declare an array of bytes to use as the 'binary' blob to encode. */
         unsigned char   bytes[]  =   { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
         /* Print out the bytes to be encoded.
          */
-        std::cout << "Encoding " << STLSOFT_NUM_ELEMENTS(bytes) << " bytes with specific line-length:\n";
+        std::cout << "Encoding " << STLSOFT_NUM_ELEMENTS(bytes) << " bytes:\n";
         std::copy(  bytes, bytes + STLSOFT_NUM_ELEMENTS(bytes)
-                ,   stlsoft::FILE_iterator<unsigned char>(stdout, " %d"));
+                ,   stlsoft::FILE_iterator<unsigned char, char>(stdout, " %d"));
         std::cout << std::endl;
 
         /* Perform the encoding, whose results are returned in an instance of
          * b64::cpp::string_t.
          */
-        b64::cpp::string_t  enc =   b64::cpp::encode(&bytes[0], sizeof(bytes), encodingFlags, encodingLineLen);
+        b64::cpp::string_t  enc =   b64::cpp::encode(&bytes[0], sizeof(bytes));
 
         std::cout << "Encoded form: [" << enc << "]" << std::endl;
 
         /* Perform the decoding, whose results are returned in an instance of
          * b64::cpp::blob_t.
          */
-        b64::cpp::blob_t    dec =   b64::cpp::decode(enc, decodingFlags);
+        b64::cpp::blob_t    dec =   b64::cpp::decode(enc);
 
         /* Verify that the decoding is exactly the same size and contents as
          * the encoding, and then print out the decoded bytes.
@@ -81,7 +76,6 @@ int main(int /* argc */, char ** /*argv*/)
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

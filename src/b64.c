@@ -4,11 +4,11 @@
  * Purpose: Implementation file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 16th October 2024
+ * Updated: 28th October 2026
  *
- * Home:    http://synesis.com.au/software/
+ * Home:    https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,7 +51,7 @@
 # define B64_VER_C_B64_MAJOR    1
 # define B64_VER_C_B64_MINOR    3
 # define B64_VER_C_B64_REVISION 8
-# define B64_VER_C_B64_EDIT     27
+# define B64_VER_C_B64_EDIT     30
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -317,6 +317,7 @@ static size_t b64_decode_exact_size_(
 {
     /* check and inspect padding at the end of the base64 string */
     size_t padding = 0;
+    size_t decodedLength;
 
     if (length >= 2 && base64Str[length - 1] == '=')
     {
@@ -353,15 +354,20 @@ static size_t b64_decode_exact_size_(
     }
 
     /* calculate the exact decoded length */
-    size_t decodedLength = (length * 3 / 4) - padding;
+    /* NOTE: this is (length * 3 / 4), formulated so as not to overflow */
+    decodedLength = ((length / 4) * 3) + ((length % 4) * 3 / 4);
 
-#if 0
-    /* we can underrun with invalid, short base64 encoded string, check for safety */
-    if (decodedLength < 0)
+    /* an invalid, short base64 encoded string (e.g. "==") would otherwise
+     * cause the (unsigned) subtraction to underflow
+     */
+    if (padding > decodedLength)
     {
         decodedLength = 0;
     }
-#endif
+    else
+    {
+        decodedLength -= padding;
+    }
 
     return decodedLength;
 }
@@ -746,7 +752,6 @@ size_t b64_getErrorStringLength(B64_RC code)
 
     return (b64_LookupErrorStringA_((int)code, &len), len);
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

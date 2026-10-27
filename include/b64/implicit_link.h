@@ -4,11 +4,11 @@
  * Purpose: Implicit linking for the b64 API.
  *
  * Created: 5th March 2006
- * Updated: 10th July 2024
+ * Updated: 28th October 2026
  *
  * Home:    https://github.com/synesissoftware/b64
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,6 +50,7 @@
 #ifndef B64_INCL_B64_H_IMPLICIT_LINK
 #define B64_INCL_B64_H_IMPLICIT_LINK
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version
  */
@@ -58,8 +59,9 @@
 # define B64_VER_B64_H_IMPLICIT_LINK_MAJOR      1
 # define B64_VER_B64_H_IMPLICIT_LINK_MINOR      5
 # define B64_VER_B64_H_IMPLICIT_LINK_REVISION   3
-# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       17
+# define B64_VER_B64_H_IMPLICIT_LINK_EDIT       18
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,12 +71,14 @@
 # include <b64/b64.h>
 #endif /* !B64_INCL_B64_H_B64 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros and definitions
  */
 
-#  define B64_IMPL_LINK_STRINGIZE_2_(x)                     #x
-#  define B64_IMPL_LINK_STRINGIZE_1_(x)                     B64_IMPL_LINK_STRINGIZE_2_(x)
+#define B64_IMPL_LINK_STRINGIZE_2_(x)                       #x
+#define B64_IMPL_LINK_STRINGIZE_1_(x)                       B64_IMPL_LINK_STRINGIZE_2_(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * architecture discrimination
@@ -97,6 +101,7 @@
       defined(_M_IX86)
 # define B64_ARCH_IS_X86
 #endif /* _M_?? */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit linking
@@ -340,8 +345,8 @@
 #  pragma comment(lib, B64_IMPL_LINK_LIBRARY_NAME)
 
 # endif /* B64_IMPLICIT_LINK_SUPPORT */
-
 #endif /* Win-32 || Win-64 */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

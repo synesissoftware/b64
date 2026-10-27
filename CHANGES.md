@@ -1,6 +1,26 @@
 # b64 - Changes <!-- omit in toc -->
 
 
+## 1.5.10 - 28th October 2026
+
+* fixes:
+  * `b64_decode()` / `b64_decode2()` size calculation underflowed (and so reported a huge size) for padding-only input such as `"=="`, and could overflow for very long input; added unit tests;
+  * moved a mid-block declaration in **b64.c** to the head of its block, for C90 compilers;
+* build:
+  * corrected the CMake project description;
+  * added the `define_performance_test_program()` CMake macro, which registers no CTest test;
+* testing:
+  * canonicalised the examples and unit tests: directories are named for their subject, entry points are **entry.c** / **entry.cpp** (tests) and **main.c** / **main.cpp** (examples), CMake targets are `test.unit.b64`, `test.unit.b64.cxx`, `example.c.encode_decode`, `example.c.encode_decode_with_flags`, `example.cpp.encode_decode`, and `example.cpp.encode_decode_with_flags`, and the unit-test runners now identify themselves with `__FILE__`;
+  * canonicalised and enhanced unit test case names (`TEST_<function>_<CONDITION>`) in **test/unit/b64/entry.c** and **test/unit/b64.cxx/entry.cpp**, and removed an empty case and two duplicated cases from the latter;
+  * added **test.performance.b64** (**test/performance/b64/**), timing encode and decode via the C API and the C++ API across block sizes and line-length settings, with `SIS_PERFTESTS_GROUPGAPS` group separators;
+* documentation and boilerplate:
+  * added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, `group__b64_cpp_api` in **b64/b64.hpp**, and a CI `documentation` job;
+  * added minimal "simplest use" C and C++ snippets to **README.md** (**Developer Experience**) and **doc/mainpage.md**;
+  * updated source file header dates, copyright years, and home URLs;
+  * tidied the layout (blank lines, section banners, column alignment, trailing stream-insertion terminators, and an inclusion-control banner in **b64/b64.hpp**) of **b64/b64.hpp**, **b64/implicit_link.h**, **b64.c**, the examples, and the test sources, with no change in behaviour;
+  * added the **Developer Experience** section and corrected the STLSoft links in **README.md**; grouped the **TODO.md** items by target version, with the malformed-input item split into misplaced padding (1.5.x) and truncated final quad (1.6.x);
+
+
 ## 1.5.9 - 27th October 2026
 
 * Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
@@ -22,7 +42,6 @@
 * Corrected its CMake executable target to **test.scratch.versions**;
 * Added native Windows helper runners and canonicalised the CMake helper scripts;
 * Added conditional `find_dependency(STLSoft)` handling to the installed **b64** CMake package configuration;
-
 
 
 ## 1.5.7 - 2nd August 2026

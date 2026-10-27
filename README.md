@@ -15,6 +15,7 @@ Very small and simple standalone C-language library that provides Base-64 encodi
 
 - [Introduction](#introduction)
   - [Dependencies](#dependencies)
+- [Developer Experience](#developer-experience)
 - [Installation](#installation)
 - [Components](#components)
   - [C API / core library](#c-api--core-library)
@@ -48,11 +49,52 @@ The **core library** is a pure standalone component:
 | Component      | Implemented in | Use in                     | Dependencies                                               |
 | ------------   | -------------- | -------------------------- | ---------------------------------------------------------- |
 | Core library   | C              | C, C++ - via **b64/b64.h** | -                                                          |
-| C++ API        | C++            | C++ - via **b64/b64.hpp**  | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/) |
+| C++ API        | C++            | C++ - via **b64/b64.hpp**  | [STLSoft](https://github.com/synesissoftware/STLSoft) |
 | Examples (C)   | C              | -                          | -                                                          |
-| Examples (C++) | C++            | -                          | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/) |
-| Tests (C)      | C              | -                          | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/), [xTests](http://github.com/synesissoftware/xTests/) |
-| Tests (C++)    | C++            | -                          | [STLSoft](http://github.com/synesissoftware/STLSoft-1.10/), [xTests](http://github.com/synesissoftware/xTests/) |
+| Examples (C++) | C++            | -                          | [STLSoft](https://github.com/synesissoftware/STLSoft) |
+| Tests (C)      | C              | -                          | [STLSoft](https://github.com/synesissoftware/STLSoft), [xTests](http://github.com/synesissoftware/xTests/) |
+| Tests (C++)    | C++            | -                          | [STLSoft](https://github.com/synesissoftware/STLSoft), [xTests](http://github.com/synesissoftware/xTests/) |
+
+
+## Developer Experience
+
+**Need**: a C compiler and **CMake** 3.20+. The C++ API and the tests also need [STLSoft](https://github.com/synesissoftware/STLSoft) (1.11+); the tests also need [xTests](https://github.com/synesissoftware/xTests/) (0.28+). The C core library needs **nothing**.
+
+**Build**:
+
+```bash
+./prepare_cmake.sh
+./build_cmake.sh
+```
+
+**Try**:
+
+```bash
+./run_all_unit_tests.sh
+./run_all_examples.sh
+```
+
+**Simplest use** (C, with a fixed-size buffer; the encoded form is not NUL-terminated):
+
+```C
+#include <b64/b64.h>
+
+unsigned char const bytes[] = { 1, 2, 3 };
+char                enc[8];
+size_t const        n       =   b64_encode(bytes, sizeof(bytes), enc, sizeof(enc));  /* n == 4; enc is "AQID" */
+```
+
+**Simplest use** (C++):
+
+```C++
+#include <b64/b64.hpp>
+
+unsigned char const bytes[]     =   { 1, 2, 3 };
+b64::string_t const encoded     =   b64::encode(bytes);    // "AQID"
+b64::blob_t const   decoded     =   b64::decode(encoded);  // { 1, 2, 3 }
+```
+
+**Read next**: [INSTALL.md](./INSTALL.md) for installation and bundling, the **examples** directory for usage, and [FAQ.md](./FAQ.md) for common questions.
 
 
 ## Installation
@@ -195,10 +237,9 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 #### STLSoft (C++ API-only) <!-- omit in toc -->
 
-The C API has no non-standard dependencies. The C++ API depends on the STLSoft libraries, version 1.9.111 (or later). Version 1.10.1 beta21 (or later) is recommended.
+The C API has no non-standard dependencies. The C++ API depends on the STLSoft libraries, version 1.11 (or later), as required by the CMake build.
 
-* [STLSoft 1.9](http://github.com/synesissoftware/STLSoft-1.9/)
-* [STLSoft 1.10](http://github.com/synesissoftware/STLSoft-1.10/) (Recommended)
+* [STLSoft](https://github.com/synesissoftware/STLSoft)
 
 
 #### xTests (unit-tests only) <!-- omit in toc -->
