@@ -1,12 +1,6 @@
 # b64 - Changes <!-- omit in toc -->
 
 
-## 1.5.11 - 28th October 2026
-
-* Added performance test **test.performance.b64** (**test/performance/b64/**), timing encode and decode via the C API and the C++ API across block sizes and line-length settings, with `SIS_PERFTESTS_GROUPGAPS` group separators and a `define_performance_test_program()` CMake macro;
-* Grouped the functional improvements in **TODO.md** by target version (1.5.x, 1.6.x, 2.x), and split the malformed-input item into misplaced padding (1.5.x) and truncated final quad (1.6.x);
-
-
 ## 1.5.10 - 28th October 2026
 
 * Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, `group__b64_cpp_api` in **b64/b64.hpp**, and a CI `documentation` job;
@@ -15,9 +9,10 @@
 * Fixed `b64_decode()` / `b64_decode2()` size calculation, which underflowed (and so reported a huge size) for padding-only input such as `"=="`, and could overflow for very long input; added unit tests;
 * Canonicalised the examples and unit tests: directories are named for their subject, entry points are **entry.c** / **entry.cpp** (tests) and **main.c** / **main.cpp** (examples), CMake targets are `test.unit.b64`, `test.unit.b64.cxx`, `example.c.encode_decode`, `example.c.encode_decode_with_flags`, `example.cpp.encode_decode`, and `example.cpp.encode_decode_with_flags`, and the unit-test runners now identify themselves with `__FILE__`;
 * Canonicalised and enhanced unit test case names (`TEST_<function>_<CONDITION>`) in **test.unit.c.1** and **test.unit.cpp.1**, and removed an empty case and two duplicated cases from the latter;
+* Added performance test **test.performance.b64** (**test/performance/b64/**), timing encode and decode via the C API and the C++ API across block sizes and line-length settings, with `SIS_PERFTESTS_GROUPGAPS` group separators and a `define_performance_test_program()` CMake macro;
 * Moved a mid-block declaration in **b64.c** to the head of its block, for C90 compilers;
 * Updated source file header dates, copyright years, and home URLs;
-* Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**);
+* Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**, grouped by target version, with the malformed-input item split into misplaced padding (1.5.x) and truncated final quad (1.6.x));
 
 
 ## 1.5.9 - 27th October 2026

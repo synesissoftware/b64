@@ -89,7 +89,7 @@
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
-#define B64_VER_PATCH       11
+#define B64_VER_PATCH       10
 #define B64_VER_RELSTATUS   0xFF
 
 #define B64_VER \
