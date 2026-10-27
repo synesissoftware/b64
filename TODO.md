@@ -1,5 +1,6 @@
 # b64 - TODO <!-- omit in toc -->
 
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Functional improvements](#functional-improvements)
@@ -23,7 +24,7 @@
 * [ ] GitHub Actions for all prepare permutations;
 * [ ] **prepare_cmake.sh** should not offer '--mingw' unless on Windows;
 * [ ] **prepare_cmake.sh** should not offer '--msvc-mt' unless on Windows;
-* [ ] **libver.sh** (like that of Pantheios;
+* [x] ~~~scratch version reporter (**test/scratch/versions**, target **test.scratch.versions**)~~~ - ✅;
 
 
 <!-- ########################### end of file ########################### -->

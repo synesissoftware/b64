@@ -6,7 +6,8 @@
 
 | Date                  | News Item          | Details |
 | --------------------- | ------------------ | ------- |
-| 27th October 2026     | Release of [b64 1.5.9](https://github.com/synesissoftware/b64/releases/tag/1.5.9) | `HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages |
+| 28th October 2026     | [**b64** 1.5.10 released](https://github.com/synesissoftware/b64/releases/tag/1.5.10) | |
+| 27th October 2026     | [**b64** 1.5.9 released](https://github.com/synesissoftware/b64/releases/tag/1.5.9) | `HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages |
 | 14th October 2026     | [1.5.8 released](https://github.com/synesissoftware/b64/releases/tag/1.5.8) | Tip helpers; `B64_VER_RELSTATUS`; Phase **4c**; CI **install-sis-deps** / xbit / **.cmd** |
 | 9th October 2026      | [1.5.8-beta1 released](https://github.com/synesissoftware/b64/releases/tag/1.5.8-beta1) | CMake target, helper, and packaging updates |
 | 2nd August 2026       | [1.5.7 released](https://github.com/synesissoftware/b64/releases/tag/1.5.7) | Modular CI and CMake improvements |
