@@ -11,6 +11,7 @@
 ## Functional improvements
 
 * [ ] Simplified C++ API when STLSoft not available or suppressed;
+* [ ] Improve Developer Experience for the absolute simplest use case: add a minimal copy-pasteable C snippet and C++ snippet to **README.md** **Developer Experience** (matching the first examples and **doc/mainpage.md**), and consider simpler entry points if the simplest case is longer than it needs to be;
 * [ ] Remove the C API functions (`b64_encode()`, `b64_encode2()`, `b64_decode()`, `b64_decode2()`, `b64_getErrorString()`, `b64_getErrorStringLength()`) and types (`B64_RC`, `B64_FLAGS`) from the **b64** C++ namespace, leaving them in the global namespace only, in a future version (2.x);
 
 
