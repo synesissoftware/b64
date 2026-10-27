@@ -51,7 +51,7 @@
 # define B64_VER_C_B64_MAJOR    1
 # define B64_VER_C_B64_MINOR    3
 # define B64_VER_C_B64_REVISION 8
-# define B64_VER_C_B64_EDIT     29
+# define B64_VER_C_B64_EDIT     30
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -354,15 +354,20 @@ static size_t b64_decode_exact_size_(
     }
 
     /* calculate the exact decoded length */
-    decodedLength = (length * 3 / 4) - padding;
+    /* NOTE: this is (length * 3 / 4), formulated so as not to overflow */
+    decodedLength = ((length / 4) * 3) + ((length % 4) * 3 / 4);
 
-#if 0
-    /* we can underrun with invalid, short base64 encoded string, check for safety */
-    if (decodedLength < 0)
+    /* an invalid, short base64 encoded string (e.g. "==") would otherwise
+     * cause the (unsigned) subtraction to underflow
+     */
+    if (padding > decodedLength)
     {
         decodedLength = 0;
     }
-#endif
+    else
+    {
+        decodedLength -= padding;
+    }
 
     return decodedLength;
 }

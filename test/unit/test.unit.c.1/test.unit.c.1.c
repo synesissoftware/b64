@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.c.1 project.
  *
  * Created: 21st April 2009
- * Updated: 17th October 2024
+ * Updated: 28th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,6 +53,8 @@ static void test_2_02(void);
 static void test_2_03(void);
 static void test_2_04(void);
 static void test_2_05(void);
+static void test_2_06(void);
+static void test_2_07(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +86,8 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_2_03);
         XTESTS_RUN_CASE(test_2_04);
         XTESTS_RUN_CASE(test_2_05);
+        XTESTS_RUN_CASE(test_2_06);
+        XTESTS_RUN_CASE(test_2_07);
 
         XTESTS_PRINT_RESULTS();
 
@@ -325,6 +329,56 @@ static void test_2_05(void)
         size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, NULL, 0, 0, NULL, &rc);
 
         XTESTS_TEST_INTEGER_EQUAL(20, n);
+    }
+}
+
+static void test_2_06(void)
+{
+    /* padding-only input, shorter than a quantum: the calculated size must
+     * not underflow
+     */
+
+    char const      enc[] = "==";
+
+    {
+        B64_RC          rc  =   B64_RC_OK;
+        size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, NULL, 0, 0, NULL, &rc);
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        XTESTS_TEST_ENUM_EQUAL(B64_RC_OK, rc);
+    }
+
+    {
+        unsigned char   dec[10];
+        B64_RC          rc  =   B64_RC_OK;
+        size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, &dec[0], sizeof(dec), 0, NULL, &rc);
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        XTESTS_TEST_ENUM_EQUAL(B64_RC_OK, rc);
+    }
+}
+
+static void test_2_07(void)
+{
+    /* a single padding character */
+
+    char const      enc[] = "=";
+
+    {
+        B64_RC          rc  =   B64_RC_OK;
+        size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, NULL, 0, 0, NULL, &rc);
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        XTESTS_TEST_ENUM_EQUAL(B64_RC_OK, rc);
+    }
+
+    {
+        unsigned char   dec[10];
+        B64_RC          rc  =   B64_RC_OK;
+        size_t const    n   =   b64_decode2(enc, STLSOFT_NUM_ELEMENTS(enc) - 1u, &dec[0], sizeof(dec), 0, NULL, &rc);
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        XTESTS_TEST_ENUM_EQUAL(B64_RC_OK, rc);
     }
 }
 
