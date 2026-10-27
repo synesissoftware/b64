@@ -61,7 +61,7 @@
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
 # define B64_VER_B64_H_B64_REVISION 17
-# define B64_VER_B64_H_B64_EDIT     56
+# define B64_VER_B64_H_B64_EDIT     57
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /**

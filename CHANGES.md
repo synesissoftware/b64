@@ -12,7 +12,7 @@
 * Added performance test **test.performance.b64** (**test/performance/b64/**), timing encode and decode via the C API and the C++ API across block sizes and line-length settings, with `SIS_PERFTESTS_GROUPGAPS` group separators and a `define_performance_test_program()` CMake macro;
 * Moved a mid-block declaration in **b64.c** to the head of its block, for C90 compilers;
 * Updated source file header dates, copyright years, and home URLs;
-* Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**);
+* Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**, grouped by target version, with the malformed-input item split into misplaced padding (1.5.x) and truncated final quad (1.6.x));
 
 
 ## 1.5.9 - 27th October 2026
