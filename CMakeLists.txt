@@ -30,7 +30,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 # project
 
 project(b64
-	DESCRIPTION "b64 is a small, standalone library, that provides extensible C-style string instances and extensible arrays of such."
+	DESCRIPTION "b64 is a small, standalone library that provides Base-64 encoding and decoding, with a header-only C++ API."
 	HOMEPAGE_URL "https://github.com/synesissoftware/b64"
 	LANGUAGES C CXX
 )

@@ -3,12 +3,15 @@
 
 ## 1.5.10 - 28th October 2026
 
+* Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, `group__b64_cpp_api` in **b64/b64.hpp**, and a CI `documentation` job;
+* Corrected the CMake project description;
+* Updated source file header dates, copyright years, and home URLs;
+* Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**);
 
 
 ## 1.5.9 - 27th October 2026
 
 * Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
-* Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, and a CI `documentation` job;
 
 
 ## 1.5.8 - 14th October 2026

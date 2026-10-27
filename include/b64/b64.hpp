@@ -6,7 +6,7 @@
  * Created: 18th October 2004
  * Updated: 28th October 2026
  *
- * Home:    http://synesis.com.au/software/
+ * Home:    https://github.com/synesissoftware/b64
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
