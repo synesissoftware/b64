@@ -20,7 +20,7 @@
 ## Performance improvements
 
 * [ ] Benchmarks;
-* [ ] Add performance tests (**test/performance/**, programs **test.performance.\<subject\>**) for encoding and decoding, via both the C API and the C++ API, across a range of block sizes and line-length settings;
+* [x] Add performance tests (**test/performance/**, programs **test.performance.\<subject\>**) for encoding and decoding, via both the C API and the C++ API, across a range of block sizes and line-length settings;
 
 
 ## Packaging improvements
