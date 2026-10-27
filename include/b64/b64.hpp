@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        b64/b64.hpp
+ * File:    b64/b64.hpp
  *
- * Purpose:     Header file for the b64 C++-API.
+ * Purpose: Header file for the b64 C++-API.
  *
- * Created:     18th October 2004
- * Updated:     6th February 2004
+ * Created: 18th October 2004
+ * Updated: 28th October 2026
  *
- * Home:        http://synesis.com.au/software/
+ * Home:    http://synesis.com.au/software/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -67,7 +67,7 @@
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
 # define B64_VER_B64_HPP_B64_REVISION   13
-# define B64_VER_B64_HPP_B64_EDIT       43
+# define B64_VER_B64_HPP_B64_EDIT       44
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -174,6 +174,14 @@ namespace B64_NAMESPACE
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
+ */
+
+/** \defgroup group__b64_cpp_api b64 C++ API
+ *
+ * The header-only C++ API of the b64 library, built on the C API
+ * (\ref group__b64_api).
+ *
+ * \{
  */
 
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -356,7 +364,7 @@ typedef std::vector< ::stlsoft::byte_t> blob_t;
  *
  * \return The string form of the block
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -433,7 +441,7 @@ inline string_t encode(void const* src, size_t srcSize, int flags, int lineLen =
  *
  * \return The string form of the block
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -461,7 +469,7 @@ inline string_t encode(void const* src, size_t srcSize)
  * for details about this facility, and consult your <a href = "http://stlsoft.org/">STLSoft</a> header files
  * to find out to which compilers this applies.
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -485,7 +493,7 @@ inline string_t encode(T (&ar)[N])
  *
  * \return The string form of the block
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -514,7 +522,7 @@ inline string_t encode(blob_t const &blob)
  *
  * \return The string form of the block
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -544,7 +552,7 @@ inline string_t encode(blob_t const &blob, int flags, int lineLen = 0, B64_RC* r
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -602,7 +610,7 @@ inline blob_t decode(b64_char_t const* src, size_t srcLen, int flags, b64_char_t
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -628,7 +636,7 @@ STLSOFT_OPEN_WORKER_NS_(impl)
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -665,7 +673,7 @@ STLSOFT_CLOSE_WORKER_NS_(ns)
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -689,7 +697,7 @@ inline blob_t decode(S const &str)
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -714,7 +722,7 @@ inline blob_t decode(int flags, S const &str) // NOTE: This has to be overloaded
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -752,7 +760,7 @@ inline blob_t decode(string_t const &str, int flags = B64_F_STOP_ON_BAD_CHAR)
  *
  * \return The binary form of the block, as a \c blob_t
  *
- * \note There is no error return. If insufficient memory can be allocated, an
+ * \note There is no error return. If insufficient memory is available for allocation, an
  * instance of \c std::bad_alloc will be thrown
  *
  * \note Threading: The function is fully re-entrant, assuming that the heap for the
@@ -776,6 +784,8 @@ inline blob_t decode(string_t const &str, int flags, b64_char_t const** badChar,
     ,   rc
     );
 }
+
+/** \} */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

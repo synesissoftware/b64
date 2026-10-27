@@ -11,6 +11,7 @@
 ## Functional improvements
 
 * [ ] Simplified C++ API when STLSoft not available or suppressed;
+* [ ] Remove the C API functions (`b64_encode()`, `b64_encode2()`, `b64_decode()`, `b64_decode2()`, `b64_getErrorString()`, `b64_getErrorStringLength()`) and types (`B64_RC`, `B64_FLAGS`) from the **b64** C++ namespace, leaving them in the global namespace only, in a future version (2.x);
 
 
 ## Performance improvements

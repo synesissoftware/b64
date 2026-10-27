@@ -8,6 +8,7 @@
 ## 1.5.9 - 27th October 2026
 
 * Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
+* Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, and a CI `documentation` job;
 
 
 ## 1.5.8 - 14th October 2026

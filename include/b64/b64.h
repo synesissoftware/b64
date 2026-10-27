@@ -233,6 +233,14 @@ typedef enum B64_FLAGS                                      B64_FLAGS;
 extern "C" {
 #endif /* __cplusplus */
 
+/** \defgroup group__b64_api b64 C API
+ *
+ * The core C API of the b64 library: Base-64 encoding and decoding, and
+ * the textual description of status codes.
+ *
+ * \{
+ */
+
 /** Encodes a block of binary data into Base-64
  *
  * \param src Pointer to the block to be encoded. May not be NULL, except
@@ -452,6 +460,8 @@ b64_getErrorStringLength(
  * \see b64_getStatusCodeString, b64_getErrorString, b64_getErrorStringLength
  */
 #define b64_getStatusCodeStringLength                       b64_getErrorStringLength
+
+/** \} */
 
 #ifdef __cplusplus
 } /* extern "C" */
