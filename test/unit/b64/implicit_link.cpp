@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        implicit_link.cpp
+ * File:    implicit_link.cpp
  *
- * Purpose:     Implicit link file for the test.unit.cpp.1 project.
+ * Purpose: Implicit link file for the test.unit.b64 project.
  *
- * Created:     21st April 2009
- * Updated:     23rd December 2023
+ * Created: 21st April 2009
+ * Updated: 28th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
