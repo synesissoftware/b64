@@ -10,6 +10,14 @@
 
 ## Functional improvements
 
+### 1.5.x
+
+* [ ] Decide and implement behaviour for misplaced padding in `b64_decode2()`: misplaced padding is accepted silently (`"A=B="` decodes 2 bytes, `"AA=A"` decodes 3, and `"AA==AAAA"` ignores everything after the first padded quad); consider reporting via `B64_RC_DATA_ERROR`, possibly behind opt-in flags, and pin the chosen behaviour with unit tests;
+* [x] ~~~Developer Experience for the absolute simplest use case: minimal C and C++ snippets in **README.md** **Developer Experience** and **doc/mainpage.md**~~~ - ✅;
+
+### 1.6.x
+
+* [ ] Decide and implement behaviour for a truncated final (partial) quad in `b64_decode2()`: a final partial quad (e.g. `"AAA"`) is silently ignored with `B64_RC_OK` and `B64_RC_TRUNCATED_INPUT` is never returned; consider reporting via `B64_RC_TRUNCATED_INPUT`, possibly behind an opt-in flag, and pin the chosen behaviour with unit tests;
 * [ ] Simplified C++ API when STLSoft not available or suppressed;
 * [ ] Decide and implement behaviour for malformed or truncated Base-64 input in `b64_decode2()`: a final partial quad (e.g. `"AAA"`) is silently ignored with `B64_RC_OK` and `B64_RC_TRUNCATED_INPUT` is never returned; misplaced padding is accepted silently (`"A=B="` decodes 2 bytes, `"AA=A"` decodes 3, and `"AA==AAAA"` ignores everything after the first padded quad); consider reporting via `B64_RC_TRUNCATED_INPUT` / `B64_RC_DATA_ERROR`, possibly behind opt-in flags, and pin the chosen behaviour with unit tests;
 * [x] ~~~Developer Experience for the absolute simplest use case: minimal C and C++ snippets in **README.md** **Developer Experience** and **doc/mainpage.md**~~~ - ✅;
@@ -20,7 +28,7 @@
 ## Performance improvements
 
 * [ ] Benchmarks;
-* [ ] Add performance tests (**test/performance/**, programs **test.performance.\<subject\>**) for encoding and decoding, via both the C API and the C++ API, across a range of block sizes and line-length settings;
+* [x] Add performance tests (**test/performance/**, programs **test.performance.\<subject\>**) for encoding and decoding, via both the C API and the C++ API, across a range of block sizes and line-length settings;
 
 
 ## Packaging improvements
