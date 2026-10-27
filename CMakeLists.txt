@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for b64
 #
 # Created:  6th February 2024
-# Updated:  30th July 2026
+# Updated:  27th October 2026
 #
 # ######################################################################## #
 
@@ -158,6 +158,12 @@ if(BUILD_TESTING OR NOT NO_B64_CPP_API)
 
 		include_directories(${STLSOFT_INCLUDE_DIR})
 	endif()
+
+	if(DEFINED STLSOFT_INCLUDE_DIR OR DEFINED STLSoft_FOUND)
+
+		add_compile_definitions(HAS_STLSOFT)
+		add_compile_definitions(HAS_STLSoft)
+	endif()
 endif()
 
 
@@ -174,7 +180,13 @@ if(NOT (NO_SHWILD))
 
 			message("-- CMake package shwild found (version ${shwild_VERSION})")
 
-			add_compile_definitions(XTESTS_HAS_SHWILD)
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
+			add_compile_definitions(B64_HAS_SHWILD)
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
 		endif(shwild_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -184,11 +196,16 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26.3)
+	set(xTests_REQUIRED_VERSION_ 0.28)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 
