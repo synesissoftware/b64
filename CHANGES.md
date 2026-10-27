@@ -5,6 +5,7 @@
 
 * Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, `group__b64_cpp_api` in **b64/b64.hpp**, and a CI `documentation` job;
 * Corrected the CMake project description;
+* Added minimal "simplest use" C and C++ snippets to **README.md** (**Developer Experience**) and **doc/mainpage.md**;
 * Fixed `b64_decode()` / `b64_decode2()` size calculation, which underflowed (and so reported a huge size) for padding-only input such as `"=="`, and could overflow for very long input; added unit tests;
 * Canonicalised the examples and unit tests: directories are named for their subject, entry points are **entry.c** / **entry.cpp** (tests) and **main.c** / **main.cpp** (examples), CMake targets are `test.unit.b64`, `test.unit.b64.cxx`, `example.c.encode_decode`, `example.c.encode_decode_with_flags`, `example.cpp.encode_decode`, and `example.cpp.encode_decode_with_flags`, and the unit-test runners now identify themselves with `__FILE__`;
 * Canonicalised and enhanced unit test case names (`TEST_<function>_<CONDITION>`) in **test.unit.c.1** and **test.unit.cpp.1**, and removed an empty case and two duplicated cases from the latter;

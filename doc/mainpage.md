@@ -29,9 +29,19 @@ caller supplies all buffers.
 * b64_getStatusCodeString() / b64_getStatusCodeStringLength() describe a
   @ref b64::B64_RC "B64_RC";
 
-Every function follows the same two-call pattern: pass a `NULL` destination
-to obtain the required buffer size, allocate, then call again. The encoded
-form is **not** NUL-terminated.
+The simplest use is with a fixed-size buffer:
+
+```c
+#include <b64/b64.h>
+
+unsigned char const bytes[] = { 1, 2, 3 };
+char                enc[8];
+size_t const        n       =   b64_encode(bytes, sizeof(bytes), enc, sizeof(enc));  /* n == 4; enc is "AQID" */
+```
+
+For input of unknown size, every function follows the same two-call
+pattern: pass a `NULL` destination to obtain the required buffer size,
+allocate, then call again. The encoded form is **not** NUL-terminated.
 
 ```c
 #include <b64/b64.h>
@@ -67,9 +77,9 @@ The header-only C++ API (**b64/b64.hpp**) provides `b64::encode()` and
 ```cpp
 #include <b64/b64.hpp>
 
-unsigned char const     bytes[] = { 0x01, 0x02, 0x03, 0x04 };
-b64::string_t const     encoded = b64::encode(bytes);
-b64::blob_t const       decoded = b64::decode(encoded);
+unsigned char const bytes[]     =   { 1, 2, 3 };
+b64::string_t const encoded     =   b64::encode(bytes);    // "AQID"
+b64::blob_t const   decoded     =   b64::decode(encoded);  // { 1, 2, 3 }
 ```
 
 
