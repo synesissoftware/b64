@@ -5,6 +5,7 @@
 
 * Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, `group__b64_cpp_api` in **b64/b64.hpp**, and a CI `documentation` job;
 * Corrected the CMake project description;
+* Moved a mid-block declaration in **b64.c** to the head of its block, for C90 compilers;
 * Updated source file header dates, copyright years, and home URLs;
 * Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**);
 
