@@ -1,0 +1,79 @@
+# Doxyfile for b64 (C API and C++ API)
+
+PROJECT_NAME           = "b64"
+PROJECT_BRIEF          = "Very small, simple, standalone Base-64 encoding and decoding library"
+# overridden by generate_doxygen.sh from the B64_VER_* macros
+PROJECT_NUMBER         = 1.5.10
+
+OUTPUT_DIRECTORY       = _build/doxygen
+CREATE_SUBDIRS         = NO
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+OUTPUT_LANGUAGE        = English
+TAB_SIZE               = 4
+FULL_PATH_NAMES        = NO
+STRIP_FROM_PATH        = .
+STRIP_FROM_INC_PATH    = include
+TIMESTAMP              = NO
+
+INPUT                  = include/b64 \
+                         doc
+FILE_PATTERNS          = *.h \
+                         *.hpp \
+                         *.md
+RECURSIVE              = NO
+EXCLUDE                = include/b64/implicit_link.h
+
+USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
+
+EXAMPLE_PATH           = examples
+EXAMPLE_RECURSIVE      = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+# The C API functions live in the b64 namespace when compiled as C++; the
+# documentation presents them as the C functions they are
+HIDE_SCOPE_NAMES       = YES
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+SEARCHENGINE           = YES
+SOURCE_BROWSER         = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+VERBATIM_HEADERS       = YES
+
+MARKDOWN_SUPPORT       = YES
+JAVADOC_AUTOBRIEF      = YES
+QUIET                  = YES
+
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+WARN_IF_DOC_ERROR      = YES
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SKIP_FUNCTION_MACROS   = YES
+# Hide version/edit noise and the STLSoft shims via the skip-section guard.
+# __cplusplus is predefined so that the b64 namespace (and so links such as
+# b64::B64_RC) is visible to Doxygen; otherwise B64_NO_NAMESPACE is defined.
+# B64_NAMESPACE is the macro that names the namespace (b64), and only
+# predefined / listed macros are expanded (EXPAND_ONLY_PREDEF), so it is
+# expanded via EXPAND_AS_DEFINED; otherwise the namespace is documented as
+# "B64_NAMESPACE" and b64:: links cannot resolve.
+PREDEFINED             = B64_DOCUMENTATION_SKIP_SECTION \
+                         __cplusplus
+EXPAND_AS_DEFINED      = B64_NAMESPACE
+
+HAVE_DOT               = NO
+
+
+# ########################### end of file ########################### #

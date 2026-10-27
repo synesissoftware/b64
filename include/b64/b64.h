@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 library
  *
  * Created: 18th October 2004
- * Updated: 27th October 2026
+ * Updated: 28th October 2026
  *
  * Thanks:  To Adam McLaurin, for ideas regarding the b64_decode2() and
  *          b64_encode2(). To Gerry Hornbill for the exact required size
@@ -60,8 +60,8 @@
 #ifndef B64_DOCUMENTATION_SKIP_SECTION
 # define B64_VER_B64_H_B64_MAJOR    1
 # define B64_VER_B64_H_B64_MINOR    6
-# define B64_VER_B64_H_B64_REVISION 16
-# define B64_VER_B64_H_B64_EDIT     55
+# define B64_VER_B64_H_B64_REVISION 17
+# define B64_VER_B64_H_B64_EDIT     56
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -89,7 +89,7 @@
 
 #define B64_VER_MAJOR       1
 #define B64_VER_MINOR       5
-#define B64_VER_PATCH       9
+#define B64_VER_PATCH       10
 #define B64_VER_RELSTATUS   0xFF
 
 #define B64_VER \
@@ -232,6 +232,14 @@ typedef enum B64_FLAGS                                      B64_FLAGS;
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+
+/** \defgroup group__b64_api b64 C API
+ *
+ * The core C API of the b64 library: Base-64 encoding and decoding, and
+ * the textual description of status codes.
+ *
+ * \{
+ */
 
 /** Encodes a block of binary data into Base-64
  *
@@ -452,6 +460,8 @@ b64_getErrorStringLength(
  * \see b64_getStatusCodeString, b64_getErrorString, b64_getErrorStringLength
  */
 #define b64_getStatusCodeStringLength                       b64_getErrorStringLength
+
+/** \} */
 
 #ifdef __cplusplus
 } /* extern "C" */

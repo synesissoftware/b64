@@ -5,7 +5,7 @@
 # Purpose:  CMake lists file for b64 core library
 #
 # Created:  ...
-# Updated:  6th May 2025
+# Updated:  28th October 2026
 #
 # ######################################################################## #
 
