@@ -37,24 +37,24 @@
  * forward declarations
  */
 
-static void test_1_00(void);
-static void test_1_01(void);
-static void test_1_02(void);
-static void test_1_03(void);
-static void test_1_04(void);
-static void test_1_05(void);
-static void test_1_06(void);
-static void test_1_07(void);
-static void test_1_08(void);
+static void TEST_b64_encode_NULL_AND_EMPTY(void);
+static void TEST_b64_encode_SINGLE_BYTE_0(void);
+static void TEST_b64_encode_SINGLE_BYTE_1(void);
+static void TEST_b64_encode_SINGLE_BYTE_10(void);
+static void TEST_b64_encode_SINGLE_BYTE_100(void);
+static void TEST_b64_encode_SINGLE_BYTE_128(void);
+static void TEST_b64_encode_SINGLE_BYTE_255(void);
+static void TEST_b64_encode_TEXT_STRING(void);
+static void TEST_b64_encode_15_BYTES_WITH_NEGATIVE_VALUES(void);
 
-static void test_2_00(void);
-static void test_2_01(void);
-static void test_2_02(void);
-static void test_2_03(void);
-static void test_2_04(void);
-static void test_2_05(void);
-static void test_2_06(void);
-static void test_2_07(void);
+static void TEST_b64_decode2_INSUFFICIENT_BUFFER(void);
+static void TEST_b64_decode2_NULL_AND_EMPTY(void);
+static void TEST_b64_decode2_TWO_PADDING_CHARACTERS(void);
+static void TEST_b64_decode2_ONE_PADDING_CHARACTER(void);
+static void TEST_b64_decode2_NO_PADDING(void);
+static void TEST_b64_decode2_GERRY_HORNBILL_EXAMPLE(void);
+static void TEST_b64_decode2_DOUBLE_PADDING_ONLY(void);
+static void TEST_b64_decode2_SINGLE_PADDING_ONLY(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,24 +70,24 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.c.1", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
+        XTESTS_RUN_CASE(TEST_b64_encode_NULL_AND_EMPTY);
+        XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_0);
+        XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_1);
+        XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_10);
+        XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_100);
+        XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_128);
+        XTESTS_RUN_CASE(TEST_b64_encode_SINGLE_BYTE_255);
+        XTESTS_RUN_CASE(TEST_b64_encode_TEXT_STRING);
+        XTESTS_RUN_CASE(TEST_b64_encode_15_BYTES_WITH_NEGATIVE_VALUES);
 
-        XTESTS_RUN_CASE(test_2_00);
-        XTESTS_RUN_CASE(test_2_01);
-        XTESTS_RUN_CASE(test_2_02);
-        XTESTS_RUN_CASE(test_2_03);
-        XTESTS_RUN_CASE(test_2_04);
-        XTESTS_RUN_CASE(test_2_05);
-        XTESTS_RUN_CASE(test_2_06);
-        XTESTS_RUN_CASE(test_2_07);
+        XTESTS_RUN_CASE(TEST_b64_decode2_INSUFFICIENT_BUFFER);
+        XTESTS_RUN_CASE(TEST_b64_decode2_NULL_AND_EMPTY);
+        XTESTS_RUN_CASE(TEST_b64_decode2_TWO_PADDING_CHARACTERS);
+        XTESTS_RUN_CASE(TEST_b64_decode2_ONE_PADDING_CHARACTER);
+        XTESTS_RUN_CASE(TEST_b64_decode2_NO_PADDING);
+        XTESTS_RUN_CASE(TEST_b64_decode2_GERRY_HORNBILL_EXAMPLE);
+        XTESTS_RUN_CASE(TEST_b64_decode2_DOUBLE_PADDING_ONLY);
+        XTESTS_RUN_CASE(TEST_b64_decode2_SINGLE_PADDING_ONLY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -102,12 +102,12 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-static void test_1_00(void)
+static void TEST_b64_encode_NULL_AND_EMPTY(void)
 {
     XTESTS_TEST_INTEGER_EQUAL(0u, b64_encode(NULL, 0, NULL, 0));
 }
 
-static void test_1_01(void)
+static void TEST_b64_encode_SINGLE_BYTE_0(void)
 {
     unsigned char   bytes[] = { 0 };
     char            result[1001];
@@ -119,7 +119,7 @@ static void test_1_01(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("AA==", result, 4u);
 }
 
-static void test_1_02(void)
+static void TEST_b64_encode_SINGLE_BYTE_1(void)
 {
     unsigned char   bytes[] = { 1 };
     char            result[1001];
@@ -131,7 +131,7 @@ static void test_1_02(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("AQ==", result, 4u);
 }
 
-static void test_1_03(void)
+static void TEST_b64_encode_SINGLE_BYTE_10(void)
 {
     unsigned char   bytes[] = { 10 };
     char            result[1001];
@@ -143,7 +143,7 @@ static void test_1_03(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("Cg==", result, 4u);
 }
 
-static void test_1_04(void)
+static void TEST_b64_encode_SINGLE_BYTE_100(void)
 {
     unsigned char   bytes[] = { 100 };
     char            result[1001];
@@ -155,7 +155,7 @@ static void test_1_04(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("ZA==", result, 4u);
 }
 
-static void test_1_05(void)
+static void TEST_b64_encode_SINGLE_BYTE_128(void)
 {
     unsigned char   bytes[] = { 128 };
     char            result[1001];
@@ -167,7 +167,7 @@ static void test_1_05(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("gA==", result, 4u);
 }
 
-static void test_1_06(void)
+static void TEST_b64_encode_SINGLE_BYTE_255(void)
 {
     unsigned char   bytes[] = { 255 };
     char            result[1001];
@@ -179,7 +179,7 @@ static void test_1_06(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/w==", result, 4u);
 }
 
-static void test_1_07(void)
+static void TEST_b64_encode_TEXT_STRING(void)
 {
     char            bytes[] = "This is a test string";
     char            result[1001];
@@ -191,7 +191,7 @@ static void test_1_07(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("VGhpcyBpcyBhIHRlc3Qgc3RyaW5n", result, 28u);
 }
 
-static void test_1_08(void)
+static void TEST_b64_encode_15_BYTES_WITH_NEGATIVE_VALUES(void)
 {
     signed char bytes[] = { 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7 };
     char        result[1001];
@@ -204,7 +204,7 @@ static void test_1_08(void)
 }
 
 
-static void test_2_00(void)
+static void TEST_b64_decode2_INSUFFICIENT_BUFFER(void)
 {
     char const      enc[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ=";
     unsigned char   bytes[10];
@@ -215,7 +215,7 @@ static void test_2_00(void)
     XTESTS_TEST_ENUM_EQUAL(B64_RC_INSUFFICIENT_BUFFER, rc);
 }
 
-static void test_2_01(void)
+static void TEST_b64_decode2_NULL_AND_EMPTY(void)
 {
     char const* const   enc = NULL;
 
@@ -238,7 +238,7 @@ static void test_2_01(void)
     }
 }
 
-static void test_2_02(void)
+static void TEST_b64_decode2_TWO_PADDING_CHARACTERS(void)
 {
     char const      enc[] = "MA==";
 
@@ -261,7 +261,7 @@ static void test_2_02(void)
     }
 }
 
-static void test_2_03(void)
+static void TEST_b64_decode2_ONE_PADDING_CHARACTER(void)
 {
     char const      enc[] = "MDA=";
 
@@ -284,7 +284,7 @@ static void test_2_03(void)
     }
 }
 
-static void test_2_04(void)
+static void TEST_b64_decode2_NO_PADDING(void)
 {
     char const      enc[] = "MDAw";
 
@@ -307,7 +307,7 @@ static void test_2_04(void)
     }
 }
 
-static void test_2_05(void)
+static void TEST_b64_decode2_GERRY_HORNBILL_EXAMPLE(void)
 {
     // This is gerry-hornbill's example, which should obtain 20 characters
 
@@ -332,7 +332,7 @@ static void test_2_05(void)
     }
 }
 
-static void test_2_06(void)
+static void TEST_b64_decode2_DOUBLE_PADDING_ONLY(void)
 {
     /* padding-only input, shorter than a quantum: the calculated size must
      * not underflow
@@ -358,7 +358,7 @@ static void test_2_06(void)
     }
 }
 
-static void test_2_07(void)
+static void TEST_b64_decode2_SINGLE_PADDING_ONLY(void)
 {
     /* a single padding character */
 

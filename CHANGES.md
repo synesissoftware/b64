@@ -6,6 +6,7 @@
 * Added Doxygen support: **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, `group__b64_api` in **b64/b64.h**, `group__b64_cpp_api` in **b64/b64.hpp**, and a CI `documentation` job;
 * Corrected the CMake project description;
 * Fixed `b64_decode()` / `b64_decode2()` size calculation, which underflowed (and so reported a huge size) for padding-only input such as `"=="`, and could overflow for very long input; added unit tests;
+* Canonicalised and enhanced unit test case names (`TEST_<function>_<CONDITION>`) in **test.unit.c.1** and **test.unit.cpp.1**, and removed an empty case and two duplicated cases from the latter;
 * Moved a mid-block declaration in **b64.c** to the head of its block, for C90 compilers;
 * Updated source file header dates, copyright years, and home URLs;
 * Documentation updates (**README.md** **Developer Experience** section and STLSoft links; **TODO.md**);
