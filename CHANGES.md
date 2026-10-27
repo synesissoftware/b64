@@ -1,6 +1,11 @@
 # b64 - Changes <!-- omit in toc -->
 
 
+## 1.5.9 - 27th October 2026
+
+* Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
+
+
 ## 1.5.8 - 14th October 2026
 
 * Synced tip **cmake-helpers** runners (**run_all_examples** / **scratch** / **unit**);
