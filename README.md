@@ -58,7 +58,7 @@ The **core library** is a pure standalone component:
 
 ## Developer Experience
 
-**Need**: a C compiler and **CMake** 3.20+. The C++ API and the tests also need [STLSoft](https://github.com/synesissoftware/STLSoft) (1.11+); the tests also need [xTests](https://github.com/synesissoftware/xTests/) (0.28+). The C core library needs nothing.
+**Need**: a C compiler and **CMake** 3.20+. The C++ API and the tests also need [STLSoft](https://github.com/synesissoftware/STLSoft) (1.11+); the tests also need [xTests](https://github.com/synesissoftware/xTests/) (0.28+). The C core library needs **nothing**.
 
 **Build**:
 
@@ -72,6 +72,26 @@ The **core library** is a pure standalone component:
 ```bash
 ./run_all_unit_tests.sh
 ./run_all_examples.sh
+```
+
+**Simplest use** (C, with a fixed-size buffer; the encoded form is not NUL-terminated):
+
+```C
+#include <b64/b64.h>
+
+unsigned char const bytes[] = { 1, 2, 3 };
+char                enc[8];
+size_t const        n       =   b64_encode(bytes, sizeof(bytes), enc, sizeof(enc));  /* n == 4; enc is "AQID" */
+```
+
+**Simplest use** (C++):
+
+```C++
+#include <b64/b64.hpp>
+
+unsigned char const bytes[]     =   { 1, 2, 3 };
+b64::string_t const encoded     =   b64::encode(bytes);    // "AQID"
+b64::blob_t const   decoded     =   b64::decode(encoded);  // { 1, 2, 3 }
 ```
 
 **Read next**: [INSTALL.md](./INSTALL.md) for installation and bundling, the **examples** directory for usage, and [FAQ.md](./FAQ.md) for common questions.
