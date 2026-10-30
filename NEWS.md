@@ -6,6 +6,7 @@
 
 | Date                  | News Item          | Details |
 | --------------------- | ------------------ | ------- |
+| 31st October 2026     | [**b64** 1.5.11 released](https://github.com/synesissoftware/b64/releases/tag/1.5.11) | `File:` labels use the project-relative path |
 | 28th October 2026     | [**b64** 1.5.10 released](https://github.com/synesissoftware/b64/releases/tag/1.5.10) | Doxygen support; performance test **test.performance.b64**; header and CMake description corrections |
 | 27th October 2026     | [**b64** 1.5.9 released](https://github.com/synesissoftware/b64/releases/tag/1.5.9) | `HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages |
 | 14th October 2026     | [1.5.8 released](https://github.com/synesissoftware/b64/releases/tag/1.5.8) | Tip helpers; `B64_VER_RELSTATUS`; Phase **4c**; CI **install-sis-deps** / xbit / **.cmd** |

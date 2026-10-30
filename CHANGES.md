@@ -1,6 +1,14 @@
 # b64 - Changes <!-- omit in toc -->
 
 
+## 1.5.11 - 31st October 2026
+
+* testing:
+  * `File:` labels under **test** name the project-relative path;
+* documentation and boilerplate:
+  * **Doxyfile** `PROJECT_NUMBER` is **1.5.11**;
+
+
 ## 1.5.10 - 28th October 2026
 
 * fixes:
