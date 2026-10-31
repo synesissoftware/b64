@@ -1,7 +1,7 @@
 # b64 - Changes <!-- omit in toc -->
 
 
-## 1.5.11 - 31st October 2026
+## 1.5.11 - 1st November 2026
 
 * testing:
   * `File:` labels under **test** name the project-relative path;
