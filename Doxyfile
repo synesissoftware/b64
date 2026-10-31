@@ -3,7 +3,7 @@
 PROJECT_NAME           = "b64"
 PROJECT_BRIEF          = "Very small, simple, standalone Base-64 encoding and decoding library"
 # overridden by generate_doxygen.sh from the B64_VER_* macros
-PROJECT_NUMBER         = 1.5.10
+PROJECT_NUMBER         = 1.5.11
 
 OUTPUT_DIRECTORY       = _build/doxygen
 CREATE_SUBDIRS         = NO
