@@ -1,6 +1,12 @@
 # b64 - Changes <!-- omit in toc -->
 
 
+## 1.5.12 - 2nd November 2026
+
+* build:
+  * **STLSoft** minimum is **1.11.5**;
+  * **xTests** minimum is **0.28.2**;
+
 ## 1.5.11 - 1st November 2026
 
 * testing:
