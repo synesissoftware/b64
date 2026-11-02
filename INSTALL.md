@@ -41,7 +41,7 @@ The primary choice for installation is by use of **CMake**.
    ```
 
    For a full build including the **C++ API**, examples, and tests, install
-   **STLSoft** 1.11 (and **xTests** for tests) via their own **CMake**
+   **STLSoft** 1.11.5 (and **xTests** for tests) via their own **CMake**
    scripts first, then:
 
    ```bash
