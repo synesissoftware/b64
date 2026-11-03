@@ -41,7 +41,7 @@ The **core library** is a pure standalone component:
 * It does not allocate any memory;
 * It is released under the [BSD license](https://en.wikipedia.org/wiki/BSD_licenses), which basically means it's free for any use, but you can't claim it's yours.
 
-**NOTE**: Base-64 conversion of binary regions, using **b64**, is available as part of the distribution of [Pantheios](http://github.com/synesissoftware/pantheios/), a high-performance C++ diagnostic logging API library.
+**NOTE**: [**Pantheios**](https://github.com/synesissoftware/Pantheios) optionally uses **b64** for its `pantheios::b64` diagnostic-logging inserter (**Pantheios.inserters.b64**). Install **b64** first when that inserter is required; **b64** is not bundled inside Pantheios.
 
 
 ### Dependencies
