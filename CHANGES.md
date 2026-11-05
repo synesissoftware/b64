@@ -1,6 +1,18 @@
 # b64 - Changes <!-- omit in toc -->
 
 
+## 1.5.13 - 6th November 2026
+
+* build:
+  * CI installs **woad** before **xTests**, which **xTests** 0.29 requires;
+* testing:
+  * removed **test/unit/b64/implicit_link.cpp** and **test/unit/b64.cxx/implicit_link.cpp**;
+* documentation and boilerplate:
+  * **README.md** states that **Pantheios** uses **b64** through `pantheios::b64` and does not ship a bundled copy;
+  * C++ namespace closers in **include/b64/b64.hpp** are spelled `// namespace`;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.5.13**;
+
+
 ## 1.5.12 - 2nd November 2026
 
 * build:

@@ -6,6 +6,7 @@
 
 | Date                  | News Item          | Details |
 | --------------------- | ------------------ | ------- |
+| 6th November 2026     | [**b64** 1.5.13 released](https://github.com/synesissoftware/b64/releases/tag/1.5.13) | CI installs **woad** before **xTests**; implicit-link unit sources removed; **README.md** Pantheios note; `// namespace` closers |
 | 2nd November 2026     | [**b64** 1.5.12 released](https://github.com/synesissoftware/b64/releases/tag/1.5.12) | **STLSoft** **1.11.5**; **xTests** **0.28.2** |
 | 1st November 2026     | [**b64** 1.5.11 released](https://github.com/synesissoftware/b64/releases/tag/1.5.11) | `File:` labels use the project-relative path; **Check test names** |
 | 28th October 2026     | [**b64** 1.5.10 released](https://github.com/synesissoftware/b64/releases/tag/1.5.10) | Doxygen support; performance test **test.performance.b64**; header and CMake description corrections |
