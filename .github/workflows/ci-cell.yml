@@ -57,7 +57,7 @@ jobs:
           build-type: ${{ inputs.build-type }}
           c-compiler: ${{ inputs.c-compiler == 'mingw' && 'gcc' || inputs.c-compiler }}
           cpp-compiler: ${{ inputs.c-compiler == 'mingw' && 'g++' || inputs.cpp-compiler }}
-          dependencies: STLSoft shwild xTests
+          dependencies: STLSoft shwild woad xTests
           toolchain: ${{ inputs.c-compiler == 'mingw' && 'mingw' || '' }}
 
       - name: Configure

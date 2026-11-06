@@ -4,7 +4,7 @@
  * Purpose: Header file for the b64 C++-API.
  *
  * Created: 18th October 2004
- * Updated: 28th October 2026
+ * Updated: 6th November 2026
  *
  * Home:    https://github.com/synesissoftware/b64
  *
@@ -67,7 +67,7 @@
 # define B64_VER_B64_HPP_B64_MAJOR      2
 # define B64_VER_B64_HPP_B64_MINOR      1
 # define B64_VER_B64_HPP_B64_REVISION   13
-# define B64_VER_B64_HPP_B64_EDIT       44
+# define B64_VER_B64_HPP_B64_EDIT       45
 #endif /* !B64_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -809,10 +809,10 @@ namespace cpp
 
     using B64_NAMESPACE::decode;
     using B64_NAMESPACE::encode;
-} /* namespace cpp */
+} // namespace cpp
 
 #ifndef B64_NO_NAMESPACE
-} /* namespace B64_NAMESPACE */
+} // namespace B64_NAMESPACE
 #endif /* !B64_NO_NAMESPACE */
 
 
